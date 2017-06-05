@@ -1,0 +1,64 @@
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   p Welcome to #{title}
+
+doctype html
+html
+	head
+		title pug test page
+		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+  
+	body
+
+		.container-fluid
+
+			.row
+
+				.col-xs-12.header.text-center
+					h1 whatever this'll be called
+			
+		.container
+
+			.row
+
+				.hidden-xs.hidden-sm.hidden-md.col-lg-2.col-lg-offset-1.rand-rest
+					h1 random restaurant
+
+				.hidden-xs.hidden-sm.hidden-md.col-lg-2.col-lg-offset-1.rand-reci
+					h1 random recipe
+
+				.hidden-xs.hidden-sm.col-md-6.hidden-lg
+					.hidden-xs.hidden-sm.col-md-12.hidden-lg.rand-rest
+						h3 random restaurant
+					.hidden-xs.hidden-sm.col-md-12.hidden-lg.rand-reci
+						h3 random recipe
+
+				.hidden-xs.hidden-sm.hidden-md.col-lg-2.col-lg-offset-1.rand-quiz
+					h1 narrow it down
+
+				.hidden-xs.hidden-sm.hidden-md.col-lg-2.col-lg-offset-1.rem-items
+					h1 recipes with remaining items
+
+				.hidden-xs.hidden-sm.col-md-6.hidden-lg
+					.hidden-xs.hidden-sm.col-md-12.hidden-lg.rand-quiz
+						h3 narrow it down
+					.hidden-xs.hidden-sm.col-md-12.hidden-lg.rem-items
+						h3 recipes with remaining items
+
+				.col-xs-12.col-sm-12.hidden-md.hidden-lg
+					.col-xs-12.col-sm-12.hidden-md.hidden-lg.rand-rest
+						h6 random restaurant
+					.col-xs-12.col-sm-12.hidden-md.hidden-lg.rand-reci
+						h6 random recipe
+					.col-xs-12.col-sm-12.hidden-md.hidden-lg.rand-quiz
+						h6 narrow it down
+					.col-xs-12.col-sm-12.hidden-md.hidden-lg.rem-items
+						h6 recipes with remaining items
+
+
+		
+	
+
