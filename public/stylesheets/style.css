@@ -4,11 +4,16 @@
 }
 
 .rand-reci {
-	background: rgba(237,106,90,.5); 
+	background: rgba(237,106,90,.5);
 }
 
 .rand-rest {
 	background: rgba(244,241,187,.5);
+	transition: 2s ease;	
+}
+
+.flip {
+	transform: rotateY(360deg);
 }
 
 .rand-quiz {
