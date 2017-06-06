@@ -3,38 +3,40 @@
 	width: 100%;
 	font-family: 'Oswald', sans-serif;
 	overflow-x: hidden;
+	text-shadow: 0px 0px 5px #333;
 }
 
 #title {
-	background-color: #010400;
+	background-color: rgba(1,4,0,.1);
+	/*background: transparent;*/
 	color: white;
 	font-size: 75px;
 	text-align: center;
 }
 
 #pageOne {
-	background-color: #30332e;
+	background-color: rgba(48,51,46,.1);
 	color:white;
 	font-size:75px;
 	text-align: center;
 }
 
 #pageTwo {
-	background-color: #fffbfc;
-	color:#333;
+	background-color: rgba(255,251,252,.1);
+	color:white;
 	font-size:75px;
 	text-align: center;
 }
 
 #pageThree {
-	background-color: #62bbc1;
-	color:#333;
+	background-color: rgba(98,187,193,.1);
+	color:white;
 	font-size:75px;
 	text-align: center;
 }
 
 #pageFour {
-	background-color: #ec058E;
+	background-color: rgba(236,5,142,.1);
 	color:white;
 	font-size:75px;
 	text-align: center;
@@ -46,6 +48,11 @@
 
 body {
 	margin: 0px;
+	background-image: url('../images/landscape.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
 }
 
 .sideNav {
@@ -83,8 +90,7 @@ body {
 }
 
 #site {
-	transition: margin-left .5x;
-	/*padding: 20px;*/
+	transition: all .5s;
 }
 
 @media screen and (max-height: 450px){
