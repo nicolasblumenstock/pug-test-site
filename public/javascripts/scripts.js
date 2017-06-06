@@ -5,5 +5,8 @@ $(document).ready(()=>{
 
 	$('.rand-rest').click(function(){
 		$('.rand-rest').addClass('flip');
+		setTimeout(function(){
+			$('.rand-rest').removeClass('flip');
+		},500)
 	})
 })

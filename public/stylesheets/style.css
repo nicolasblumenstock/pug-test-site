@@ -1,45 +1,63 @@
 .rand-reci, .rand-rest, .rand-quiz, .rem-items {
-	border: 1px solid #555;
-	box-shadow: 0px 0px 5px #333;
+	border: 2px solid #555;
+	box-shadow: 4px 0px 3px #333;
 }
 
 .rand-reci {
-	background: rgba(237,106,90,.5);
+	background: rgb(237,106,90);
 }
 
 .rand-rest {
-	background: rgba(244,241,187,.5);
+	background: rgb(244,241,187);
 	transition: 2s ease;	
 }
 
 .flip {
-	transform: rotateY(360deg);
+	background: linear-gradient(to top, white, transparent, 25%);
 }
 
 .rand-quiz {
-	background: rgba(155,193,188,.5);
+	background: rgb(155,193,188);
 }
 
 .rem-items {
-	background: rgba(92,164,169,.5);
+	background: rgb(92,164,169);
 }
 
-.col-lg-2.rand-reci, .col-lg-2.rand-rest, .col-lg-2.rand-quiz, .col-lg-2.rem-items {
-	margin-top: 100px;
-	height: 75vh;	
+.col-lg-3.rand-reci, .col-lg-3.rand-rest, .col-lg-3.rand-quiz, .col-lg-3.rem-items {
+	height: 60vh;
+	top: 100px;
+	position: absolute;
+
 }
 
-.col-lg-2.rand-rest {
-	margin-right: 25px;
+div.col-lg-3.rand-reci:hover{
 }
 
-.col-lg-2.rand-reci, .col-lg-2.rand-quiz {
-	margin-left: 25px;
-	margin-right: 25px;
+div.col-lg-3.rand-quiz:hover{
+}
+div.col-lg-3.rand-rest:hover{
+}
+div.col-lg-3.rem-items:hover{
+}
+.col-lg-3.rand-rest {
+	left: 15vw;
+	z-index: 3;
 }
 
-.col-lg-2.rem-items {
-	margin-left: 25px;
+.col-lg-3.rand-quiz {
+	left: 45vw;
+	z-index: 1;
+}
+
+.col-lg-3.rand-reci {
+	left: 30vw;
+	z-index: 2;
+}
+
+.col-lg-3.rem-items {
+	left: 60vw;
+	z-index: 0;
 }
 
 .header {
@@ -60,4 +78,13 @@
 .col-xs-12.rand-reci, .col-xs-12.rand-rest, .col-xs-12.rand-quiz, .col-xs-12.rem-items {
 	height: 20vh;
 	margin-top: 50px;
+}
+
+.vert-words {
+	position: absolute;
+	transform: rotate(270deg);
+	top: 257px;
+	left: 135px;
+	font-size: 25px;
+	width: 100%;
 }
