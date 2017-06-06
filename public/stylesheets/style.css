@@ -1,90 +1,99 @@
-.rand-reci, .rand-rest, .rand-quiz, .rem-items {
-	border: 2px solid #555;
-	box-shadow: 4px 0px 3px #333;
-}
-
-.rand-reci {
-	background: rgb(237,106,90);
-}
-
-.rand-rest {
-	background: rgb(244,241,187);
-	transition: 2s ease;	
-}
-
-.flip {
-	background: linear-gradient(to top, white, transparent, 25%);
-}
-
-.rand-quiz {
-	background: rgb(155,193,188);
-}
-
-.rem-items {
-	background: rgb(92,164,169);
-}
-
-.col-lg-3.rand-reci, .col-lg-3.rand-rest, .col-lg-3.rand-quiz, .col-lg-3.rem-items {
-	height: 60vh;
-	top: 100px;
-	position: absolute;
-
-}
-
-div.col-lg-3.rand-reci:hover{
-}
-
-div.col-lg-3.rand-quiz:hover{
-}
-div.col-lg-3.rand-rest:hover{
-}
-div.col-lg-3.rem-items:hover{
-}
-.col-lg-3.rand-rest {
-	left: 15vw;
-	z-index: 3;
-}
-
-.col-lg-3.rand-quiz {
-	left: 45vw;
-	z-index: 1;
-}
-
-.col-lg-3.rand-reci {
-	left: 30vw;
-	z-index: 2;
-}
-
-.col-lg-3.rem-items {
-	left: 60vw;
-	z-index: 0;
-}
-
-.header {
-	background-color: #e6ebe0;
-	border-bottom: 1px solid #555;
-	box-shadow: 0px 0px 5px #333;
-}
-
-.col-md-12.rand-reci, .col-md-12.rand-rest, .col-md-12.rand-quiz, .col-md-12.rem-items {
-	height: 40vh;
-	margin-top: 25px;
-}
-
-.row {
-	margin: 0px;
-}
-
-.col-xs-12.rand-reci, .col-xs-12.rand-rest, .col-xs-12.rand-quiz, .col-xs-12.rem-items {
-	height: 20vh;
-	margin-top: 50px;
-}
-
-.vert-words {
-	position: absolute;
-	transform: rotate(270deg);
-	top: 257px;
-	left: 135px;
-	font-size: 25px;
+#pageOne, #pageTwo, #pageThree, #pageFour, #title {
+	height: 100%;
 	width: 100%;
+	font-family: 'Oswald', sans-serif;
+	overflow-x: hidden;
+	text-shadow: 0px 0px 5px #333;
+}
+
+#title {
+	background-color: rgba(1,4,0,.1);
+	/*background: transparent;*/
+	color: white;
+	font-size: 75px;
+	text-align: center;
+}
+
+#pageOne {
+	background-color: rgba(48,51,46,.1);
+	color:white;
+	font-size:75px;
+	text-align: center;
+}
+
+#pageTwo {
+	background-color: rgba(255,251,252,.1);
+	color:white;
+	font-size:75px;
+	text-align: center;
+}
+
+#pageThree {
+	background-color: rgba(98,187,193,.1);
+	color:white;
+	font-size:75px;
+	text-align: center;
+}
+
+#pageFour {
+	background-color: rgba(236,5,142,.1);
+	color:white;
+	font-size:75px;
+	text-align: center;
+}
+
+.titles {
+	line-height: 100vh;
+}
+
+body {
+	margin: 0px;
+	background-image: url('../images/landscape.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+}
+
+.sideNav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background: #333;
+	overflow-x: hidden;
+	padding-top: 60px;
+	transition: .5s;
+}
+
+.sideNav a{
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: white;
+	display: block;
+	transition: .3s;
+}
+
+.sideNav a:hover, .offcanvas a:focus{
+	color: #f1f1f1;
+}
+
+.sideNav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+#site {
+	transition: all .5s;
+}
+
+@media screen and (max-height: 450px){
+	.sideNav {padding-top: 15px;}
+	.sideNav a {font-size: 18px;}
 }

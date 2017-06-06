@@ -1,12 +1,16 @@
-$(document).ready(()=>{
-	$(".rand-rest").on('tap', function(){
-		$('.rand-rest').addClass('flip');
+$(document).ready(function(){
+	$('.section').on('click', function(event){
+		$('#mySideNav').width('250px');
+	})
+	
+	$('#site').fullpage({
+		continuousVertical: true,
 	});
 
-	$('.rand-rest').click(function(){
-		$('.rand-rest').addClass('flip');
-		setTimeout(function(){
-			$('.rand-rest').removeClass('flip');
-		},500)
+	$('.closebtn').on('click', function(event){
+		$('#mySideNav').width('0px');
 	})
-})
+
+});
+
+
