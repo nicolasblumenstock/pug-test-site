@@ -26,23 +26,23 @@ router.get('/register', (req,res)=>{
 });
 
 router.get('/account', (req,res)=>{
-	res.render('/account', {})
+	res.render('account', {})
 })
 
 router.get('/restaurants', (req,res)=>{
-	res.render('/restaurants', {})
+	res.render('restaurants', {})
 })
 
 router.get('/recipes', (req,res)=>{
-	res.render('/recipes', {})
+	res.render('recipes', {})
 })
 
 router.get('/beverages', (req,res)=>{
-	res.render('/beverages', {})
+	res.render('beverages', {})
 })
 
 router.get('/contact', (req,res)=>{
-	res.render('/contact', {})
+	res.render('contact', {})
 })
 
 module.exports = router;
