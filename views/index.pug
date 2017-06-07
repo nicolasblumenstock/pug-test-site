@@ -1,29 +1,20 @@
-doctype html
-head
-	title= title
-	link(rel='stylesheet' href='stylesheets/jquery.fullpage.min.css')
-	link(rel='stylesheet' href='stylesheets/slidebars.min.css')
-	link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:500')
+extends layout
+block styles
 	link(rel='stylesheet' href='stylesheets/style.css')
-	script(src='javascripts/jquery-3.2.1.min.js')
-	script(src='javascripts/jquery.fullpage.min.js')
+
+block scripts
 	script(src='javascripts/scripts.js')
 
-body
+block content
 
-	#mySideNav.sideNav
-		a(href='javascript:void(0)' class='closebtn') &times;
-		a(href='#') page one
-		a(href='#') page two
-		a(href='#') page three
-		a(href='#') page four
+	include slider
 
-	#site
+	#site.toggle-button
 
 		#title.section.active
 	
 			.titles
-				span [twoBites]
+				span [bytesAndBrews]
 
 	
 		#pageOne.section

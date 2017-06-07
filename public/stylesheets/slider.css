@@ -1,0 +1,50 @@
+.sideNav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background: #333;
+	overflow-x: hidden;
+	padding-top: 60px;
+	transition: .5s;
+}
+
+.sideNav a{
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: white;
+	display: block;
+	transition: .3s;
+}
+
+.sideNav a:hover, .offcanvas a:focus{
+	color: #f1f1f1;
+}
+
+.sideNav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+@media screen and (max-height: 450px){
+	.sideNav {padding-top: 15px;}
+	.sideNav a {font-size: 18px;}
+}
+
+.openBar {
+	width: 250px;
+}
+
+.mainBar {
+	margin-left: 250px;
+}
+
+#mySideNav {
+	font-family: 'Oswald', sans-serif;
+}

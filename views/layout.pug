@@ -1,7 +1,21 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+	head
+		title= title
+
+		link(rel='stylesheet' href='stylesheets/jquery.fullpage.min.css')
+		link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:500')
+		
+		block styles
+
+		link(rel='stylesheet' href='stylesheets/slider.css')
+
+		script(src='javascripts/jquery-3.2.1.min.js')
+		script(src='javascripts/jquery.fullpage.min.js')
+		script(src='javascripts/slider.js')
+	
+		block scripts    
+
+	body
+		
+		block content
