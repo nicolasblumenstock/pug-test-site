@@ -48,3 +48,57 @@
 #mySideNav {
 	font-family: 'Oswald', sans-serif;
 }
+
+span{
+	height: 15px;
+	width: 15px;
+	background-size: cover;
+}
+
+.home-icon{
+	background-image: url('../images/prj-icons/home-icon.png');
+	display: block;
+	position: relative;
+	top: -20px;
+	left: -27px;
+}
+
+.account-icon{
+	background-image: url('../images/prj-icons/account-icon-2.png');
+	display: block;
+	position: relative;
+	top: -20px;
+	left: -27px;
+}
+
+.rest-icon{
+	background-image: url('../images/prj-icons/rest-icon.png');
+	display: block;
+	position: relative;
+	top: -20px;
+	left: -27px;
+}
+
+.rec-icon{
+	background-image: url('../images/prj-icons/recipe-icon.png');
+	display: block;
+	position: relative;
+	top: -20px;
+	left: -27px;
+}
+
+.alch-icon{
+	background-image: url('../images/prj-icons/bev-icon.png');
+	display: block;
+	position: relative;
+	top: -20px;
+	left: -27px;
+}
+
+.contact-icon{
+	background-image: url('../images/prj-icons/account-icon.png');
+	display: block;
+	position: relative;
+	top: -20px;
+	left: -27px;
+}
