@@ -9,7 +9,7 @@ function bind(){
         var beerName = document.getElementById('br').value;
         var bts = beerName.split(' ').join('_');
         var type = "&type=beer";
-        var key = "&key=dd1140de5619a72696d1f9773333c85e";
+        var key = config.apiKey;
         var search = "/search?q=";
         var fullUrl = base + search + bts + type + key;
     });
