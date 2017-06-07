@@ -1,0 +1,28 @@
+#logins {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	min-height: 50px;
+	min-width: 50px;
+	padding: 20px;
+	background: transparent;
+	display: inline-block;
+	z-index: 2;
+}
+
+.btn {
+	font-family: 'Oswald', sans-serif;	
+	padding: 5px 10px 5px 10px;
+	border: none;
+	border-radius: 5px;
+	color: white;
+}
+
+.btn-signIn {
+	margin-right: 10px;	
+	background-color: #736372;
+}
+
+.btn-register {
+	background-color: #AAC0AA;
+}
