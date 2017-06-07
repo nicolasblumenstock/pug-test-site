@@ -1,12 +1,21 @@
-var base = "http://api.brewerydb.com/v2"
+const apibBaseUrl = "http://api.brewerydb.com/v2/";
+const stylesUrl = "styles?";
+const apiKey = config.apiKey;
 
+var beerId = ///This is decided by user input
 
-// document.addEventListener('DOMContentLoaded', bind); //DOM must load first before binding buttons.
-
-var beerName = document.getElementById(??????).value;
 var bts = beerName.split(' ').join('_');
 var type = "&type=beer";
-var key = config.apiKey;
 var search = "/search?q=";
-var fullUrl = base + search + bts + type + key;
+
+
+
+var searchStylesUrl = apibBaseUrl + stylesUrl + apiKey;
+
+var searchBeerUrl = apibBaseUrl + "beers?styleId=" + beerId + '&' +apiKey;
+
+var searchByBeerUrl = apibBaseUrl + search + bts + type + key;
+  
+
+
    
