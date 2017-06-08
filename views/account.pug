@@ -1,9 +1,39 @@
 extends layout
 
 block styles
+	link(rel='stylesheet' href='stylesheets/forms.css')
 
 block scripts
 
 block content
 
-	h1 THIS IS THE ACCOUNT PAGE
+	include slider
+
+	#site
+
+		#slidertoggle.toggle-button
+
+		#registration
+			h3.message= message
+			form(action='/updateProcess' method='post')
+				.names
+					input.half(type='text' name='firstName' value=firstName)
+					input.half(type='text' name='lastName' value=lastName)
+				.email
+					input.full(type='email' name='oldEmail' value=email)
+				.email
+					input.full(type='email' name='newEmail' placeholder='New Email')
+				.addressLine
+					input.full(type='text' name='addressLine' value=addressLine)
+				.citystate
+					input.half(type='text' name='city' value=city)
+					input.half(type='text' name='state' value=state)
+				.zipphone
+					input.half(type='text' name='zip' value=zip)
+					input.half(type='text' name='phoneNumber' value=phoneNumber)
+				.password
+					input.full(type='password' name='oldPassword' placeholder='Current Password *')
+				.password
+					input.full(type='password' name='newPassword' placeholder='New Password')
+				.register
+					button.full(type='submit' class='btn-update') UPDATE
