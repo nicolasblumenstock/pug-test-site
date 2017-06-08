@@ -9,8 +9,11 @@ block content
 	include slider
 	include logreg
 
-	.content-container
-		button(type="submit" id="random-button")
-		form.search-form(action="/search-recipe", method="post")
-			input(type="text", name="ingredient")
-			button(type="submit" id="search-button")
+	div(id="site")
+		button.toggle-button nav
+		.content-container
+			form.random-form(action="/random-recipe" method="post")
+				button(type="submit" id="random-button") Random
+			form.search-form(action="/search-recipe", method="post")
+				input(type="text", name="ingredient")
+				button(type="submit" id="search-button") Search

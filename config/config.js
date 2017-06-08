@@ -5,7 +5,11 @@ var config = {
 		user: 'x',
 		password: 'x',
 		database: 'bytesandbrews'
-	}	
+	},
+	yummly: {
+		key: '28f7badb7f5e9e5e4899d733b8ef9a37',
+		id: 'eba07cbe'	
+	},	
 }
 
 module.exports = config;
