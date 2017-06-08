@@ -14,23 +14,24 @@ block content
 		#slidertoggle.toggle-button
 
 		#registration
+			h3.message= message
 			form(action='/registerProcess' method='post')
 				.names
-					input.half(type='text' name='firstName' placeholder='First Name')
-					input.half(type='text' name='lastName' placeholder='Last Name')
+					input.half(type='text' name='firstName' placeholder='First Name *')
+					input.half(type='text' name='lastName' placeholder='Last Name *')
 				.email
-					input.full(type='email' name='email' placeholder='Email Address')
+					input.full(type='email' name='email' placeholder='Email Address *')
 				.addressLine
 					input.full(type='text' name='addressLine' placeholder='Address Line')
 				.citystate
 					input.half(type='text' name='city' placeholder='City')
 					input.half(type='text' name='state' placeholder='State')
 				.zipphone
-					input.half(type='text' name='zip' placeholder='Zip Code')
+					input.half(type='text' name='zip' placeholder='Zip Code *')
 					input.half(type='text' name='phoneNumber' placeholder='Phone Number')
 				.password
-					input.full(type='password' name='password' placeholder='Password')
+					input.full(type='password' name='password' placeholder='Password *')
 				.password
-					input.full(type='password' name='password2' placeholder='Confirm Password')
+					input.full(type='password' name='password2' placeholder='Confirm Password *')
 				.register
 					button.full(type='submit' class='btn-register') REGISTER
