@@ -18,11 +18,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', (req,res)=>{
-	res.send('LOGIN PAGE, YO')
+	res.render('login', { })
 });
 
 router.get('/register', (req,res)=>{
-	res.send('REGISTRATION PAGE')
+	res.render('register', { })
 });
 
 router.get('/account', (req,res)=>{
