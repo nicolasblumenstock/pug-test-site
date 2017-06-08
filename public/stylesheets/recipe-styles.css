@@ -1,0 +1,60 @@
+#search-page{
+	background-image: url('/images/landscape.jpg');
+	background-size: cover;
+}
+
+#result-page{
+	background-color: blue;
+}
+
+#slidertoggle {
+	position: absolute;
+	left: 5vw;
+	top: 5vh;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	background-color: #a18276;
+	box-shadow: 2px 0px 1px #333;
+}
+
+.btn-search {
+	font-family: 'Oswald', sans-serif;	
+	margin-left: 10%;
+	margin-top: 10%;
+	border: none;
+	color: white;
+	text-shadow: 0px 0px 1px black;
+	width: 80%;
+	height: 50px;
+	border-radius: 5px;
+}
+
+.random-wrapper,.search-wrapper{
+	width: 20vw;
+	height: 40vh;
+	background-color: red;
+	float: left;
+	margin-top: 10vh;
+	border-radius: 10px;
+}
+
+.random-wrapper{
+	margin-left: 30%;
+}
+
+.random-content{
+	width: 90%;
+	height: 60%;
+	margin-left: 5%;
+	margin-top: 10%
+}
+
+.random-content img{
+	width: 100%;
+	
+}
+
+.search-wrapper{
+	margin-left: 5%;
+}

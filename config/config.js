@@ -6,8 +6,11 @@ var config = {
 		password: 'x',
 		database: 'bytesandbrews'
 	},	
-
 	wineKey: '?akey=8jncs6kpdwlsv2gkd24zqiyadfzhi0b07ybsajsldrssfgpg',
+	yummly: {
+		key: '28f7badb7f5e9e5e4899d733b8ef9a37',
+		id: 'eba07cbe'	
+	},	
 }
 
 module.exports = config;

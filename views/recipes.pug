@@ -1,19 +1,36 @@
 extends layout
 
+//- block primaryStyles
+
 block styles
 
+	link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+	link(rel='stylesheet' href='stylesheets/recipe-styles.css')
+	
+
 block scripts
+	script(src='javascripts/scripts.js')
 
 block content
 
 	include slider
 	include logreg
 
-	div(id="site")
-		button.toggle-button nav
-		.content-container
-			form.random-form(action="/random-recipe" method="post")
-				button(type="submit" id="random-button") Random
-			form.search-form(action="/search-recipe", method="post")
-				input(type="text", name="ingredient")
-				button(type="submit" id="search-button") Search
+	#site
+		#search-page.section.active
+			.toggle-button#slidertoggle
+			.container
+				.row
+					.random-wrapper
+						.random-content
+							img(src="https://s-media-cache-ak0.pinimg.com/originals/d6/44/28/d64428094e0604577bcc4153c341e52c.jpg")
+						form.random-form(action="/random-recipe" method="post")
+							button.btn-search.btn(type="submit" id="random-button") Random
+					.search-wrapper
+						form.search-form(action="/search-recipe", method="post")
+							input(type="text", name="ingredient")
+							button.btn-search.btn(type="submit" id="search-button") Search
+
+		#result-page.section
+			.title
+				span.toggle-button [Page two]			
