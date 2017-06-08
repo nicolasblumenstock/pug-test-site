@@ -6,4 +6,11 @@ block scripts
 
 block content
 
-	h1 THIS IS THE RECIPE PAGE
+	include slider
+	include logreg
+
+	.content-container
+		button(type="submit" id="random-button")
+		form.search-form(action="/search-recipe", method="post")
+			input(type="text", name="ingredient")
+			button(type="submit" id="search-button")
