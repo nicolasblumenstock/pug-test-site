@@ -1,0 +1,29 @@
+extends layout
+
+block styles
+	link(rel='stylesheet' href='stylesheets/forms.css')
+
+block scripts
+
+block content
+
+	include slider
+
+	#site
+
+		#slidertoggle.toggle-button
+
+		#login
+
+			h3.message= message
+
+			form(action='/loginProcess' method='post')
+				.email
+					input.full(type='email' name='email' placeholder='Email')
+				.password
+					input.full(type='password' name='password' placeholder='Password')
+				.login
+					button.full(type='submit' class='btn-login') LOG IN
+				.register
+					a(href='/register')
+						button.full.btn-register(type='button') REGISTER

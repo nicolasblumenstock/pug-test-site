@@ -1,0 +1,230 @@
+#search-page{
+	background-image: url('/images/landscape.jpg');
+	background-size: cover;
+}
+
+#result-page{
+	background-color: blue;
+}
+
+#slidertoggle {
+	position: absolute;
+	left: 5vw;
+	top: 5vh;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	background-color: #a18276;
+	box-shadow: 2px 0px 1px #333;
+}
+
+#random-button,#search-button {
+	font-family: 'Oswald', sans-serif;	
+	font-size: 20px;
+	/* text-align: center; */
+	line-height: 23vh;
+	margin-left: 10%;
+	margin-top: 10%;
+	border: none;
+	color: white;
+	text-shadow: 0px 0px 1px black;
+	width: 80%;
+	/* padding-top: 40%; */
+	border-radius: 5px;
+	background-color: #7a918d;
+}
+
+.random-form{
+	height: 80%;
+}
+
+.random-wrapper,.search-wrapper{
+	background: rgba(115, 99, 114,0.8);
+	margin-top: 0%;
+	height: 40vh;
+	border-radius: 5px;
+}
+
+.inner{
+	background: rgba(170, 192, 170, 0.8);
+	opacity: .8;
+	height: 90%;
+	margin-top: 4%;
+	border-radius: 5px;
+}
+
+.results{
+	background-color: #dceed1;
+}
+
+.side-bar-wrapper{
+	height: 80vh;
+	padding: 5px 5px 5px 5px;
+	border-radius: 5px;
+}
+
+.side-bar-header{
+	/* background-color: red; */
+	text-align: center;
+	line-height: 100%;
+	color: white;
+	border-radius: 5px
+}
+
+.ingredient-list{
+	/* background-color: blue; */
+	text-align: center;
+	line-height: 100%;
+	color: white;
+	height: 100%;
+}
+
+.row li{
+	margin-bottom: 15px;
+	margin-top: 15px;
+	color: white;
+	border-radius: 5px;
+}
+
+.row1,.row3,.row5,.row7,.row9{
+	background: rgba(122,145,141,0.8);
+	border-radius: 5px;
+}
+
+.row2,.row4,.row6,.row8{
+	background: rgba(170,192,170,0.8);
+	border-radius: 5px;
+}
+
+.half {
+	width: 46%;
+}
+
+.full {
+	width: 95%;
+}
+
+.message {
+	color: white;
+	text-shadow: 0px 0px 1px black;
+	text-align: center;
+}
+
+.btn-recipeSearch {
+	color: white;
+	font-family: 'Oswald', sans-serif;
+	border: none;
+	text-shadow: 0px 0px 1px black;
+	margin-left: 5px;
+	background-color: #dceed1;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 15px;
+}
+
+.cuisine, .inclusion, .exclusion, .diet, .allergy {
+	color: white;
+	text-shadow: 0px 0px 1px black;
+}
+
+textarea, select, option {
+	color: #333;
+	font-family: 'Oswald', sans-serif;	
+	font-size: 13px;
+	padding: 5px;
+	margin: 5px;
+	border: none;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+#recipeForm {
+	position: relative;
+	top: 0;
+	left: 25vw;
+	background: rgba(170,192,170,0.8);
+	display: block;
+	font-family: 'Oswald', sans-serif;
+	height: 75vh;
+	width: 50vw;
+	text-align: center;
+}
+
+.fp-tableCell{
+	padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
