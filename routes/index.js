@@ -371,10 +371,10 @@ router.get('/contact', (req,res)=>{
 
 
 ////// Snooth
-const snoothBaseUrl = "http://api.snooth.com/wines/";
-const snoothBaseUrl2 = 'http://api.snooth.com/wine/';
-const wineKey = config.wineKey;
-const ip = '66.28.234.115';
+// const snoothBaseUrl = "http://api.snooth.com/wines/";
+// const snoothBaseUrl2 = 'http://api.snooth.com/wine/';
+// const wineKey = config.wineKey;
+// const ip = '66.28.234.115';
 
 
 // var wineToSearch = wineName.split(' ').join('+');
@@ -468,8 +468,8 @@ router.post('/color', (req,res)=>{
 	// console.log(wineColor)
 	var snoothColorUrl = snoothBaseUrl + wineKey + ip + '&color='+ wineColor + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc';
 	var snoothColorUrl2 = snoothBaseUrl + wineKey + ip + '&color='+ wineColor + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc' + '&xp=' + wineMaxPrice;
-	var snoothVarietyUrl = snoothBaseUrl + wineKey + ip + '&q=' + wineVariety + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc'+ '&xp=' + wineMaxPrice;
-	var snoothVarietyUrl2 = snoothBaseUrl + wineKey + ip + '&q=' + wineVariety + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc'+ '&xp=' + wineMaxPrice;
+	// var snoothVarietyUrl = snoothBaseUrl + wineKey + ip + '&q=' + wineVariety + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc'+ '&xp=' + wineMaxPrice;
+	// var snoothVarietyUrl2 = snoothBaseUrl + wineKey + ip + '&q=' + wineVariety + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc'+ '&xp=' + wineMaxPrice;
 	// console.log(snoothColorUrl)
 	// res.json(req.body);
 
