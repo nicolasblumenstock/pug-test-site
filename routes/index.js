@@ -4,6 +4,7 @@ var config = require('../config/config')
 var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
 var request = require('request');
+var arrays = require('../arrays/arrays');
 var connection = mysql.createConnection({
 	host: config.sql.host,
 	user: config.sql.user,
@@ -262,7 +263,24 @@ router.get('/restaurants', (req,res)=>{
 })
 
 router.get('/recipes', (req,res)=>{
-	res.render('recipes', {})
+	res.render('recipes', {	
+		cuisines: arrays.cuisines,
+		diets: arrays.diets,
+		dietsSearch: arrays.dietsSearch,
+		allergies: arrays.allergies,
+		allergiesSearch: arrays.allergiesSearch,
+		sessionInfo: req.session
+	})
+})
+
+router.get('/recipeform', (req,res)=>{
+	res.render('recipeform', {
+		cuisines: arrays.cuisines,
+		diets: arrays.diets,
+		dietsSearch: arrays.dietsSearch,
+		allergies: arrays.allergies,
+		allergiesSearch: arrays.allergiesSearch
+	})
 })
 
 router.post('/random-recipe', (req,res)=>{
