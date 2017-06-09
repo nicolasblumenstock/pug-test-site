@@ -273,14 +273,8 @@ router.get('/recipes', (req,res)=>{
 	})
 })
 
-router.get('/recipeform', (req,res)=>{
-	res.render('recipeform', {
-		cuisines: arrays.cuisines,
-		diets: arrays.diets,
-		dietsSearch: arrays.dietsSearch,
-		allergies: arrays.allergies,
-		allergiesSearch: arrays.allergiesSearch
-	})
+router.post('/recipeform', (req,res)=>{
+	res.json(req.body);
 })
 
 router.post('/random-recipe', (req,res)=>{

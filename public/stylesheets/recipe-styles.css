@@ -96,6 +96,99 @@
 	border-radius: 5px;
 }
 
+.half {
+	width: 46%;
+}
+
+.full {
+	width: 95%;
+}
+
+.message {
+	color: white;
+	text-shadow: 0px 0px 1px black;
+	text-align: center;
+}
+
+.btn-recipeSearch {
+	color: white;
+	font-family: 'Oswald', sans-serif;
+	border: none;
+	text-shadow: 0px 0px 1px black;
+	margin-left: 5px;
+	background-color: #dceed1;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 15px;
+}
+
+.cuisine, .inclusion, .exclusion, .diet, .allergy {
+	color: white;
+	text-shadow: 0px 0px 1px black;
+}
+
+textarea, select, option {
+	color: #333;
+	font-family: 'Oswald', sans-serif;	
+	font-size: 13px;
+	padding: 5px;
+	margin: 5px;
+	border: none;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+#recipeForm {
+	position: relative;
+	top: 0;
+	left: 25vw;
+	background: rgba(170,192,170,0.8);
+	display: block;
+	font-family: 'Oswald', sans-serif;
+	height: 75vh;
+	width: 50vw;
+	text-align: center;
+}
+
+.fp-tableCell{
+	padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -6,7 +6,7 @@ block styles
 
 	link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
 	link(rel='stylesheet' href='stylesheets/recipe-styles.css')
-	link(rel='stylesheet' href='stylesheets/recipeForm.css')
+	
 	
 
 block scripts
@@ -30,7 +30,7 @@ block content
 			.slide
 				#recipeForm
 					h3.message= message
-					form(action='/recipeSearch' method='post')
+					form(action='/recipeform' method='post')
 						.inclusion
 							label.including Ingredients You Have:
 							textarea.full(placeholder='Ingredients' rows='2' name='includingingredients')
