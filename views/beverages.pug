@@ -1,9 +1,53 @@
 extends layout
 
 block styles
+	link(rel='stylesheet' href='stylesheets/style.css')
 
 block scripts
+	script(src='javascripts/scripts.js')
 
 block content
 
-	h1 THIS IS THE BEV PAGE
+	div.container
+		div.wine-menu.col-sm-10.col-sm-offset-1
+			div.left-menu.col-sm-5
+				h4 
+					strong Find Wine Suggestions
+					br
+				form.form(action="/color" method="post")
+					fieldset
+						h5 What color wine do you prefer
+						select(name="searchColor")
+							option Red
+							option White
+							option Rose         <!-- selected="selected" -->
+							option Amber
+							option Clear
+			
+						h5 Max Price
+						span $ 
+						select(name="searchPrice")
+							option
+							option 20
+							option 30
+							option 50         <!-- selected="selected" -->
+							option 100
+							option None
+						
+						button(type="submit") Find wines
+				br
+				div OR
+				br
+
+				h5 Search by your favorite type of wine (i.e "Cabernet", "Pinot Noir", "Merlot", "Malbec", "Zinfandel", etc.)
+				form(id="search-form" action="/varietal" method="post")
+					input(type="text" name="searchVariety")
+					button(type="submit") Search
+			div(class="right-menu col-sm-5 col-sm-offset-2")
+				h4
+					strong Find Recipe Pairings
+					br
+				form(id="search-form" action="/wine-recipes" method="post")
+					input(type="text" name="searchString")
+					button(type="submit") Search
+				
