@@ -19,18 +19,51 @@ block content
 	#site
 		#search-page.section.active
 			.toggle-button#slidertoggle
-			.container
-				.row
-					.random-wrapper
-						.random-content
-							img(src="https://s-media-cache-ak0.pinimg.com/originals/d6/44/28/d64428094e0604577bcc4153c341e52c.jpg")
-						form.random-form(action="/random-recipe" method="post")
-							button.btn-search.btn(type="submit" id="random-button") Random
-					.search-wrapper
-						form.search-form(action="/search-recipe", method="post")
-							input(type="text", name="ingredient")
-							button.btn-search.btn(type="submit" id="search-button") Search
+			.slide
+				.container
+					.row
+						.col-sm-4.col-sm-offset-4.random-wrapper
+							.col-sm-12.inner
+								form.random-form(action="/random-recipe" method="post")
+									button.btn-search.btn(type="submit" id="random-button") Random
+			.slide
+				.container
+					.row
+						.col-sm-4.col-sm-offset-4.search-wrapper
+							.col-sm-12.inner
+								form.search-form(action="/search-recipe", method="post")
+									//- input(type="text", name="ingredient")
+									button.btn-search.btn(type="submit" id="search-button") Search						
 
-		#result-page.section
-			.title
-				span.toggle-button [Page two]			
+		 	
+		.section
+			.container
+				.col-sm-4.side-bar-wrapper
+					.col-sm-12.side-bar-header
+						h1 [Recipe Name]
+					.col-sm-12.ingredient-list
+							-for (let j = 1; j < 10; j++)
+								.row(class='row' + j)
+									li [Ingredient #{j}]
+								
+							
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
