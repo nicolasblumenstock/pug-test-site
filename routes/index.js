@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 	database: config.sql.database
 });
 
-var yummlyCreds = `_app_id=${config.yummly.id}&_app_key=${config.yummly.key}&`
+var yummlyCreds = `_app_id=${config.yummly.id}&_app_key=${config.yummly.key}`
 var baseYummlyMultiSearchUrl = `https://api.yummly.com/v1/api/recipes?${yummlyCreds}`
 
 connection.connect();
@@ -265,6 +265,7 @@ router.get('/restaurants', (req,res)=>{
 router.get('/recipes', (req,res)=>{
 	res.render('recipes', {	
 		cuisines: arrays.cuisines,
+		cuisinesSearch: arrays.cuisinesSearch,
 		diets: arrays.diets,
 		dietsSearch: arrays.dietsSearch,
 		allergies: arrays.allergies,
@@ -274,7 +275,69 @@ router.get('/recipes', (req,res)=>{
 })
 
 router.post('/recipeform', (req,res)=>{
-	res.json(req.body);
+	var included = req.body.includingingredients;
+	var excluded = req.body.excludingingredients;
+	var cuisine = req.body.cuisine;
+	var diet = req.body.diet;
+	var allergy = req.body.allergy;
+	var incArray = included.split(', ');
+	var exArray = excluded.split(', ');
+	var includeQuery = '';
+	var excludeQuery = '';
+	for (let i = 0; i < incArray.length; i++){
+		includeQuery += '&allowedIngredient[]=' + incArray[i];
+	}
+	for (let i = 0; i < exArray.length; i++){
+		excludeQuery += '&excludedIngredient[]=' + exArray[i];
+	}
+	var allergyQuery = '&allowedAllergy[]=' + allergy;
+	var cuisineQuery = '&allowedCuisine[]=' + cuisine;
+	var dietQuery = '&allowedDiet[]=' + diet;
+	if (allergy == ''){
+		allergyQuery = '';
+	}
+	if (cuisine == ''){
+		cuisineQuery = '';
+	}
+	if (diet == ''){
+		dietQuery = '';
+	}
+	if (includeQuery == '&allowedIngredient[]='){
+		includeQuery = '';
+	}
+	if (excludeQuery == '&excludedIngredient[]='){
+		excludeQuery = '';
+	}
+	var searchUrl = baseYummlyMultiSearchUrl + cuisineQuery + includeQuery + excludeQuery + allergyQuery + dietQuery + '&maxResult=5&allowedCourse[]=course^course-Main%20Dishes';
+	request.get(searchUrl, (error,response,queryData)=>{
+		var queryData = JSON.parse(queryData);
+		var recipeData = [];
+		var httpDone = 0;
+
+		for (let i = 0; i < queryData.matches.length; i++){
+			var recipeUrl = 'https://api.yummly.com/v1/api/recipe/' + queryData.matches[i].id + '?' + yummlyCreds;
+			// console.log(recipeUrl)
+			request.get(recipeUrl, (err,respond,data)=>{
+				httpDone++;
+				var recData = JSON.parse(data);
+				recipeData.push(recData);
+				if (httpDone == queryData.matches.length){
+					res.render('recipes', {
+						recipes: recipeData,
+						cuisines: arrays.cuisines,
+						cuisinesSearch: arrays.cuisinesSearch,
+						diets: arrays.diets,
+						dietsSearch: arrays.dietsSearch,
+						allergies: arrays.allergies,
+						allergiesSearch: arrays.allergiesSearch,
+						sessionInfo: req.session
+					})
+					res.json(recipeData)
+				}
+			});
+		}
+		console.log(recipeData)
+	})
 })
 
 router.post('/random-recipe', (req,res)=>{
@@ -293,7 +356,7 @@ router.post('/random-recipe', (req,res)=>{
 		res.render('recipes', {
 			recipes: recipeData
 		});
-	});
+ 	});
 });
 
 router.get('/beverages', (req,res)=>{
@@ -303,7 +366,6 @@ router.get('/beverages', (req,res)=>{
 router.get('/contact', (req,res)=>{
 	res.render('contact', {})
 })
-
 
 
 
