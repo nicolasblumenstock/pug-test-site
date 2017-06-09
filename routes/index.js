@@ -56,12 +56,12 @@ const wineKey = config.wineKey;
 const ip = '66.28.234.115';
 
 
-var wineToSearch = wineName.split(' ').join('+');
+// var wineToSearch = wineName.split(' ').join('+');                             // UNCOMMENT
 
 
 // What color wine do you like? Red, white, rose, amber, clear? Get our preferences?
-var wineColor = 't='+ colorSelected
-var snoothTypeUrl = snoothTypeUrl + wineKey + ip + wineColor;
+// var wineColor = 't='+ colorSelected                                              // UNCOMMENT
+// var snoothTypeUrl = snoothTypeUrl + wineKey + ip + wineColor;					// UNCOMMENT
 
 
 // Found a good wine? Input a particular wine and get recipes
