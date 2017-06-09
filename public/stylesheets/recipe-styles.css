@@ -53,37 +53,47 @@
 	border-radius: 5px;
 }
 
+.results{
+	background-color: #dceed1;
+}
+
 .side-bar-wrapper{
-	height: 100vh;
+	height: 80vh;
+	padding: 5px 5px 5px 5px;
+	border-radius: 5px;
 }
 
 .side-bar-header{
-	background-color: red;
+	/* background-color: red; */
 	text-align: center;
 	line-height: 100%;
 	color: white;
+	border-radius: 5px
 }
 
 .ingredient-list{
-	background-color: blue;
+	/* background-color: blue; */
 	text-align: center;
 	line-height: 100%;
 	color: white;
 	height: 100%;
 }
 
-.ingredient-list li{
+.row li{
 	margin-bottom: 15px;
 	margin-top: 15px;
 	color: white;
+	border-radius: 5px;
 }
 
 .row1,.row3,.row5,.row7,.row9{
-	background-color: #7a918d
+	background: rgba(122,145,141,0.8);
+	border-radius: 5px;
 }
 
 .row2,.row4,.row6,.row8{
-	background-color: #736372
+	background: rgba(170,192,170,0.8);
+	border-radius: 5px;
 }
 
 

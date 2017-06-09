@@ -6,6 +6,7 @@ block styles
 
 	link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
 	link(rel='stylesheet' href='stylesheets/recipe-styles.css')
+	link(rel='stylesheet' href='stylesheets/recipeForm.css')
 	
 
 block scripts
@@ -27,16 +28,37 @@ block content
 								form.random-form(action="/random-recipe" method="post")
 									button.btn-search.btn(type="submit" id="random-button") Random
 			.slide
-				.container
-					.row
-						.col-sm-4.col-sm-offset-4.search-wrapper
-							.col-sm-12.inner
-								form.search-form(action="/search-recipe", method="post")
-									//- input(type="text", name="ingredient")
-									button.btn-search.btn(type="submit" id="search-button") Search						
+				#recipeForm
+					h3.message= message
+					form(action='/recipeSearch' method='post')
+						.inclusion
+							label.including Ingredients You Have:
+							textarea.full(placeholder='Ingredients' rows='2' name='includingingredients')
+						.exclusion
+							label.excluding Ingredients To Exclude:
+							textarea.full(placeholder='Ingredients' rows='2' name='excludingingredients')
+						.cuisine
+							label.cuisines Cuisines
+							select.full(name='cuisine')
+								option(value='') Select An Option
+								-for(let i = 0; i < cuisines.length; i++)
+									option(value = cuisines[i]) #{cuisines[i]}
+						.diet
+							label.diets Diets
+							select.full(name='diet')
+								option(value='') Select An Option
+								-for(let i = 0; i< diets.length; i++)
+									option(value = dietsSearch[i]) #{diets[i]}
+						.allergy
+							label.allergies Allergies
+							select.full(name='allergy')
+								option(value='') Select An Option
+								-for(let i=0; i < allergies.length; i++)
+									option(value = allergiesSearch[i]) #{allergies[i]}
+						button.btn-recipeSearch.full(type='submit') Search						
 
 		 	
-		.section
+		.section.results
 			.container
 				.col-sm-4.side-bar-wrapper
 					.col-sm-12.side-bar-header
