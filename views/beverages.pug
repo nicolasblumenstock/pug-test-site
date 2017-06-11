@@ -1,100 +1,104 @@
 extends layout
 
 block styles
+	link(rel='stylesheet' href='stylesheets/bootstrap.min.css')
 	link(rel='stylesheet' href='stylesheets/style.css')
 
 block scripts
 	script(src='javascripts/scripts.js')
 
 block content
+	include slider
+	include logreg
+	.toggle-button
+	#site
+		div.container.section.active
+			div.wine-menu.col-sm-10.col-sm-offset-1
+				div.left-menu.col-sm-5
+					h4 
+						strong Find Wine Suggestions
+						br
+					form.form(action="/color" method="post")
+						fieldset
+							h5 Select Beverage Type: 
+							select(name="searchType")
+								option  
+								option Wine
+								option Spirits         <!-- selected="selected" -->
+								option Table
+								option Dessert
+								option Sparkling
+								option Fruit
+								option Cider
+								option Sake	
 
-	div.container
-		div.wine-menu.col-sm-10.col-sm-offset-1
-			div.left-menu.col-sm-5
-				h4 
-					strong Find Wine Suggestions
-					br
-				form.form(action="/color" method="post")
-					fieldset
-						h5 Select Beverage Type: 
-						select(name="searchType")
-							option  
-							option Wine
-							option Spirits         <!-- selected="selected" -->
-							option Table
-							option Dessert
-							option Sparkling
-							option Fruit
-							option Cider
-							option Sake
+							h5 Select Color Preference: 
+							select(name="searchColor")
+								option 
+								option Red
+								option White
+								option Rose         <!-- selected="selected" -->
+								option Amber
+								option Clear	
 
-						h5 Select Color Preference: 
-						select(name="searchColor")
-							option 
-							option Red
-							option White
-							option Rose         <!-- selected="selected" -->
-							option Amber
-							option Clear
+							h5 Search By Varietal Preference: (i.e "Cabernet", "Pinot Noir", "Merlot", "Malbec", "Zinfandel", etc.)
+							form(id="search-form" action="/varietal" method="post")
+								input(type="text" name="searchVariety" placeholder="Type Variety here")
+				
+							h5 Min Price: 
+							select(name="searchMinPrice")
+								option
+								option $10
+								option $20
+								option $30
+								option $40
+								option $50         <!-- selected="selected" -->
+								option $75
+								option $100
+								option $200
+								option $500
+								option $1000
+								option $2000	
 
-						h5 Search By Varietal Preference: (i.e "Cabernet", "Pinot Noir", "Merlot", "Malbec", "Zinfandel", etc.)
-						form(id="search-form" action="/varietal" method="post")
-							input(type="text" name="searchVariety" placeholder="Type Variety here")
-			
-						h5 Min Price: 
-						select(name="searchMinPrice")
-							option
-							option $10
-							option $20
-							option $30
-							option $40
-							option $50         <!-- selected="selected" -->
-							option $75
-							option $100
-							option $200
-							option $500
-							option $1000
-							option $2000
+							h5 Max Price: 
+							select(name="searchMaxPrice")
+								option
+								option $10
+								option $20
+								option $30
+								option $40
+								option $50         <!-- selected="selected" -->
+								option $75
+								option $100
+								option $200
+								option $500
+								option $1000
+								option $2000	
 
-						h5 Max Price: 
-						select(name="searchMaxPrice")
-							option
-							option $10
-							option $20
-							option $30
-							option $40
-							option $50         <!-- selected="selected" -->
-							option $75
-							option $100
-							option $200
-							option $500
-							option $1000
-							option $2000
+							h5 Sort Selection By: 
+							select(name= "seacrhSort")
+								option
+								//- option Quality &#8679
+								//- option Quality &#8681
+								option Price &#8679       <!-- selected="selected" -->
+								option Price &#8681
+							
+							button(type="submit") Find wines
+					//- br
+					//- //- div OR
+					//- br	
 
-						h5 Sort Selection By: 
-						select(name= "seacrhSort")
-							option
-							//- option Quality &#8679
-							//- option Quality &#8681
-							option Price &#8679       <!-- selected="selected" -->
-							option Price &#8681
-						
-						button(type="submit") Find wines
-				br
-				//- div OR
-				br
-
-				//- h5 Search by your favorite type of wine (i.e "Cabernet", "Pinot Noir", "Merlot", "Malbec", "Zinfandel", etc.)
-				//- form(id="search-form" action="/varietal" method="post")
-				//- 	input(type="text" name="searchVariety")
-				//- 	button(type="submit") Search
-			div(class="right-menu col-sm-5 col-sm-offset-2")
-				h4
-					strong Find Recipe Pairings
-					br
-					h5 Search by Variety, Type, or Recipe Pairing Id: 
-					br
-				form(id="search-form" action="/wine-recipes" method="post")
-					input(type="text" name="searchString" placeholder="Type Variety or Recipe Pairing ID here")
-					button(type="submit") Search
+					//- h5 Search by your favorite type of wine (i.e "Cabernet", "Pinot Noir", "Merlot", "Malbec", "Zinfandel", etc.)
+					//- form(id="search-form" action="/varietal" method="post")
+					//- 	input(type="text" name="searchVariety")
+					//- 	button(type="submit") Search
+				div(class="right-menu col-sm-5 col-sm-offset-2")
+					h4
+						strong Find Recipe Pairings
+						br
+						h5 Search by Variety, Type, or Recipe Pairing Id: 
+						br
+					form(id="search-form" action="/wine-recipes" method="post")
+						input(type="text" name="searchString" placeholder="Type Variety or Recipe Pairing ID here")
+						button(type="submit") Search
 				

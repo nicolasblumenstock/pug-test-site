@@ -9,7 +9,7 @@
 .contact-info {
 	position: absolute;
 	top: 38vh;
-	left: 38vw;
+	left: 30vw;
 	backface-visibility: hidden;
 	transition: all 3s ease;
 }

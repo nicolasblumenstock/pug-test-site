@@ -1,6 +1,6 @@
 body {
 	margin: 0px;
-	background-image: url('../images/landscape.jpg');
+	background-image: url('../images/vegi-background-1.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
@@ -16,18 +16,18 @@ body {
 	width: 100vw;
 }
 
-#slidertoggle {
+/*#slidertoggle {
 	position: absolute;
 	left: 5vw;
 	top: 5vh;
 	height: 33px;
 	width: 33px;
-	/* border-radius: 50%; */
-	/* background-color: #a18276; */
+	 border-radius: 50%; 
+	 background-color: #a18276; 
 	background-image: url('../images/prj-icons/menu-icon.png');
-	/* box-shadow: 2px 0px 1px #333; */
+	 box-shadow: 2px 0px 1px #333; 
 }
-
+*/
 #registration, #login {
 	position: fixed;
 	top: 30vh;
