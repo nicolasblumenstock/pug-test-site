@@ -7,7 +7,7 @@
 	background-color: blue;
 }
 
-#slidertoggle {
+/*#slidertoggle {
 	position: absolute;
 	left: 5vw;
 	top: 5vh;
@@ -16,7 +16,7 @@
 	border-radius: 50%;
 	background-color: #a18276;
 	box-shadow: 2px 0px 1px #333;
-}
+}*/
 
 #random-button,#search-button {
 	font-family: 'Oswald', sans-serif;	

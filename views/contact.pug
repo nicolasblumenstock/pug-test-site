@@ -1,9 +1,20 @@
 extends layout
 
 block styles
+	link(rel='stylesheet' href='stylesheets/style.css')
+	link(rel='stylesheet' href='stylesheets/contact.css')
 
 block scripts
+	script(type='text/javascript' src='javascripts/contact.js')
 
 block content
+	include slider
+	include logreg
 
-	h1 THIS IS THE CONTACT PAGE
+	#site
+		.contact-btn
+			h1 Click to Contact Us!	
+
+		.contact-info.hidden
+			h1 Actually, no. I take that back. Don't.
+	
