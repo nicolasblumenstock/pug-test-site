@@ -55,37 +55,32 @@ block content
 								option(value='') Select An Option
 								-for(let i=0; i < allergies.length; i++)
 									option(value = allergiesSearch[i]) #{allergies[i]}
-						button.btn-recipeSearch.full(type='submit') Search						
+						button.btn-recipeSearch.full(type='submit') Search
 
-		 	
-		.section.results
-			.container
-				.col-sm-4.side-bar-wrapper
-					.col-sm-12.side-bar-header
-						h1 [Recipe Name]
-					.col-sm-12.ingredient-list
-							-for (let j = 1; j < 10; j++)
-								.row(class='row' + j)
-									li [Ingredient #{j}]
-								
-							
+		-if (typeof(recipes) != 'undefined')
+			-for (let i = 0; i < recipes.length; i++)
+				.section.results
 
+					.slidertoggle.toggle-button
 
+					.container
 
-		
+						.col-sm-4.side-bar-wrapper
+							.col-sm-12.side-bar-header
+								h1 #{recipes[i].name}
+							.col-sm-12.ingredient-list
+									-for (let j = 0; j < recipes[i].ingredientLines.length; j++)
+										.row(class='row' + j)
+											li #{recipes[i].ingredientLines[j]}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+						.col-sm-8.picture-wrapper
+							.col-sm-12.recipe-pic
+								.col-sm-8.col-sm-offset-2.recipe-pic-inner
+									-if (typeof(recipes[i].images[0].imageUrlBySize) !== 'undefined')
+										img(src=recipes[i].images[0].imageUrlBySize[360])
+									-else
+										img(src=recipes[i].images[0].hostedLargeUrl)
+							.col-sm-12.recipe-button-wrapper
+								a(href=recipes[i].source.sourceRecipeUrl)
+									button.btn.btn-primary Instructions
+								button.btn.btn-success Save Recipe		
