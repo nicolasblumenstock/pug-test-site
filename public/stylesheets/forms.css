@@ -20,11 +20,12 @@ body {
 	position: absolute;
 	left: 5vw;
 	top: 5vh;
-	height: 30px;
-	width: 30px;
-	border-radius: 50%;
-	background-color: #a18276;
-	box-shadow: 2px 0px 1px #333;
+	height: 33px;
+	width: 33px;
+	/* border-radius: 50%; */
+	/* background-color: #a18276; */
+	background-image: url('../images/prj-icons/menu-icon.png');
+	/* box-shadow: 2px 0px 1px #333; */
 }
 
 #registration, #login {
