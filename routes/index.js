@@ -467,8 +467,10 @@ router.post('/color', (req,res)=>{
 	var wineColor = (req.body.searchColor);
 	var wineKind = (req.body.searchVariety);
 	var wineVariety = wineKind.replace(" ","+");
-	var wineMinPrice = (req.body.searchMinPrice);
-	var wineMaxPrice = (req.body.searchMaxPrice);
+	var wine$MinPrice = (req.body.searchMinPrice);
+	var wine$MaxPrice = (req.body.searchMaxPrice);
+	var wineMinPrice = wine$MinPrice.replace("$","");
+	var wineMaxPrice = wine$MaxPrice.replace("$","");
 	var wineSort = (req.body.searchSort)
 
 	

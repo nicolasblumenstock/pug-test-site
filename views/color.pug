@@ -20,6 +20,9 @@ block content
 						img(src= wineArray.wines[i].image)
 						div #{wineArray.wines[i].name}
 						div
+							strong Vintage: 
+							span #{wineArray.wines[i].vintage}
+						div
 							strong Variety: 
 							span #{wineArray.wines[i].varietal}
 						div
@@ -28,6 +31,9 @@ block content
 						div
 							strong Rank: 
 							span #{wineArray.wines[i].snoothrank} /5
+						div
+							strong Recipe Pairing ID: 
+							span #{wineArray.wines[i].winery_id}
 						br
 					
 					

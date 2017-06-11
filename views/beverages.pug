@@ -16,7 +16,7 @@ block content
 					br
 				form.form(action="/color" method="post")
 					fieldset
-						h5 What type of beverage do you prefer?
+						h5 Select Beverage Type: 
 						select(name="searchType")
 							option  
 							option Wine
@@ -28,7 +28,7 @@ block content
 							option Cider
 							option Sake
 
-						h5 What color wine do you prefer
+						h5 Select Color Preference: 
 						select(name="searchColor")
 							option 
 							option Red
@@ -37,55 +37,51 @@ block content
 							option Amber
 							option Clear
 
-						h5 Search by your favorite type of wine (i.e "Cabernet", "Pinot Noir", "Merlot", "Malbec", "Zinfandel", etc.)
+						h5 Search By Varietal Preference: (i.e "Cabernet", "Pinot Noir", "Merlot", "Malbec", "Zinfandel", etc.)
 						form(id="search-form" action="/varietal" method="post")
-							input(type="text" name="searchVariety")
+							input(type="text" name="searchVariety" placeholder="Type Variety here")
 			
-						h5 Min Price
-						span $ 
+						h5 Min Price: 
 						select(name="searchMinPrice")
 							option
-							option 10
-							option 20
-							option 30
-							option 40
-							option 50         <!-- selected="selected" -->
-							option 75
-							option 100
-							option 200
-							option 500
-							option 1000
-							option 2000
-							option None
+							option $10
+							option $20
+							option $30
+							option $40
+							option $50         <!-- selected="selected" -->
+							option $75
+							option $100
+							option $200
+							option $500
+							option $1000
+							option $2000
 
-						h5 Max Price
-						span $ 
+						h5 Max Price: 
 						select(name="searchMaxPrice")
 							option
-							option 10
-							option 20
-							option 30
-							option 40
-							option 50         <!-- selected="selected" -->
-							option 75
-							option 100
-							option 200
-							option 500
-							option 1000
-							option 2000
-							option None
+							option $10
+							option $20
+							option $30
+							option $40
+							option $50         <!-- selected="selected" -->
+							option $75
+							option $100
+							option $200
+							option $500
+							option $1000
+							option $2000
 
-						h5 Sort Seclection By: 
+						h5 Sort Selection By: 
 						select(name= "seacrhSort")
 							option
-							option Quality &#8679
-							option Quality &#8681
+							//- option Quality &#8679
+							//- option Quality &#8681
 							option Price &#8679       <!-- selected="selected" -->
 							option Price &#8681
 						
 						button(type="submit") Find wines
 				br
-				div OR
+				//- div OR
 				br
 
 				//- h5 Search by your favorite type of wine (i.e "Cabernet", "Pinot Noir", "Merlot", "Malbec", "Zinfandel", etc.)
@@ -96,7 +92,9 @@ block content
 				h4
 					strong Find Recipe Pairings
 					br
+					h5 Search by Variety, Type, or Recipe Pairing Id: 
+					br
 				form(id="search-form" action="/wine-recipes" method="post")
-					input(type="text" name="searchString")
+					input(type="text" name="searchString" placeholder="Type Variety or Recipe Pairing ID here")
 					button(type="submit") Search
 				
