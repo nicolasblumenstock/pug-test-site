@@ -1,5 +1,23 @@
-#search-page{
-	background-image: url('/images/landscape.jpg');
+
+.slidertoggle {
+	position: absolute;
+	left: 5vw;
+	top: 5vh;
+	height: 33px;
+	width: 33px;
+	z-index: 2;
+	/* border-radius: 50%; */
+	/* background-color: #a18276; */
+	background-image: url('../images/prj-icons/menu-icon.png');
+	/* box-shadow: 2px 0px 1px #333; */
+}
+
+body {
+	margin: 0px;
+	background-image: url('../images/vegi-background-1.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
 	background-size: cover;
 }
 
@@ -7,7 +25,7 @@
 	background-color: blue;
 }
 
-#slidertoggle {
+/*#slidertoggle {
 	position: absolute;
 	left: 5vw;
 	top: 5vh;
@@ -16,7 +34,7 @@
 	border-radius: 50%;
 	background-color: #a18276;
 	box-shadow: 2px 0px 1px #333;
-}
+}*/
 
 #random-button,#search-button {
 	font-family: 'Oswald', sans-serif;	
@@ -59,12 +77,13 @@
 
 .side-bar-wrapper{
 	height: 80vh;
-	padding: 5px 5px 5px 5px;
+	/* padding: 5px 5px 5px 5px; */
+	margin-top: 10vh;
 	border-radius: 5px;
 }
 
 .side-bar-header{
-	/* background-color: red; */
+	background-color: rgba(115, 99, 114, 0.8);
 	text-align: center;
 	line-height: 100%;
 	color: white;
@@ -91,9 +110,41 @@
 	border-radius: 5px;
 }
 
-.row2,.row4,.row6,.row8{
+.row0,.row2,.row4,.row6,.row8{
 	background: rgba(170,192,170,0.8);
 	border-radius: 5px;
+}
+
+.picture-wrapper{
+	height: 100vh;
+	border-radius: 5px;
+}
+
+.recipe-pic{
+	background: rgba(115, 99, 114, 0.8);
+	min-height: 80vh;
+	margin-top: 10vh;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 80vh;
+}
+
+.recipe-pic-inner img{
+	min-width: 20vw;
+}
+
+.recipe-pic-inner{
+	height: 60vh;
+	width: 40vw;
+	text-align: center;
+	line-height: 60vh;
+	margin-top: 10vh;
+	border-radius: 5px;
+	background: rgba(170, 192, 170, 0.8);
+}
+
+.recipe-button-wrapper{
+	text-align: center;
 }
 
 .half {

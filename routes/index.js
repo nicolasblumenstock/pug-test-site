@@ -23,6 +23,7 @@ router.get('/', function(req, res, next) {
   	title: 'bytesAndBrews',
   	sessionInfo: req.session
   	});
+  console.log(req.sessionID)
 });
 
 router.get('/login', (req,res)=>{
@@ -34,8 +35,15 @@ router.get('/login', (req,res)=>{
 	}else if(message == 'notloggedin'){
 		message = 'You must log in to see Account.'
 	}
-	res.render('login', { message });
-});
+	res.render('login', {
+		message: message,
+		sessionInfo: {
+			id: req.session.id,
+			name: req.session.name,
+			email: req.session.email
+		}
+		});
+	});
 
 router.post('/loginProcess',(req,res)=>{
 	var email = req.body.email;
@@ -48,6 +56,7 @@ router.post('/loginProcess',(req,res)=>{
 				req.session.name = checkResults[0].firstName;
 				req.session.email = email;
 				req.session.loggedin = true;
+				req.session.userID = checkResults[0].id;
 				res.redirect('/account?msg=loggedin');
 			}else{
 				res.redirect('/login?msg=badLogin');
@@ -107,7 +116,15 @@ router.post('/registerProcess', (req,res)=>{
 						req.session.name = firstName;
 						req.session.email = email;
 						req.session.loggedin = true;
-						res.redirect('/account?msg=registered');
+						req.session.userId = emailResults[0].id;
+						res.redirect('/account?msg=registered', {
+							sessionInfo: {
+								name: firstName,
+								email: email,
+								loggedin: true,
+								userId: emailResults[0].id
+							}
+						});
 					});
 			}else{
 				res.redirect('/register?msg=takenEmail')
@@ -147,11 +164,12 @@ router.get('/account', (req,res)=>{
 				addressLine: results[0].addressLine,
 				city: results[0].city,
 				state: results[0].state,
-				zip: results[0].zip
-			});
-		})
-	}
-})
+				zip: results[0].zip,
+				userId: results[0].id
+				})
+			})
+		}
+	})
 
 router.post('/updateProcess', (req,res)=>{
 	var firstName = req.body.firstName;
@@ -191,6 +209,7 @@ router.post('/updateProcess', (req,res)=>{
 					id
 					],(err,newResults)=>{
 						req.session.email = newEmail;
+						req.session.id = newResults[0].id;
 						res.redirect('/account?msg=updated');
 					})
 			}else if(newEmail == ''){
@@ -208,6 +227,7 @@ router.post('/updateProcess', (req,res)=>{
 					id
 					],(err,oldResults)=>{
 						req.session.email = oldEmail;
+						req.session.id = oldResults[0].id;
 						res.redirect('/account?msg=updated');
 					});
 			}
@@ -234,6 +254,7 @@ router.post('/updateProcess', (req,res)=>{
 					id
 					],(err,newResults)=>{
 						req.session.email = newEmail;
+						req.session.id = newResults[0].id;
 						res.redirect('/account?msg=updated');
 					})
 			}else if(newEmail == ''){
@@ -251,6 +272,7 @@ router.post('/updateProcess', (req,res)=>{
 					id
 					],(err,oldResults)=>{
 						req.session.email = oldEmail;
+						req.session.id = oldResults[0].id;
 						res.redirect('/account?msg=updated');
 					});
 			}		
@@ -330,13 +352,12 @@ router.post('/recipeform', (req,res)=>{
 						dietsSearch: arrays.dietsSearch,
 						allergies: arrays.allergies,
 						allergiesSearch: arrays.allergiesSearch,
-						sessionInfo: req.session
 					})
-					res.json(recipeData)
+					// res.json(recipeData)
 				}
 			});
 		}
-		console.log(recipeData)
+		// console.log(recipeData)
 	})
 })
 
@@ -351,11 +372,33 @@ router.post('/random-recipe', (req,res)=>{
 	request.get(searchUrl, (error,response,data)=>{
 		if (error) throw error;
 		var data = JSON.parse(data);
+		var recipeData = [];
+		// var recipeImg = [];
+		var httpDone = 0;
+		for (let i = 0; i < data.matches.length; i++){
+			var recipeUrl = 'https://api.yummly.com/v1/api/recipe/' + data.matches[i].id + '?' + yummlyCreds;
+			request.get(recipeUrl, (error,response, queryData)=>{
+				if (error) throw error;
+				httpDone++;
+				var recData = JSON.parse(queryData);
+				recipeData.push(recData);
+				// recipeImg.push(recData.images[0].imageUrlsBySize.360)
+				if (httpDone == data.matches.length){
+					res.render('recipes', {
+						recipes: recipeData,
+						cuisines: arrays.cuisines,
+						cuisinesSearch: arrays.cuisinesSearch,
+						diets: arrays.diets,
+						dietsSearch: arrays.dietsSearch,
+						allergies: arrays.allergies,
+						allergiesSearch: arrays.allergiesSearch,
+						sessionInfo: req.session
+					});
+					// res.json(recipeData);
+				}
+			});
+		}
 		// console.log(recipeData.matches[0].recipeName)
-		var recipeData = data.matches
-		res.render('recipes', {
-			recipes: recipeData
-		});
  	});
 });
 
@@ -366,6 +409,7 @@ router.get('/beverages', (req,res)=>{
 router.get('/contact', (req,res)=>{
 	res.render('contact', {})
 })
+
 
 
 

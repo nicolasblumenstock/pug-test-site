@@ -1,3 +1,17 @@
+
+.slidertoggle {
+	position: absolute;
+	left: 5vw;
+	top: 5vh;
+	height: 33px;
+	width: 33px;
+	z-index: 2;
+	/* border-radius: 50%; */
+	/* background-color: #a18276; */
+	background-image: url('../images/prj-icons/menu-icon.png');
+	/* box-shadow: 2px 0px 1px #333; */
+}
+
 #pageOne, #pageTwo, #pageThree, #pageFour, #title {
 	height: 100%;
 	width: 100%;
@@ -47,7 +61,7 @@
 
 body {
 	margin: 0px;
-	background-image: url('../images/landscape.jpg');
+	background-image: url('../images/vegi-background-1.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
@@ -56,4 +70,21 @@ body {
 
 #site {
 	transition: all .5s;
+}
+
+#slidertoggle {
+	position: absolute;
+	left: 5vw;
+	top: 5vh;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	background-color: #a18276;
+	box-shadow: 2px 0px 1px #333;
+}
+
+#site h4,h5,span,div {
+	font-family: 'Oswald', sans-serif;
+	color:white;
+	text-shadow: 0px 0px 1px black;	
 }
