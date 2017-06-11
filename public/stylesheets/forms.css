@@ -16,17 +16,6 @@ body {
 	width: 100vw;
 }
 
-#slidertoggle {
-	position: absolute;
-	left: 5vw;
-	top: 5vh;
-	height: 30px;
-	width: 30px;
-	border-radius: 50%;
-	background-color: #a18276;
-	box-shadow: 2px 0px 1px #333;
-}
-
 #registration, #login {
 	position: fixed;
 	top: 30vh;
