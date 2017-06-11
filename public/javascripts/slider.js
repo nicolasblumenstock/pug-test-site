@@ -8,7 +8,7 @@ $(document).ready(function(){
 	$('.closebtn').on('click', function(event){
 		$('#mySideNav').removeClass('openBar');
 		$('#site').removeClass('mainBar');
-		$('.toggle-button').removeClass('toggledOpen');
+		$('.toggle-button').removeClass('toggledopen');
 	})
 
 });
