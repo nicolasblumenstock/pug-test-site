@@ -617,7 +617,7 @@ router.post('/color', (req,res)=>{
 	
 
 	// console.log(wineColor)
-	var snoothWineSelectUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&mp=1&n=20';
+	var snoothWineSelectUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&mp=1&mr=4&n=20';
 	// var snoothWineSelectUrlTest = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color=' + wineColor + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=' wineSort;
 	var snoothColorUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color='+ wineColor + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&mr=4&n=20'; 
 	var snoothPriceAscUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color='+ wineColor + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc&mr=4&n=20';

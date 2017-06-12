@@ -105,7 +105,8 @@ select{
 	margin: 10px;
 	border: 5px outset rgb(31,26,26);
 	border-radius: 10px;
-	height: 350px;
+	height: 325px;
+	font-size: 15px;
 }
 
 .wine-name{
