@@ -797,7 +797,9 @@ router.post('/wine-recipes', (req,res)=>{
 });
 
 router.get('/documenttest', (req,res)=>{
-	res.render('documenttest')
+	res.render('documenttest', { 
+		nearbyResArray: arrays.searchJSON
+	})
 })
 
 module.exports = router;

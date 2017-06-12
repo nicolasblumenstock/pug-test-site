@@ -2,8 +2,8 @@ extends layout
 
 block styles
 block scripts
+
 block content
 	script(type='text/javascript').
-		$(document).ready(function(){
-			console.log('meh')
-		})
+		var resArray = !{JSON.stringify(nearbyResArray)}
+		console.log(resArray)
