@@ -1,17 +1,21 @@
 .contact-btn {
 	position: absolute;
 	top: 38vh;
-	left: 38vw;
+	left: 0;
 	backface-visibility: hidden;
 	transition: all 3s ease;
+	text-align: center;
+	width: 100vw;
 }
 
 .contact-info {
 	position: absolute;
 	top: 38vh;
-	left: 30vw;
+	left: 0;
 	backface-visibility: hidden;
 	transition: all 3s ease;
+	text-align: center;
+	width: 100vw;
 }
 
 .hidden{
