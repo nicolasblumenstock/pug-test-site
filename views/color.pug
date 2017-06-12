@@ -25,9 +25,10 @@ block content
 				.col-sm-12
 					- for(let i = 0; i < wineArray.wines.length; i++)
 						div.wine-results.col-sm-5
-							img.wine-pic(src= wineArray.wines[i].image)
+							a(href=wineArray.wines[i].link)
+								img.wine-pic(src= wineArray.wines[i].image)
 							br
-							div #{wineArray.wines[i].name}
+							div.wine-name #{wineArray.wines[i].name}
 							br
 							div
 								strong Vintage: 
