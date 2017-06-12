@@ -8,3 +8,7 @@ html,body {
 	margin: 60px;
 	padding: 60px;
 }
+
+body {
+	background-color: blue;
+}
