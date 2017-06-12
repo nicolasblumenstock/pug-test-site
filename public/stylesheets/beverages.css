@@ -11,8 +11,8 @@ body {
 }
 
 
-#site{
-	font-family: 'Oswald', sans-serif;
+#site, .header{
+	font-family: 'Droid Serif', Georgia, Times, serif;
 	color:white;
 	text-shadow: 2px 2px 5px black;	
 }
@@ -35,13 +35,13 @@ h1{
 	text-align: left;
 }
 
-.form-header{
+.form-header, strong{
 	text-align: center;
-	font-size: 25px;
+	font-size: 20px;
 }
 
 .input-header{
-	font-size: 20px;
+	font-size: 19px;
 }
 
 .wine-input{
@@ -108,22 +108,24 @@ select{
 	height: 350px;
 }
 
+.wine-name{
+	font-size: 20px;
+}
 .wine-pic{
 	border-radius: 10px;
 }
 
 .recipe-results{
-	height: 350px;
-	background: rgba(54,3,8,0.9);
-	margin: 10px;
+	height: 375px;
+	background: rgb(173,29,96);
+	margin: 7px;
 	border: 5px outset rgb(31,26,26);
 	border-radius: 10px;
 	width: 350px;
 
-
 }
 
-
-
-
+.recipe-name{
+	height: 70px;
+}
 

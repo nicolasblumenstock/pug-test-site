@@ -13,17 +13,17 @@ block content
 		div.row.text-center
 			div.header.text-danger.col-sm-12.text-center
 				h1
-					strong Best Recipes Paired With&nbsp;
+					span Best Recipes Paired With&nbsp;
 						em #{wineName}
 				br
 			
 			div.col-sm-12
 				
 				div.col-sm-3.recipe-results
-					div
+					div.recipe-name
 						strong #{recipeName}&nbsp;
 						br
-					div
+					div.recipe-image
 						a(href=recipeLink)
 							img(src=recipeImage)
 						//- <a(href='<%= recipeLink %>''>
@@ -34,19 +34,19 @@ block content
 				
 				
 				div.col-sm-3.recipe-results
-					div
+					div.recipe-name
 						strong #{recipeName1}
 						br
-					div
+					div.recipe-image
 						a(href=recipeLink1)
 							img(src=recipeImage1)
 					br
 
 
 				div.col-sm-3.recipe-results
-					div
+					div.recipe-name
 						strong #{recipeName2}
 						br
-						div
-							a(href=recipeLink2)
-								img(src=recipeImage2)
+					div.recipe-image
+						a(href=recipeLink2)
+							img(src=recipeImage2)
