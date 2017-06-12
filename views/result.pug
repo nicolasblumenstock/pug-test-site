@@ -23,7 +23,7 @@ block content
 				var nearbyResArray = nearbyResArray2
 				console.log(nearbyResArray);
 				var map;
-				var centerPoint = {lat:parseInt(nearbyResArray[0].location.latitude), lng: parseInt(nearbyResArray[0].location.longitude)}
+				var centerPoint = {lat: Number(nearbyResArray[0].location.latitude), lng: Number(nearbyResArray[0].location.longitude)}
 				function initMap(){
 					map = new google.maps.Map(document.getElementById('map'), {
 						center: centerPoint,
@@ -38,7 +38,7 @@ block content
 					var infoWindow = new google.maps.InfoWindow(), marker, i;
 					for(let i = 0; i < nearbyResArray.length; i++){
 						var marker = new google.maps.Marker({
-							position: {lat:parseInt(nearbyResArray[i].location.latitude), lng:parseInt(nearbyResArray[i].location.longitude)},
+							position: {lat: Number(nearbyResArray[i].location.latitude), lng:Number(nearbyResArray[i].location.longitude)},
 							animation: google.maps.Animation.DROP,
 							map: map,
 						 	title: nearbyResArray[i].name,
@@ -49,16 +49,18 @@ block content
 						 	url: nearbyResArray[i].url
 						 	
 						});
-						console.log(nearbyResArray[i].name)
+						//- console.log(nearbyResArray[i].name)
 						infoWindow.setContent(nearbyResArray[i].name);
 						markers.push(marker);
-			
-						console.log(markers)
-						for(let i = 0; i < markers.length; i++){
-							markers[i].addListener('click', function() {
-								infoWindow.open(map, markers[i]);
-								infoWindow.setContent("<p>" + markers[i].address + "<br />" + 
-								"cuisine: " + markers[i].cuisines + "<br />" + "rating(out of 5): " + markers[i].rating + "<br />" + "price range: " + markers[i].cost + "<br />" + markers[i].url + "</p>");
+						console.log(markers[i].position)
+						//- console.log(typeof(Number(nearbyResArray[i].location.latitude)))
+						//- console.log(Number(nearbyResArray[i].location.longitude))
+						//- console.log(markers)
+						for(let j = 0; j < markers.length; j++){
+							markers[j].addListener('click', function() {
+								infoWindow.open(map, markers[j]);
+								infoWindow.setContent("<p>" + markers[j].address + "<br />" + 
+								"cuisine: " + markers[j].cuisines + "<br />" + "rating(out of 5): " + markers[j].rating + "<br />" + "price range: " + markers[j].cost + "<br />" + markers[j].url + "</p>");
 								});	
 							}	
 
@@ -99,15 +101,14 @@ block content
 			script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMhTz95_uN41xRrxZK4wxovk9VOE0KAcI&callback=initMap" async defer)
 
 
-			//- for(let i = 0; i < nearbyResArray.length; i++){
-			//- 	h3= nearbyResArray[i].name
-			//- 	h4= nearbyResArray[i].cuisines
-			//- 	h5= nearbyResArray[i].location.address
-			//- 	h5= nearbyResArray[i].location.locality_verbose
-			//- 	h5= nearbyResArray[i].location.latitude
-			//- 	h5= nearbyResArray[i].location.longitude
-			//- 	h5= nearbyResArray[i].url		
-			//- }
+			-for(let i = 0; i < nearbyResArray.length; i++)
+				h3= nearbyResArray[i].name
+				h4= nearbyResArray[i].cuisines
+				h5= nearbyResArray[i].location.address
+				h5= nearbyResArray[i].location.locality_verbose
+				h5= nearbyResArray[i].location.latitude
+				h5= nearbyResArray[i].location.longitude
+				h5= nearbyResArray[i].url
 	 
 	
 

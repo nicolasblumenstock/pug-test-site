@@ -1,0 +1,97 @@
+extends layout
+
+block styles
+	link(rel="stylesheet" href="stylesheets/restaurant.css")
+
+block scripts 
+
+
+block content
+
+
+
+	h1 TOP-RATED RESTAURANTS 
+	#demo
+		body
+			#map
+
+			script(type='text/javascript').
+				var best_rated_restaurant2 = !{JSON.stringify(nextData.best_rated_restaurant)}
+				var best_rated_restaurant = best_rated_restaurant2
+				var map;
+				var centerPoint = {lat: Number(best_rated_restaurant[0].restaurant.location.latitude), lng: Number(best_rated_restaurant[0].restaurant.location.longitude)}
+				function initMap(){
+					map = new google.maps.Map(document.getElementById('map'), {
+						center: centerPoint,
+						zoom: 12
+				});	
+
+				dropMarker()
+
+				};
+				var markers = [];
+				function dropMarker(){
+					var infoWindow = new google.maps.InfoWindow(), marker, i;
+					for(let i = 0; i < best_rated_restaurant.length; i++){
+						var marker = new google.maps.Marker({
+							position: {lat: Number(best_rated_restaurant[i].restaurant.location.latitude), lng:Number(best_rated_restaurant[i].restaurant.location.longitude)},
+							animation: google.maps.Animation.DROP,
+							map: map,
+						 	title: best_rated_restaurant[i].restaurant.name,
+						 	cuisines: best_rated_restaurant[i].restaurant.cuisines,
+						 	address: best_rated_restaurant[i].restaurant.location.address,
+						 	rating: best_rated_restaurant[i].restaurant.user_rating.aggregate_rating,
+						 	cost: best_rated_restaurant[i].restaurant.price_range,
+						 	url: best_rated_restaurant[i].restaurant.url
+						 	
+						});
+						//- console.log(best_rated_restaurant[i].name)
+						infoWindow.setContent(best_rated_restaurant[i].restaurant.name);
+						markers.push(marker);
+						//- console.log(markers[i].position)
+						//- console.log(typeof(Number(best_rated_restaurant[i].location.latitude)))
+						//- console.log(Number(best_rated_restaurant[i].location.longitude))
+						//- console.log(markers)
+						for(let j = 0; j < markers.length; j++){
+							markers[j].addListener('click', function() {
+								infoWindow.open(map, markers[j]);
+								infoWindow.setContent("<p>" + markers[j].address + "<br />" + 
+								"cuisine: " + markers[j].cuisines + "<br />" + "rating(out of 5): " + markers[j].rating + "<br />" + "price range: " + markers[j].cost + "<br />" + markers[j].url + "</p>");
+								});	
+							}	
+
+						}
+					}
+
+		
+					var x = document.getElementById("demo");
+					//- var x = $('#demo')
+					function getLocation() {
+						if (navigator.geolocation){
+							navigator.geolocation.getCurrentPosition(showPosition)
+						}else {
+							x.innerHTML = "Geolocation is not supported by this browser."
+						}
+						
+					}	
+
+					function showPosition(position){
+						x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+					}	
+
+					getLocation();
+
+					$(document).ready(function(){
+						for (let i = 0; i < best_rated_restaurant.length; i++){
+							$('#demo').append(`<h3>${best_rated_restaurant[i].restaurant.name}</h3><br/><h4>${best_rated_restaurant[i].restaurant.cuisines}</h4><br/><h5>${best_rated_restaurant[i].restaurant.location.address}</h5><br/><h5>${best_rated_restaurant[i].restaurant.location.locality_verbose}</h5><br/><h5>${best_rated_restaurant[i].restaurant.url}</h5>`)
+							}
+						})
+
+			script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMhTz95_uN41xRrxZK4wxovk9VOE0KAcI&callback=initMap" async defer)
+
+
+			
+	 
+	
+
+

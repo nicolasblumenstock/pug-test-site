@@ -337,7 +337,7 @@ router.post('/search',(req,res)=>{
 					// res.json(resName);
 					// res.render('result', {resName: resName});
 					if(nearbyResArray.length == totalNearRes){
-						console.log('sending...	');
+						// res.json(nearbyResArray)
 						res.render('result', {nearbyResArray: nearbyResArray});
 					}
 				//////TEST///////////////////////////
