@@ -15,14 +15,15 @@ block content
 	#site
 		.container.section.active
 			.wine-menu.col-sm-10.col-sm-offset-1
+				h1.wine-cellar Wine Cellar
 				.left-menu.col-sm-5
-					h4 
+					h4.form-header 
 						strong Find Wine Suggestions
 						br
 					form.form(action="/color" method="post")
 						fieldset
-							h5 Select Beverage Type: 
-							select(name="searchType")
+							h5.input-header Select Beverage Type: 
+							select.wine-input(name="searchType")
 								option  
 								option Wine
 								option Spirits         <!-- selected="selected" -->
@@ -33,8 +34,8 @@ block content
 								option Cider
 								option Sake	
 
-							h5 Select Color Preference: 
-							select(name="searchColor")
+							h5.input-header Select Color Preference: 
+							select.wine-input(name="searchColor")
 								option 
 								option Red
 								option White
@@ -42,12 +43,15 @@ block content
 								option Amber
 								option Clear	
 
-							h5 Search By Varietal Preference: (i.e "Cabernet", "Pinot Noir", "Merlot", "Malbec", "Zinfandel", etc.)
+							h5.input-header Search By Varietal Preference: 
+							
 							form(id="search-form" action="/varietal" method="post")
-								input(type="text" name="searchVariety" placeholder="Type Variety here")
+								input.wine-input(type="text" name="searchVariety" placeholder="Type Variety here")
+								br
+								span.example (i.e "Cabernet", "Pinot Noir", "Merlot", "Malbec", "Zinfandel", etc.)
 				
-							h5 Min Price: 
-							select(name="searchMinPrice")
+							h5.input-header Min Price: 
+							select.wine-input(name="searchMinPrice")
 								option
 								option $10
 								option $20
@@ -61,8 +65,8 @@ block content
 								option $1000
 								option $2000	
 
-							h5 Max Price: 
-							select(name="searchMaxPrice")
+							h5.input-header Max Price: 
+							select.wine-input(name="searchMaxPrice")
 								option
 								option $10
 								option $20
@@ -76,15 +80,13 @@ block content
 								option $1000
 								option $2000	
 
-							h5 Sort Selection By: 
-							select(name= "seacrhSort")
+							h5.input-header Sort Selection By: 
+							select.wine-input(name= "seacrhSort")
 								option
-								//- option Quality &#8679
-								//- option Quality &#8681
 								option Price &#8679       <!-- selected="selected" -->
 								option Price &#8681
-							
-							button(type="submit") Find wines
+							div.form-header
+								button(type="submit") Find Wine Recommendations
 					//- br
 					//- //- div OR
 					//- br	
@@ -93,13 +95,14 @@ block content
 					//- form(id="search-form" action="/varietal" method="post")
 					//- 	input(type="text" name="searchVariety")
 					//- 	button(type="submit") Search
-				.right-menu.col-sm-5.col-sm-offset-2
-					h4
+				.right-menu.col-sm-5.col-sm-offset-1
+					h4.form-header
 						strong Find Recipe Pairings
 						br
-						h5 Search by Variety, Type, or Recipe Pairing Id: 
+						h5.form-header Search by Variety, Type, or Recipe Pairing Id: 
 						br
-					form(id="search-form" action="/wine-recipes" method="post")
-						input(type="text" name="searchString" placeholder="Type Variety or Recipe Pairing ID here")
+					form.form-header.search-bar(id="search-form" action="/wine-recipes" method="post")
+						input.recipe-input.wine-input(type="text" name="searchString" placeholder="Type Variety or Recipe Pairing ID here")
+						br
 						button(type="submit") Search
 				

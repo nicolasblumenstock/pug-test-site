@@ -584,15 +584,6 @@ const wineKey = config.wineKey;
 const ip = '&ip=66.28.234.115';
 
 
-// var wineToSearch = wineName.split(' ').join('+');                             // UNCOMMENT
-
-
-// What color wine do you like? Red, white, rose, amber, clear? Get our preferences?
-// var wineColor = 't='+ colorSelected                                              // UNCOMMENT
-// var snoothTypeUrl = snoothTypeUrl + wineKey + ip + wineColor;					// UNCOMMENT
-
-
-// Found a good wine? Input a particular wine and get recipes
 
 
 // router.get('/beverages', function(req, res, next) {
@@ -604,7 +595,6 @@ const ip = '&ip=66.28.234.115';
 // 			wineRecipeLink: wine[i].recipes.link
 
 // 			});
-
 // 	});
 
 // });
@@ -627,17 +617,32 @@ router.post('/color', (req,res)=>{
 	
 
 	// console.log(wineColor)
-	// var snoothWineSelectUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color=' + wineColor + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=' wineSort;
+	var snoothWineSelectUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&mp=1&n=20';
 	// var snoothWineSelectUrlTest = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color=' + wineColor + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=' wineSort;
-	var snoothColorUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color='+ wineColor + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice; 
-	var snoothPriceAscUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color='+ wineColor + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc';
-	var snoothPriceDesUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color='+ wineColor + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc';// var snoothColorUrl2 = snoothBaseUrl + wineKey + ip + '&color='+ wineColor + '&mr=4&mp=1' +'&xp=' + wineMaxPrice;
+	var snoothColorUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color='+ wineColor + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&mr=4&n=20'; 
+	var snoothPriceAscUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color='+ wineColor + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc&mr=4&n=20';
+	var snoothPriceDesUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color='+ wineColor + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc&mr=4&n=20';// var snoothColorUrl2 = snoothBaseUrl + wineKey + ip + '&color='+ wineColor + '&mr=4&mp=1' +'&xp=' + wineMaxPrice;
+	var snoothNoColorUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&mr=4&n=20'; 
+	
+	var snoothNoColorPriceAscUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc&mr=4&n=20';
+	var snoothNoColorPriceDesUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc&mr=4&n=20';
 	// var snoothVarietyUrl = snoothBaseUrl + wineKey + ip + '&q=' + wineVariety + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc'+ '&xp=' + wineMaxPrice;
 	// var snoothVarietyUrl2 = snoothBaseUrl + wineKey + ip + '&q=' + wineVariety + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc'+ '&xp=' + wineMaxPrice;
 	// console.log(snoothColorUrl)
 	// res.json(req.body);
 
-	if(wineSort == 'Price &#8679'){
+	// request.get(snoothPriceAscUrl,(error, response, colorData)=>{      // TEST 1
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+
+	// });
+
+	if(wineSort == 'Price &#8679' && wineColor){
 		request.get(snoothPriceAscUrl,(error, response, colorData)=>{
 			var colorFormatted = JSON.parse(colorData);
 			// console.log(colorFormatted);
@@ -647,7 +652,8 @@ router.post('/color', (req,res)=>{
 				sessionInfo: req.session
 			});
 		});
-	}else if(wineSort == 'Price &#8681'){
+	
+	}else if(wineSort == 'Price &#8681' && wineColor){
 		request.get(snoothPriceDesUrl,(error, response, colorData)=>{
 			var colorFormatted = JSON.parse(colorData);
 			// console.log(colorFormatted);
@@ -657,8 +663,8 @@ router.post('/color', (req,res)=>{
 				sessionInfo: req.session
 			});
 		});
-	}else{
-		request.get(snoothColorUrl,(error, response, colorData)=>{
+	}else if(wineSort == 'Price &#8679' && !wineColor){
+		request.get(snoothNoColorPriceAscUrl,(error, response, colorData)=>{
 			var colorFormatted = JSON.parse(colorData);
 			// console.log(colorFormatted);
 			// res.json(colorFormatted);
@@ -667,9 +673,64 @@ router.post('/color', (req,res)=>{
 				sessionInfo: req.session
 			});
 		});
+	}else if(wineSort == 'Price &#8681' && !wineColor){
+		request.get(snoothNoColorPriceDesUrl,(error, response, colorData)=>{
+			var colorFormatted = JSON.parse(colorData);
+			// console.log(colorFormatted);
+			// res.json(colorFormatted);
+			res.render('color', { 
+				wineArray : colorFormatted,
+				sessionInfo: req.session
+			});
+		});
+
+	}else if(!wineSort && !wineColor){
+		request.get(snoothNoColorUrl,(error,resonse, colorData)=>{
+			var colorFormatted = JSON.parse(colorData);
+			res.render('color',{
+				wineArray : colorFormatted,
+				sessionInfo : req.session
+			});
+		});
+	}else{
+		request.get(snoothWineSelectUrl,(error, response, colorData)=>{      // TEST 1
+			var colorFormatted = JSON.parse(colorData);
+			// console.log(colorFormatted);
+			// res.json(colorFormatted);
+			res.render('color', { 
+				wineArray : colorFormatted,
+				sessionInfo: req.session
+			});
+
+		});
 	}
 
 });
+
+
+// }else if(wineSort == 'Price &#8679' && !wineColor){
+	// 	request.get(snoothNoColorPriceAscUrl,(error, response, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+	// 	});
+	// }else if(wineSort == 'Price &#8681' && !wineColor){
+	// 	request.get(snoothNoColorPriceDesUrl,(error, response, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+	// 	});
+
+
+
 
 // router.post('/varietal', (req,res)=>{
 // 	console.log(req.body);	
