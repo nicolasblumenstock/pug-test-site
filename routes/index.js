@@ -633,5 +633,8 @@ router.post('/wine-recipes', (req,res)=>{
 
 });
 
+router.get('/documenttest', (req,res)=>{
+	res.render('documenttest')
+})
 
 module.exports = router;
