@@ -9,12 +9,13 @@ block scripts
 
 block content
 	include slider
-	include logreg
+	-if (sessionInfo.loggedin !== true)
+		include logreg
 	.toggle-button
 	#site
-		div.container.section.active
-			div.wine-menu.col-sm-10.col-sm-offset-1
-				div.left-menu.col-sm-5
+		.container.section.active
+			.wine-menu.col-sm-10.col-sm-offset-1
+				.left-menu.col-sm-5
 					h4 
 						strong Find Wine Suggestions
 						br
@@ -92,7 +93,7 @@ block content
 					//- form(id="search-form" action="/varietal" method="post")
 					//- 	input(type="text" name="searchVariety")
 					//- 	button(type="submit") Search
-				div(class="right-menu col-sm-5 col-sm-offset-2")
+				.right-menu.col-sm-5.col-sm-offset-2
 					h4
 						strong Find Recipe Pairings
 						br

@@ -37,11 +37,7 @@ router.get('/login', (req,res)=>{
 	}
 	res.render('login', {
 		message: message,
-		sessionInfo: {
-			id: req.session.id,
-			name: req.session.name,
-			email: req.session.email
-		}
+		sessionInfo: req.session
 		});
 	});
 
@@ -77,7 +73,10 @@ router.get('/register', (req,res)=>{
 	}else if(message == 'emptyField'){
 		message = 'Please fill out all required fields. *'
 	}
-	res.render('register', { message })
+	res.render('register', {
+		message,
+		sessionInfo: req.session
+		})
 });
 
 router.post('/registerProcess', (req,res)=>{
@@ -165,7 +164,8 @@ router.get('/account', (req,res)=>{
 				city: results[0].city,
 				state: results[0].state,
 				zip: results[0].zip,
-				userId: results[0].id
+				userId: results[0].id,
+				sessionInfo: req.session
 				})
 			})
 		}
@@ -352,6 +352,7 @@ router.post('/recipeform', (req,res)=>{
 						dietsSearch: arrays.dietsSearch,
 						allergies: arrays.allergies,
 						allergiesSearch: arrays.allergiesSearch,
+						sessionInfo: req.session
 					})
 					// res.json(recipeData)
 				}
@@ -403,11 +404,15 @@ router.post('/random-recipe', (req,res)=>{
 });
 
 router.get('/beverages', (req,res)=>{
-	res.render('beverages', {})
+	res.render('beverages', {
+		sessionInfo: req.session
+	})
 })
 
 router.get('/contact', (req,res)=>{
-	res.render('contact', {})
+	res.render('contact', {
+		sessionInfo: req.session
+	})
 })
 
 
@@ -536,7 +541,8 @@ router.post('/color', (req,res)=>{
 			// console.log(colorFormatted);
 			// res.json(colorFormatted);
 			res.render('color', { 
-				wineArray : colorFormatted
+				wineArray : colorFormatted,
+				sessionInfo: req.session
 			});
 		});
 	}else if(wineSort == 'Price &#8681'){
@@ -545,7 +551,8 @@ router.post('/color', (req,res)=>{
 			// console.log(colorFormatted);
 			// res.json(colorFormatted);
 			res.render('color', { 
-				wineArray : colorFormatted
+				wineArray : colorFormatted,
+				sessionInfo: req.session
 			});
 		});
 	}else{
@@ -554,7 +561,8 @@ router.post('/color', (req,res)=>{
 			// console.log(colorFormatted);
 			// res.json(colorFormatted);
 			res.render('color', { 
-				wineArray : colorFormatted
+				wineArray : colorFormatted,
+				sessionInfo: req.session
 			});
 		});
 	}
@@ -616,9 +624,9 @@ router.post('/wine-recipes', (req,res)=>{
 
 			recipeName2: recipeFormatted.wines[0].recipes[2].name,
 			recipeImage2: recipeFormatted.wines[0].recipes[2].image,
-			recipeLink2: recipeFormatted.wines[0].recipes[2].link
+			recipeLink2: recipeFormatted.wines[0].recipes[2].link,
 
-
+			sessionInfo: req.session
 
 		});
 	});

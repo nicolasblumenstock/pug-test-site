@@ -9,8 +9,9 @@ block scripts
 
 block content
 	include slider
-	include logreg
-
+	-if(sessionInfo.loggedin !==true)
+		include logreg
+	.toggle-button
 	#site
 		.contact-btn
 			h1 Click to Contact Us!	

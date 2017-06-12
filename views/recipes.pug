@@ -1,21 +1,19 @@
 extends layout
 
-//- block primaryStyles
-
 block styles
 
-	link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+	link(rel="stylesheet" href="stylesheets/bootstrap.min.css")
 	link(rel='stylesheet' href='stylesheets/recipe-styles.css')
-	
-	
 
 block scripts
+
 	script(src='javascripts/scripts.js')
 
 block content
 
 	include slider
-	include logreg
+	-if ((sessionInfo.loggedin !== true) || (sessionInfo == undefined))
+		include logreg
 
 	.toggle-button
 	#site

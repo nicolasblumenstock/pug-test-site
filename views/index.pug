@@ -9,7 +9,8 @@ block content
 
 	include slider
 
-	include logreg
+	-if ((sessionInfo.loggedin !== true))
+		include logreg
 
 	.toggle-button
 
@@ -19,8 +20,6 @@ block content
 
 	
 			.titles
-
-				span [bytesAndBrews]
 
 	
 		#pageOne.section
