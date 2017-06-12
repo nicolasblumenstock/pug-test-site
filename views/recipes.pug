@@ -21,8 +21,8 @@ block content
 			.slide
 				.container
 					.row
-						.col-sm-4.col-sm-offset-4.random-wrapper
-							.col-sm-12.inner
+						.col-sm-6.random-wrapper
+							.col-sm-3.col-sm-offset-9.inner
 								form.random-form(action="/random-recipe" method="post")
 									button.btn-search.btn(type="submit" id="random-button") Random
 			.slide
@@ -59,24 +59,29 @@ block content
 			-for (let i = 0; i < recipes.length; i++)
 				.section.results
 
-					.container
+					.container.results-container.col-sm-12
 
-						.col-sm-4.side-bar-wrapper
-							.col-sm-12.side-bar-header
-								h1 #{recipes[i].name}
-							.col-sm-12.ingredient-list
+						.col-sm-12.side-bar-wrapper
+							.col-sm-6
+								.row
+									.col-sm-12.side-bar-header
+										h1 #{recipes[i].name}
+								.row
+									.col-sm-12.recipe-pic
+										-if (typeof(recipes[i].images[0].imageUrlBySize) !== 'undefined')
+											img(src=recipes[i].images[0].imageUrlBySize[360])
+										-else
+											img(src=recipes[i].images[0].hostedLargeUrl)
+							.col-sm-6.ingredient-wrapper
+								.col-sm-12.ingredient-list
 									-for (let j = 0; j < recipes[i].ingredientLines.length; j++)
 										.row(class='row' + j)
 											li #{recipes[i].ingredientLines[j]}
 
-						.col-sm-8.picture-wrapper
-							.col-sm-12.recipe-pic
-								.col-sm-8.col-sm-offset-2.recipe-pic-inner
-									-if (typeof(recipes[i].images[0].imageUrlBySize) !== 'undefined')
-										img(src=recipes[i].images[0].imageUrlBySize[360])
-									-else
-										img(src=recipes[i].images[0].hostedLargeUrl)
-							.col-sm-12.recipe-button-wrapper
+						.col-sm-12.picture-wrapper
+							.col-sm-5.col-sm-offset-5.recipe-button-wrapper
 								a(href=recipes[i].source.sourceRecipeUrl)
 									button.btn.btn-primary Instructions
-								button.btn.btn-success Save Recipe		
+								button.btn.btn-success Save Recipe	
+							
+								
