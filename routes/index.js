@@ -337,7 +337,7 @@ router.post('/search',(req,res)=>{
 					// res.json(resName);
 					// res.render('result', {resName: resName});
 					if(nearbyResArray.length == totalNearRes){
-						console.log('sending...	');
+						// res.json(nearbyResArray)
 						res.render('result', {nearbyResArray: nearbyResArray});
 					}
 				//////TEST///////////////////////////
@@ -735,5 +735,8 @@ router.post('/wine-recipes', (req,res)=>{
 
 });
 
+router.get('/documenttest', (req,res)=>{
+	res.render('documenttest')
+})
 
 module.exports = router;
