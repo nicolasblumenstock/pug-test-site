@@ -1,89 +1,129 @@
-.slidertoggle {
-	position: absolute;
-	left: 5vw;
-	top: 5vh;
-	height: 33px;
-	width: 33px;
-	z-index: 2;
-	/* border-radius: 50%; */
-	/* background-color: #a18276; */
-	background-image: url('../images/prj-icons/menu-icon.png');
-	/* box-shadow: 2px 0px 1px #333; */
-}
 
-#pageOne, #pageTwo, #pageThree, #pageFour, #title {
-	height: 100%;
-	width: 100%;
-	font-family: 'Oswald', sans-serif;
-	overflow-x: hidden;
-	text-shadow: 0px 0px 5px #333;
-}
-
-#title {
-	background-color: rgba(1,4,0,.1);
-	color: white;
-	font-size: 75px;
-	text-align: center;
-}
-
-#pageOne {
-	background-color: rgba(1,4,0,.1);
-	color:white;
-	font-size:75px;
-	text-align: center;
-}
-
-#pageTwo {
-	background-color: rgba(1,4,0,.1);
-	color:white;
-	font-size:75px;
-	text-align: center;
-}
-
-#pageThree {
-	background-color: rgba(1,4,0,.1);
-	color:white;
-	font-size:75px;
-	text-align: center;
-}
-
-#pageFour {
-	background-color: rgba(1,4,0,.1);
-	color:white;
-	font-size:75px;
-	text-align: center;
-}
-
-.titles {
-	line-height: 100vh;
-}
 
 body {
 	margin: 0px;
-	background-image: url('../images/vegi-background-1.jpg');
+	/* background-image: url('https://images3.alphacoders.com/265/thumb-1920-265889.jpg'); */
+	background: rgb(25,25,25);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
 	background-size: cover;
 }
 
-#site {
-	transition: all .5s;
-}
 
-#slidertoggle {
-	position: absolute;
-	left: 5vw;
-	top: 5vh;
-	height: 30px;
-	width: 30px;
-	border-radius: 50%;
-	background-color: #a18276;
-	box-shadow: 2px 0px 1px #333;
-}
-
-#site h4,h5,span,div {
+#site{
 	font-family: 'Oswald', sans-serif;
 	color:white;
-	text-shadow: 0px 0px 1px black;	
+	text-shadow: 2px 2px 5px black;	
 }
+
+.wine-menu{
+	text-align: center;
+}
+
+h1{
+	background: rgb(68,74,68);
+	padding: 10px;
+	margin-left: 300px;
+	margin-right: 300px;
+}
+.left-menu,.right-menu{
+	/* background: rgba(54,3,8,0.9); */
+	background: rgb(173,29,96);
+	padding: 8px;
+	border-radius: 5px;
+	text-align: left;
+}
+
+.form-header{
+	text-align: center;
+	font-size: 25px;
+}
+
+.input-header{
+	font-size: 20px;
+}
+
+.wine-input{
+	color: black;
+
+}
+
+input.wine-input{
+	width: 200px;
+}
+
+.recipe-input{
+	font-size: 17px;
+}
+
+.search-bar{
+	width: 300px;
+/* 	Set width + block = a ton of margin on the right
+	To center, use margin:auto to split evenly on left and right; */
+	margin: auto;
+}
+
+#search-form input{
+	width: 100%;
+}
+
+.search-bar input{
+	width: 100%;
+	height: 30px;
+	border: solid #B9B0B0 1px;
+	/* font-size: 32px; */
+	/* padding-left: 10px; */
+	margin-left: 10px;
+	/* margin-bottom: 30px; */
+}
+
+.wine-menu button{
+	width: 200px;
+	height: 35px;
+	background-color: #F6F6F6;
+	color: black;
+	/* color: rgb(54,3,8); */
+	outline: none;
+	font-size: 13px;
+	margin: 10px;
+	border-radius: 10px;
+}
+
+select{
+	height: 25px;
+}
+
+.example{
+	font-size: 12px;
+}
+
+.wine-results{
+	background: rgb(173,29,96);
+	/* background: rgba(54,3,8,0.9); */
+	padding-top: 10px;
+	margin: 10px;
+	border: 5px outset rgb(31,26,26);
+	border-radius: 10px;
+	height: 350px;
+}
+
+.wine-pic{
+	border-radius: 10px;
+}
+
+.recipe-results{
+	height: 350px;
+	background: rgba(54,3,8,0.9);
+	margin: 10px;
+	border: 5px outset rgb(31,26,26);
+	border-radius: 10px;
+	width: 350px;
+
+
+}
+
+
+
+
+

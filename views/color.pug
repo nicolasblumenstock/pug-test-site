@@ -2,7 +2,7 @@ extends layout
 
 block styles
 	link(rel="stylesheet" href='stylesheets/bootstrap.min.css')
-	link(rel="stylesheet" type="text/css" href="stylesheets/style.css")
+	link(rel="stylesheet" type="text/css" href="stylesheets/beverages.css")
 
 block scripts
 	scripts(type='text/javascript' src='javascripts/scripts.js')
@@ -21,12 +21,14 @@ block content
 		.container.section.active
 			.row.text-center
 				.header.col-sm-12.text-center
-					h1 Search Results	
+					h1 Wine Recommendations	
 				.col-sm-12
-					- for(let i = 0; i < 6; i++)
-						div
-							img(src= wineArray.wines[i].image)
+					- for(let i = 0; i < wineArray.wines.length; i++)
+						div.wine-results.col-sm-5
+							img.wine-pic(src= wineArray.wines[i].image)
+							br
 							div #{wineArray.wines[i].name}
+							br
 							div
 								strong Vintage: 
 								span #{wineArray.wines[i].vintage}

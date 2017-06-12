@@ -1,15 +1,15 @@
 extends layout
 
 block styles
-	link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
+	//- link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
+	link(rel="stylesheet" href='stylesheets/bootstrap.min.css')
+	link(rel="stylesheet" type="text/css" href="/stylesheets/beverages.css")
 
-	link(rel="stylesheet" type="text/css" href="/stylesheets/style.css")
-
-block scripts
+//- block scripts
 
 block content
 
-	div.container
+	div.container#site
 		div.row.text-center
 			div.header.text-danger.col-sm-12.text-center
 				h1
@@ -19,9 +19,9 @@ block content
 			
 			div.col-sm-12
 				
-				div.col-sm-4
+				div.col-sm-3.recipe-results
 					div
-						strong #{recipeName}
+						strong #{recipeName}&nbsp;
 						br
 					div
 						a(href=recipeLink)
@@ -33,17 +33,17 @@ block content
 					br
 				
 				
-				div.col-sm-4
+				div.col-sm-3.recipe-results
 					div
 						strong #{recipeName1}
-					br
+						br
 					div
 						a(href=recipeLink1)
 							img(src=recipeImage1)
 					br
 
 
-				div.col-sm-4
+				div.col-sm-3.recipe-results
 					div
 						strong #{recipeName2}
 						br
