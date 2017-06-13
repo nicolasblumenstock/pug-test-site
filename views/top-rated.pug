@@ -7,6 +7,11 @@ block scripts
 
 
 block content
+	include slider
+	
+
+	.toggle-button
+	#site
 
 
 
@@ -56,7 +61,7 @@ block content
 							markers[j].addListener('click', function() {
 								infoWindow.open(map, markers[j]);
 								infoWindow.setContent("<p>" + markers[j].address + "<br />" + 
-								"cuisine: " + markers[j].cuisines + "<br />" + "rating(out of 5): " + markers[j].rating + "<br />" + "price range: " + markers[j].cost + "<br />" + markers[j].url + "</p>");
+								"cuisine: " + markers[j].cuisines + "<br />" + "rating(out of 5): " + markers[j].rating + "<br />" + "price range: " + markers[j].cost + "<br />" + markers[j].url  + "</p>");
 								});	
 							}	
 
