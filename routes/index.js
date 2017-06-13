@@ -549,54 +549,54 @@ router.post('/recipeform', (req,res)=>{
 })
 
 router.post('/random-recipe', (req,res)=>{
-	res.render('recipes', {
-		recipes: recipeData,
-		cuisines: arrays.cuisines,
-		cuisinesSearch: arrays.cuisinesSearch,
-		diets: arrays.diets,
-		dietsSearch: arrays.dietsSearch,
-		allergies: arrays.allergies,
-		allergiesSearch: arrays.allergiesSearch,
-		sessionInfo: req.session
-	})
-	// var randomNumForSearch = Math.floor(Math.random() * 2000);
-	// var searchResults = `&maxResult=5&start=${randomNumForSearch}`
-	// var dinnerParam = '&allowedCourse[]=course^course-Main%20Dishes'
-	// var requirePics = '&requirePictures=true'
-	// var searchUrl = baseYummlyMultiSearchUrl + searchResults + dinnerParam + requirePics;
-	// // console.log(searchUrl);
+	// res.render('recipes', {
+	// 	recipes: recipeData,
+	// 	cuisines: arrays.cuisines,
+	// 	cuisinesSearch: arrays.cuisinesSearch,
+	// 	diets: arrays.diets,
+	// 	dietsSearch: arrays.dietsSearch,
+	// 	allergies: arrays.allergies,
+	// 	allergiesSearch: arrays.allergiesSearch,
+	// 	sessionInfo: req.session
+	// })
+	var randomNumForSearch = Math.floor(Math.random() * 2000);
+	var searchResults = `&maxResult=5&start=${randomNumForSearch}`
+	var dinnerParam = '&allowedCourse[]=course^course-Main%20Dishes'
+	var requirePics = '&requirePictures=true'
+	var searchUrl = baseYummlyMultiSearchUrl + searchResults + dinnerParam + requirePics;
+	// console.log(searchUrl);
 
-	// request.get(searchUrl, (error,response,data)=>{
-	// 	if (error) throw error;
-	// 	var data = JSON.parse(data);
-	// 	var recipeData = [];
-	// 	// var recipeImg = [];
-	// 	var httpDone = 0;
-	// 	for (let i = 0; i < data.matches.length; i++){
-	// 		var recipeUrl = 'https://api.yummly.com/v1/api/recipe/' + data.matches[i].id + '?' + yummlyCreds;
-	// 		request.get(recipeUrl, (error,response, queryData)=>{
-	// 			if (error) throw error;
-	// 			httpDone++;
-	// 			var recData = JSON.parse(queryData);
-	// 			recipeData.push(recData);
-	// 			// recipeImg.push(recData.images[0].imageUrlsBySize.360)
-	// 			if (httpDone == data.matches.length){
-	// 				res.render('recipes', {
-	// 					recipes: recipeData,
-	// 					cuisines: arrays.cuisines,
-	// 					cuisinesSearch: arrays.cuisinesSearch,
-	// 					diets: arrays.diets,
-	// 					dietsSearch: arrays.dietsSearch,
-	// 					allergies: arrays.allergies,
-	// 					allergiesSearch: arrays.allergiesSearch,
-	// 					sessionInfo: req.session
-	// 				});
-	// 				// res.json(recipeData);
-	// 			}
-	// 		});
-	// 	}
-	// 	// console.log(recipeData.matches[0].recipeName)
- // 	});
+	request.get(searchUrl, (error,response,data)=>{
+		if (error) throw error;
+		var data = JSON.parse(data);
+		var recipeData = [];
+		// var recipeImg = [];
+		var httpDone = 0;
+		for (let i = 0; i < data.matches.length; i++){
+			var recipeUrl = 'https://api.yummly.com/v1/api/recipe/' + data.matches[i].id + '?' + yummlyCreds;
+			request.get(recipeUrl, (error,response, queryData)=>{
+				if (error) throw error;
+				httpDone++;
+				var recData = JSON.parse(queryData);
+				recipeData.push(recData);
+				// recipeImg.push(recData.images[0].imageUrlsBySize.360)
+				if (httpDone == data.matches.length){
+					res.render('recipes', {
+						recipes: recipeData,
+						cuisines: arrays.cuisines,
+						cuisinesSearch: arrays.cuisinesSearch,
+						diets: arrays.diets,
+						dietsSearch: arrays.dietsSearch,
+						allergies: arrays.allergies,
+						allergiesSearch: arrays.allergiesSearch,
+						sessionInfo: req.session
+					});
+					// res.json(recipeData);
+				}
+			});
+		}
+		// console.log(recipeData.matches[0].recipeName)
+ 	});
 });
 
 router.get('/saverecipe/:id/:name', (req,res)=>{
