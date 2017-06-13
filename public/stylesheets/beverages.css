@@ -128,7 +128,7 @@ select{
 	padding-top: 10px;
 	margin: 10px;
 	margin-left: 45px;
-	border: 5px outset rgb(31,26,26);
+	/* border: 5px outset rgb(31,26,26); */
 	border-radius: 10px;
 	height: 325px;
 	font-size: 15px;
@@ -148,7 +148,7 @@ select{
 	background-color: #444a44; 
 	box-shadow: 2px 2px 5px 1px rgb(173,29,96);
 	margin: 7px;
-	border: 5px outset rgb(31,26,26);
+	/* border: 5px outset rgb(31,26,26); */
 	border-radius: 10px;
 	width: 350px;
 
@@ -157,4 +157,22 @@ select{
 .recipe-name{
 	height: 70px;
 }
+
+.recipe-link a{
+	/* font-style: italic; */
+	color: white;
+}
+
+.recipe-link a:hover{
+	color: rgb(173,29,96);
+}
+
+
+
+
+
+
+
+
+
 

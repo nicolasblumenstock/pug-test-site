@@ -809,6 +809,38 @@ router.post('/wine-recipes', (req,res)=>{
 
 });
 
+////////////// Recipe Pairing Link
+
+router.get('/wine-recipes/:id',(req,res)=>{
+	var pairingId = req.params.winery_id
+	var snoothRecipeUrl = snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1';
+	request.get(snoothRecipeUrl,(error, response, recipeData)=>{
+		var recipeFormatted = JSON.parse(recipeData);
+		res.render('wine-recipes', { 
+			wineName :req.params.winery_id,
+
+			recipeName: recipeFormatted.wines[0].recipes[0].name,
+			recipeImage: recipeFormatted.wines[0].recipes[0].image,
+			recipeLink: recipeFormatted.wines[0].recipes[0].link,
+
+			recipeName1: recipeFormatted.wines[0].recipes[1].name,
+			recipeImage1: recipeFormatted.wines[0].recipes[1].image,
+			recipeLink1: recipeFormatted.wines[0].recipes[1].link,
+
+			recipeName2: recipeFormatted.wines[0].recipes[2].name,
+			recipeImage2: recipeFormatted.wines[0].recipes[2].image,
+			recipeLink2: recipeFormatted.wines[0].recipes[2].link,
+
+			sessionInfo: req.session
+
+		});
+	});
+});
+
+
+
+//////////////////////
+
 router.get('/documenttest', (req,res)=>{
 	res.render('documenttest', { 
 		nearbyResArray: arrays.searchJSON

@@ -1,11 +1,11 @@
 extends layout
 
 block styles
-	link(rel="stylesheet" href='stylesheets/bootstrap.min.css')
-	link(rel="stylesheet" type="text/css" href="stylesheets/beverages.css")
+	link(rel="stylesheet" href='/stylesheets/bootstrap.min.css')
+	link(rel="stylesheet" type="text/css" href="/stylesheets/beverages.css")
 
 block scripts
-	script(type='text/javascript' src='javascripts/scripts.js')
+	script(type='text/javascript' src='/javascripts/scripts.js')
 
 block content
 
@@ -37,9 +37,14 @@ block content
 					div
 						span Rank: 
 						span #{wineArray.wines[i].snoothrank} /5
-					div
-						span Recipe Pairing ID: 
-						span #{wineArray.wines[i].winery_id}
+					div.recipe-link
+						//- span Recipe Pairing ID: 
+						//- span #{wineArray.wines[i].winery_id}
+						a(href="/wine-recipes/"+wineArray.wines[i].winery_id)
+							span Find Recipe Pairs
+							//- <img src= snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1' > 
+						
+
 		#pageTwo.section
 			- for( let i = 4; i < 8; i++)
 				div.wine-results.col-sm-5
@@ -58,9 +63,13 @@ block content
 					div
 						span Rank: 
 						span #{wineArray.wines[i].snoothrank} /5
-					div
-						span Recipe Pairing ID: 
-						span #{wineArray.wines[i].winery_id}
+					div.recipe-link
+						//- span Recipe Pairing ID: 
+						//- span #{wineArray.wines[i].winery_id}
+						<a href="/wine-recipes/">
+							span Find Recipe Pairs
+							//- <img src= snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1' > 
+						</a>
 		#pageThree.section
 			- for( let i = 8; i < 12; i++)
 				div.wine-results.col-sm-5
@@ -79,9 +88,13 @@ block content
 					div
 						span Rank: 
 						span #{wineArray.wines[i].snoothrank} /5
-					div
-						span Recipe Pairing ID: 
-						span #{wineArray.wines[i].winery_id}
+					div.recipe-link
+						//- span Recipe Pairing ID: 
+						//- span #{wineArray.wines[i].winery_id}
+						<a href="/wine-recipes/">
+							span Find Recipe Pairs
+							//- <img src= snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1' > 
+						</a>
 		#pageFour.section
 			- for( let i = 12; i < 16; i++)
 				div.wine-results.col-sm-5
@@ -100,9 +113,13 @@ block content
 					div
 						span Rank: 
 						span #{wineArray.wines[i].snoothrank} /5
-					div
-						span Recipe Pairing ID: 
-						span #{wineArray.wines[i].winery_id}
+					div.recipe-link
+						//- span Recipe Pairing ID: 
+						//- span #{wineArray.wines[i].winery_id}
+						<a href="/wine-recipes/">
+							span Find Recipe Pairs
+							//- <img src= snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1' > 
+						</a>
 		#pageFive.section
 			- for( let i = 16; i < 20; i++)
 				div.wine-results.col-sm-5
@@ -121,6 +138,10 @@ block content
 					div
 						span Rank: 
 						span #{wineArray.wines[i].snoothrank} /5
-					div
-						span Recipe Pairing ID: 
-						span #{wineArray.wines[i].winery_id}
+					div.recipe-link
+						//- span Recipe Pairing ID: 
+						//- span #{wineArray.wines[i].winery_id}
+						<a href="/wine-recipes/">
+							span Find Recipe Pairs
+							//- <img src= snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1' > 
+						</a>
