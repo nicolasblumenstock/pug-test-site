@@ -168,9 +168,13 @@ select{
 }
 
 
+.recipe-results a{
+	color: white;
+}
 
-
-
+.recipe-results a:hover{
+	color: rgb(173,29,96);
+}
 
 
 
