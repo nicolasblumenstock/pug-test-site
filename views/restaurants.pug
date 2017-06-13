@@ -1,10 +1,11 @@
 extends layout
 
 block styles
-	link(rel='stylesheet' href='/stylesheets/restaurant.css')
+	link(rel='stylesheet' href='stylesheets/bootstrap.min.css')
+	link(rel='stylesheet' href='stylesheets/restaurant.css')
 
 block scripts
-	script(type='text/javascript' src='/javascripts/scripts.js')
+	script(type='text/javascript' src='javascripts/scripts.js')
 
 block content
 	include slider
@@ -14,14 +15,68 @@ block content
 
 	.toggle-button
 	#site
-		.restForms
-			.restSearch
-				form(id="search-form" class="form-inline" action="/search" method="post")
-					label.restSearchLabel Restaurant Search
-					input(type="text" placeholder="Search Area" name="searchString")
-					button(type="submit" class="btn btn-primary") SEARCH
-			.topRests
-				form(id="search-form2" class="form-inline" action="/searchTopRated" method="post")
-					label.topRestLabel Top Restaurants
-					input(type="text" placeholder="Top Restaurants" name="searchBest")
-					button(type="submit" class="btn btn-primary") SEARCH
+		-if(randomRest == undefined)
+			.container.section.active
+				.restForms.row
+					h3.text-center= message
+					.restSearch.col-xs-6.col-xs-offset-3
+						form(id="search-form" class="form-inline" action="/search" method="post")
+							label.restSearchLabel Restaurant Search
+							input(type="text" placeholder="Search Area" name="searchString")
+							button(type="submit" class="btn btn-primary") SEARCH
+				.restForms.row
+					.topRests.col-xs-6.col-xs-offset-3
+						form(id="search-form2" class="form-inline" action="/searchTopRated" method="post")
+							label.topRestLabel Top Restaurants
+							input(type="text" placeholder="Top Restaurants" name="searchBest")
+							button(type="submit" class="btn btn-primary") SEARCH
+				.restForms.row
+					.randRests.col-xs-6.col-xs-offset-3
+						form(id="search-form2" class="form-inline" action="/random-rest" method="post")
+							button(type='submit' class='btn btn-random') RANDOM RESTAURANT
+		-else
+			.container.section
+				.restForms.row
+					h3.text-center= message
+					.restSearch.col-xs-6.col-xs-offset-3
+						form(id="search-form" class="form-inline" action="/search" method="post")
+							label.restSearchLabel Restaurant Search
+							input(type="text" placeholder="Search Area" name="searchString")
+							button(type="submit" class="btn btn-primary") SEARCH
+				.restForms.row
+					.topRests.col-xs-6.col-xs-offset-3
+						form(id="search-form2" class="form-inline" action="/searchTopRated" method="post")
+							label.topRestLabel Top Restaurants
+							input(type="text" placeholder="Top Restaurants" name="searchBest")
+							button(type="submit" class="btn btn-primary") SEARCH
+				.restForms.row
+					.randRests.col-xs-6.col-xs-offset-3
+						form(id="search-form3" class="form-inline" action="/random-rest" method="post")
+							button(type='submit' class='btn btn-random') RANDOM RESTAURANT		
+
+
+		-if(randomRest !== undefined)
+			.section.container.active
+					.col-sm-12.side-bar-wrapper
+						.col-sm-6
+							.row
+								.col-sm-12.side-bar-header
+									a(href=randomRest.url)
+										h1 #{randomRest.name}
+							-if (typeof(randomRest.thumb) !== 'undefined')
+								.row
+									.col-sm-12.randRest-pic
+										img(src=randomRest.thumb)
+						.col-sm-6.info-wrapper
+							p.restInfo1
+								b Style:&emsp;
+								span= randomRest.cuisines
+							p.restInfo2
+								b Address:&emsp;
+								span= randomRest.location.address
+							p.restInfo1
+								b Average Cost for Two:&emsp;							
+								span= randomRest.currency + randomRest.average_cost_for_two
+							p.restInfo2
+								b User Feedback:&emsp;							
+								span= randomRest.user_rating.rating_text
