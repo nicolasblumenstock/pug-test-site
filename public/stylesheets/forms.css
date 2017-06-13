@@ -46,6 +46,17 @@ body {
 }
 */
 #registration, #login {
+	position: fixed;
+	top: 24vh;
+	left: 40vw;
+	background: transparent;
+	display: block;
+	font-family: 'Oswald', sans-serif;
+	height: 300px;
+	width: 300px;
+}
+
+#bite-me {
 	position: relative;
 	top: 0vh;
 	left: 40vw;
