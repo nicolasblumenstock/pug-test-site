@@ -14,6 +14,14 @@ body {
 	background-size: 10vw;
 }
 
+#site p {
+	margin: 15px 0px;
+}
+
+#site.container {
+	margin-top: 25vh;
+}
+
 #site p.pageTitle {
 	font-family: 'Oswald', sans-serif;
 	color: white;
@@ -38,6 +46,7 @@ body {
 	border-radius: 5px;
 	box-shadow: 2px 2px 5px 1px #d2c2ba;
 	position: absolute;
+	padding: 15px;
 }
 
 a {
@@ -67,29 +76,34 @@ a:hover, a:focus {
 }
 
 .restTitle {
-	font-size: 3em;
+	font-size: 2em;
 }
 
-.restSearch, .topRests {
-	height: 150px;
-	width: 450px;
+.restSearch, .topRests, .randRests{
 	background-color: #444a44;
 	border-radius: 5px;
 	font-family: 'Oswald', sans-serif;
 	color: white;
 	box-shadow: 2px 2px 5px 1px #d2c2ba;
-	position: absolute;
-	left: 37vw;
+	/*position: absolute;*/
+	/*left: 37vw;*/
 	text-align: center;
 	padding: 15px;
 }
 
 .restSearch {
-	top: 30vh;
+	/*top: 20vh;*/
+	margin-bottom: 10px
 }
 
 .topRests {
-	top: 50vh;
+	/*top: 46vh;*/
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+.randRests {
+	margin-top: 15px;
 }
 
 .restSearch label, .restSearch input, .restSearch button {
@@ -99,11 +113,11 @@ a:hover, a:focus {
 .topRests label, .topRests input, .topRests button {
 	display: block;
 }
-
+/*
 .restForms {
 	position: relative;
 }
-
+*/
 .restSearch input, .topRests input {
 	font-family: 'Oswald', sans-serif;
 	color: #333;
@@ -113,10 +127,10 @@ a:hover, a:focus {
 	margin: 5px 5px 15px 7px;
 }
 
-.restSearch button, .topRests button {
+.restSearch button, .topRests button, .randRests button {
 	margin: 5px;
 	margin-left: 7px;
-	width: 98%;
+	width: 95%;
 	padding: 5px;
 	font-size: 15px;
 	background-color: #ad1a60;
@@ -125,4 +139,55 @@ a:hover, a:focus {
 .restSearch label, .topRests label {
 	font-size: 2em;
 	text-shadow: 0px 0px 1px #333;
+}
+
+.restForms h3 {
+	color: white;
+}
+
+.side-bar-wrapper {
+	font-family: 'Oswald', sans-serif;
+	color: white;
+	font-size: 1.5em;
+}
+
+.restInfo1 {
+	background: rgba(173, 26, 96, .75);
+	position: relative;
+	right: -20px;
+	margin-top: 3px;
+	padding-left: 15px;
+	height: 20px;
+	line-height: 20px;
+	text-shadow: 0px 0px 1px black;
+}
+
+.restInfo2 {
+	background: rgba(173, 26, 96, .75);	
+	margin-top: 3px;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 15px;
+	text-shadow: 0px 0px 1px black;
+
+}
+
+.info-wrapper {
+	padding: 0px;
+}
+
+.side-bar-header{
+	background-color: rgba(68, 74, 68, 1);
+	text-align: right;
+	line-height: 100%;
+	font-family: 'Oswald', sans-serif;
+	color: white;
+	width: 95%;
+	/*margin-top: 12vh;*/
+	/* border-radius: 5px */
+}
+
+.randRest-pic {
+	margin-top: -7px;
+	z-index: 1;
 }
