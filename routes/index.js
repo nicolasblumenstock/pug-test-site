@@ -687,9 +687,53 @@ router.post('/color', (req,res)=>{
 	var wine$MaxPrice = (req.body.searchMaxPrice);
 	var wineMinPrice = wine$MinPrice.replace("$","");
 	var wineMaxPrice = wine$MaxPrice.replace("$","");
-	var wineSort = (req.body.searchSort)
+	var wineSort = (req.body.searchSort);
+	var wineNumber = (req.body.searchNumber);
 
-	
+////////// Wine Query
+	var wineTypeQuery = '&t=' + wineType;
+	var wineColorQuery = '&color=' + wineColor;
+	var wineVarietyQuery = '&q=' + wineVariety;
+	var wineMinPriceQuery = '&mp=' + wineMinPrice;
+	var wineMaxPriceQuery = '&xp=' + wineMaxPrice;
+	var wineSortQuery = '&s=' + wineSort;
+	// var wineNumberQuery = '&n=' + wineNumber;
+
+
+	var endQuery = '&mr=4&n=20';
+
+	if(wineType = ''){
+		wineTypeQuery = '';
+	}
+	if(wineColor = ''){
+		wineColorQuery = '';
+	}
+	if(wineKind = ''){
+		wineVariety = '';
+	}
+	if(wineMinPrice = ''){
+		wineMinPriceQuery = '&mp=1';
+	}
+	if(wineMaxPrice = ''){
+		wineMaxPriceQuery = '';
+	}
+	if(wineSort = ''){
+		wineSortQuery = '';
+	}
+	if(wineSort = 'Price &#8679'){
+		wineSortQuery = '&s=price+asc';
+	}
+	if(wineSort = 'Price &#8681'){
+		wineSortQuery = '&s=price+desc';
+	}
+	// if(wineNumber = ''){
+	// 	wineNumberQuery = '&n=20';
+	// }
+
+	var wineCellarUrl = snoothBaseUrl + wineKey + ip + wineTypeQuery + wineColorQuery + wineVarietyQuery + wineMinPrice + wineMaxPriceQuery + wineSortQuery + endQuery;
+
+
+/////////////END
 
 	// console.log(wineColor)
 	var snoothWineSelectUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&mp=1&mr=4&n=20';
@@ -700,7 +744,7 @@ router.post('/color', (req,res)=>{
 	var snoothNoColorUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&mr=4&n=20'; 
 	
 	var snoothNoColorPriceAscUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc&mr=4&n=20';
-	var snoothNoColorPriceDesUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc&mr=4&n=20';
+	var snoothNoColorPriceDesUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+des&mr=4&n=20';
 	// var snoothVarietyUrl = snoothBaseUrl + wineKey + ip + '&q=' + wineVariety + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc'+ '&xp=' + wineMaxPrice;
 	// var snoothVarietyUrl2 = snoothBaseUrl + wineKey + ip + '&q=' + wineVariety + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc'+ '&xp=' + wineMaxPrice;
 	// console.log(snoothColorUrl)
@@ -717,8 +761,7 @@ router.post('/color', (req,res)=>{
 
 	// });
 
-	if(wineSort == 'Price &#8679' && wineColor){
-		request.get(snoothPriceAscUrl,(error, response, colorData)=>{
+	request.get(wineCellarUrl,(error, response, colorData)=>{   				// TEST QUERY
 			var colorFormatted = JSON.parse(colorData);
 			// console.log(colorFormatted);
 			// res.json(colorFormatted);
@@ -726,62 +769,79 @@ router.post('/color', (req,res)=>{
 				wineArray : colorFormatted,
 				sessionInfo: req.session
 			});
-		});
-	
-	}else if(wineSort == 'Price &#8681' && wineColor){
-		request.get(snoothPriceDesUrl,(error, response, colorData)=>{
-			var colorFormatted = JSON.parse(colorData);
-			// console.log(colorFormatted);
-			// res.json(colorFormatted);
-			res.render('color', { 
-				wineArray : colorFormatted,
-				sessionInfo: req.session
-			});
-		});
-	}else if(wineSort == 'Price &#8679' && !wineColor){
-		request.get(snoothNoColorPriceAscUrl,(error, response, colorData)=>{
-			var colorFormatted = JSON.parse(colorData);
-			// console.log(colorFormatted);
-			// res.json(colorFormatted);
-			res.render('color', { 
-				wineArray : colorFormatted,
-				sessionInfo: req.session
-			});
-		});
-	}else if(wineSort == 'Price &#8681' && !wineColor){
-		request.get(snoothNoColorPriceDesUrl,(error, response, colorData)=>{
-			var colorFormatted = JSON.parse(colorData);
-			// console.log(colorFormatted);
-			// res.json(colorFormatted);
-			res.render('color', { 
-				wineArray : colorFormatted,
-				sessionInfo: req.session
-			});
-		});
-
-	}else if(!wineSort && !wineColor){
-		request.get(snoothNoColorUrl,(error,resonse, colorData)=>{
-			var colorFormatted = JSON.parse(colorData);
-			res.render('color',{
-				wineArray : colorFormatted,
-				sessionInfo : req.session
-			});
-		});
-	}else{
-		request.get(snoothWineSelectUrl,(error, response, colorData)=>{      // TEST 1
-			var colorFormatted = JSON.parse(colorData);
-			// console.log(colorFormatted);
-			// res.json(colorFormatted);
-			res.render('color', { 
-				wineArray : colorFormatted,
-				sessionInfo: req.session
-			});
-
-		});
-	}
+	});
 
 });
 
+//========================================================================
+
+	// if(wineSort == 'Price &#8679' && wineColor){
+	// 	request.get(snoothPriceAscUrl,(error, response, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+	// 	});
+	
+	// }else if(wineSort == 'Price &#8681' && wineColor){
+	// 	request.get(snoothPriceDesUrl,(error, response, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+	// 	});
+	// }else if(wineSort == 'Price &#8679' && !wineColor){
+	// 	request.get(snoothNoColorPriceAscUrl,(error, response, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+	// 	});
+	// }else if(wineSort == 'Price &#8681' && !wineColor){
+	// 	request.get(snoothNoColorPriceDesUrl,(error, response, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+	// 	});
+
+	// }else if(!wineSort && !wineColor){
+	// 	request.get(snoothNoColorUrl,(error,resonse, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		res.render('color',{
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo : req.session
+	// 		});
+	// 	});
+	// }else{
+	// 	request.get(snoothWineSelectUrl,(error, response, colorData)=>{      // TEST 1
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+
+	// 	});
+	// }
+
+// });
+
+
+//=============================================================================
 
 // }else if(wineSort == 'Price &#8679' && !wineColor){
 	// 	request.get(snoothNoColorPriceAscUrl,(error, response, colorData)=>{
