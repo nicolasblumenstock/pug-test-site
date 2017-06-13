@@ -66,10 +66,8 @@ block content
 					div.recipe-link
 						//- span Recipe Pairing ID: 
 						//- span #{wineArray.wines[i].winery_id}
-						<a href="/wine-recipes/">
+						a(href="/wine-recipes/"+wineArray.wines[i].winery_id)
 							span Find Recipe Pairs
-							//- <img src= snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1' > 
-						</a>
 		#pageThree.section
 			- for( let i = 8; i < 12; i++)
 				div.wine-results.col-sm-5
@@ -91,10 +89,8 @@ block content
 					div.recipe-link
 						//- span Recipe Pairing ID: 
 						//- span #{wineArray.wines[i].winery_id}
-						<a href="/wine-recipes/">
+						a(href="/wine-recipes/"+wineArray.wines[i].winery_id)
 							span Find Recipe Pairs
-							//- <img src= snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1' > 
-						</a>
 		#pageFour.section
 			- for( let i = 12; i < 16; i++)
 				div.wine-results.col-sm-5
@@ -116,10 +112,8 @@ block content
 					div.recipe-link
 						//- span Recipe Pairing ID: 
 						//- span #{wineArray.wines[i].winery_id}
-						<a href="/wine-recipes/">
+						a(href="/wine-recipes/"+wineArray.wines[i].winery_id)
 							span Find Recipe Pairs
-							//- <img src= snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1' > 
-						</a>
 		#pageFive.section
 			- for( let i = 16; i < 20; i++)
 				div.wine-results.col-sm-5
@@ -141,7 +135,5 @@ block content
 					div.recipe-link
 						//- span Recipe Pairing ID: 
 						//- span #{wineArray.wines[i].winery_id}
-						<a href="/wine-recipes/">
+						a(href="/wine-recipes/"+wineArray.wines[i].winery_id)
 							span Find Recipe Pairs
-							//- <img src= snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1' > 
-						</a>
