@@ -9,7 +9,7 @@ block content
 
 	include slider
 
-	-if ((sessionInfo.loggedin !== true))
+	-if ((sessionInfo == undefined) || (sessionInfo.loggedin !== true))
 		include logreg
 
 	.toggle-button
@@ -20,6 +20,10 @@ block content
 
 	
 			.titles
+				img(src="../images/Wine-logo.png")
+
+			//- .bottom-bubbles
+			//- 	img(src="../images/bottom-left-bubbles.png")
 
 	
 		#pageOne.section
