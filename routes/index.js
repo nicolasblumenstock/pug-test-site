@@ -21,7 +21,7 @@ connection.connect();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {
-  	title: 'wineAndDine',
+  	title: 'Wine & Dine',
   	sessionInfo: req.session
   	});
   console.log(req.session.userID)
