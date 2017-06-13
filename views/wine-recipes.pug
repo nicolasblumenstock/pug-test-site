@@ -8,12 +8,15 @@ block styles
 //- block scripts
 
 block content
+	include slider
+	-if ((sessionInfo == undefined) || (sessionInfo.loggedin !== true))
+		include logreg
+	.toggle-button
 
 	div.container#site
 		div.row.text-center
 			div.header.text-danger.col-sm-12.text-center
-				h1
-					span Best Recipes Paired With&nbsp;
+				h1.wine-cellar Best Recipes Paired With&nbsp;
 						em #{wineName}
 				br
 			
