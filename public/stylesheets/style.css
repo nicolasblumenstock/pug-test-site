@@ -14,12 +14,16 @@
 	/* box-shadow: 2px 0px 1px #333; */
 }
 
-#pageOne, #pageTwo, #pageThree, #pageFour, #title {
+#pageOne, #pageTwo, #pageThree, #pageFour, #pageFive, #pageSix, #title {
 	height: 100%;
 	width: 100%;
 	font-family: 'Oswald', sans-serif;
 	overflow-x: hidden;
 	text-shadow: 0px 0px 5px #333;
+	font-size: 30px;
+	text-align: center;
+	color: white;
+	background-color: rgba(1,4,0,.1);	
 }
 
 #title {
@@ -27,37 +31,37 @@
 	/* background-color: #191919; */
 	background-size: cover;
 	background-repeat: no-repeat;
-	color: white;
-	font-size: 75px;
-	text-align: center;
+	/*color: white;*/
+/*	font-size: 75px;
+	text-align: center;*/
 }
 
 #pageOne {
 	background-color: rgba(220, 238, 209,);
-	color:white;
-	font-size:75px;
-	text-align: center;
+	/*color:white;*/
+/*	font-size:75px;
+	text-align: center;*/
 }
 
 #pageTwo {
 	background-color: rgba(1,4,0,.1);
-	color:white;
+/*	color:white;
 	font-size:75px;
-	text-align: center;
+	text-align: center;*/
 }
 
 #pageThree {
 	background-color: rgba(1,4,0,.1);
-	color:white;
+/*	color:white;
 	font-size:75px;
-	text-align: center;
+	text-align: center;*/
 }
 
-#pageFour {
+#pageFour, #pageFive, #pageSix {
 	background-color: rgba(1,4,0,.1);
-	color:white;
+/*	color:white;
 	font-size:75px;
-	text-align: center;
+	text-align: center;*/
 }
 
 .titles {
