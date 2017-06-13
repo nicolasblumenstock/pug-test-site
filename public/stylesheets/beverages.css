@@ -2,19 +2,19 @@
 
 body {
 	margin: 0px;
-	/* background-image: url('https://images3.alphacoders.com/265/thumb-1920-265889.jpg'); */
-	background: rgb(25,25,25);
+	background-color: #191919;
+	background-image: url('../images/bottom-left-bubbles.png');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-position: center;
-	background-size: cover;
+	background-position: left bottom;
+	background-size: 10vw;
 }
 
 
-#site{
-	font-family: 'Oswald', sans-serif;
+#site, .header{
+	/* font-family: 'Droid Serif', Georgia, Times, serif; */
 	color:white;
-	text-shadow: 2px 2px 5px black;	
+	/* text-shadow: 2px 2px 5px black;	 */
 }
 
 .wine-menu{
@@ -27,21 +27,36 @@ h1{
 	margin-left: 300px;
 	margin-right: 300px;
 }
-.left-menu,.right-menu{
-	/* background: rgba(54,3,8,0.9); */
-	background: rgb(173,29,96);
-	padding: 8px;
-	border-radius: 5px;
-	text-align: left;
+
+.wine-cellar{
+	box-shadow: 2px 2px 5px 1px #d2c2ba;                                     /* !!!!!!    */
 }
 
-.form-header{
+.left-menu,.right-menu{
+	/* background: rgba(54,3,8,0.9); */
+	/* background: rgb(173,29,96); */
+	/* padding: 8px; */
+	border-radius: 5px;
+	text-align: left;
+
+	background-color: #444a44;                              /* !!!!!!!!!!!!   */
+	border-radius: 5px;
+	font-family: 'Oswald', sans-serif;
+	color: white;
+	box-shadow: 2px 2px 5px 1px #d2c2ba;
+	/* position: absolute; */
+	/* left: 37vw; */
+	/* text-align: center; */
+	padding: 15px;
+}
+
+.form-header, strong{
 	text-align: center;
-	font-size: 25px;
+	font-size: 20px;
 }
 
 .input-header{
-	font-size: 20px;
+	font-size: 19px;
 }
 
 .wine-input{
@@ -81,13 +96,21 @@ input.wine-input{
 .wine-menu button{
 	width: 200px;
 	height: 35px;
-	background-color: #F6F6F6;
-	color: black;
+	/* background-color: #F6F6F6; */
+	color: white;
 	/* color: rgb(54,3,8); */
 	outline: none;
 	font-size: 13px;
 	margin: 10px;
-	border-radius: 10px;
+	/* border-radius: 10px; */
+	border: 0px;
+
+	margin: 5px;
+	/* margin-left: 7px; */
+	/* width: 98%; */
+	padding: 5px;
+	/* font-size: 15px; */
+	background-color: #ad1a60;                                     /* !!!!!!! */
 }
 
 select{
@@ -99,28 +122,58 @@ select{
 }
 
 .wine-results{
-	background: rgb(173,29,96);
+	/* background: rgb(173,29,96); */
 	/* background: rgba(54,3,8,0.9); */
+	background-color: #444a44; 
 	padding-top: 10px;
 	margin: 10px;
-	border: 5px outset rgb(31,26,26);
+	margin-left: 45px;
+	/* border: 5px outset rgb(31,26,26); */
 	border-radius: 10px;
-	height: 350px;
+	height: 325px;
+	font-size: 15px;
+	box-shadow: 2px 2px 5px 1px rgb(173,29,96);
 }
 
+.wine-name{
+	font-size: 20px;
+}
 .wine-pic{
 	border-radius: 10px;
 }
 
 .recipe-results{
-	height: 350px;
-	background: rgba(54,3,8,0.9);
-	margin: 10px;
-	border: 5px outset rgb(31,26,26);
+	height: 375px;
+	/* background: rgb(173,29,96); */
+	background-color: #444a44; 
+	box-shadow: 2px 2px 5px 1px rgb(173,29,96);
+	margin: 7px;
+	/* border: 5px outset rgb(31,26,26); */
 	border-radius: 10px;
 	width: 350px;
 
+}
 
+.recipe-name{
+	height: 70px;
+}
+
+.recipe-link a{
+	/* font-style: italic; */
+	color: white;
+}
+
+.recipe-link a:hover{
+	color: rgb(173,29,96);
+}
+
+
+.recipe-results a{
+	color: white;
+}
+
+.recipe-results a:hover{
+	color: rgb(173,29,96);
 }
 
 

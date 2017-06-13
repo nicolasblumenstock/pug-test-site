@@ -1,11 +1,11 @@
 extends layout
 
 block styles
-	link(rel="stylesheet" href='stylesheets/bootstrap.min.css')
-	link(rel="stylesheet" type="text/css" href="stylesheets/beverages.css")
+	link(rel="stylesheet" href='/stylesheets/bootstrap.min.css')
+	link(rel="stylesheet" type="text/css" href="/stylesheets/beverages.css")
 
 block scripts
-	scripts(type='text/javascript' src='javascripts/scripts.js')
+	script(type='text/javascript' src='/javascripts/scripts.js')
 
 block content
 
@@ -16,33 +16,124 @@ block content
 
 	.toggle-button
 
-	#site
+	#site.container
+		#pageOne.section.active
+			.header.col-sm-12.text-center
+				h1.wine-cellar Wine Recommendations
+			- for( let i = 0; i < 4; i++)
+				div.wine-results.col-sm-5
+					a(href= wineArray.wines[i].link)
+						img.wine-pic(src= wineArray.wines[i].image)
+					div.wine-name #{wineArray.wines[i].name}
+					div
+						span Vintage: 
+						span #{wineArray.wines[i].vintage}
+					div
+						span Variety: 
+						span #{wineArray.wines[i].varietal}
+					div
+						span Price: $
+						span #{wineArray.wines[i].price}
+					div
+						span Rank: 
+						span #{wineArray.wines[i].snoothrank} /5
+					div.recipe-link
+						//- span Recipe Pairing ID: 
+						//- span #{wineArray.wines[i].winery_id}
+						a(href="/wine-recipes/"+wineArray.wines[i].winery_id)
+							span Find Recipe Pairs
+							//- <img src= snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1' > 
+						
 
-		.container.section.active
-			.row.text-center
-				.header.col-sm-12.text-center
-					h1 Wine Recommendations	
-				.col-sm-12
-					- for(let i = 0; i < wineArray.wines.length; i++)
-						div.wine-results.col-sm-5
-							img.wine-pic(src= wineArray.wines[i].image)
-							br
-							div #{wineArray.wines[i].name}
-							br
-							div
-								strong Vintage: 
-								span #{wineArray.wines[i].vintage}
-							div
-								strong Variety: 
-								span #{wineArray.wines[i].varietal}
-							div
-								strong Price: $
-								span #{wineArray.wines[i].price}
-							div
-								strong Rank: 
-								span #{wineArray.wines[i].snoothrank} /5
-							div
-								strong Recipe Pairing ID: 
-								span #{wineArray.wines[i].winery_id}
-							br
-					
+		#pageTwo.section
+			- for( let i = 4; i < 8; i++)
+				div.wine-results.col-sm-5
+					a(href= wineArray.wines[i].link)
+						img.wine-pic(src= wineArray.wines[i].image)
+					div.wine-name #{wineArray.wines[i].name}
+					div
+						span Vintage: 
+						span #{wineArray.wines[i].vintage}
+					div
+						span Variety: 
+						span #{wineArray.wines[i].varietal}
+					div
+						span Price: $
+						span #{wineArray.wines[i].price}
+					div
+						span Rank: 
+						span #{wineArray.wines[i].snoothrank} /5
+					div.recipe-link
+						//- span Recipe Pairing ID: 
+						//- span #{wineArray.wines[i].winery_id}
+						a(href="/wine-recipes/"+wineArray.wines[i].winery_id)
+							span Find Recipe Pairs
+		#pageThree.section
+			- for( let i = 8; i < 12; i++)
+				div.wine-results.col-sm-5
+					a(href= wineArray.wines[i].link)
+						img.wine-pic(src= wineArray.wines[i].image)
+					div.wine-name #{wineArray.wines[i].name}
+					div
+						span Vintage: 
+						span #{wineArray.wines[i].vintage}
+					div
+						span Variety: 
+						span #{wineArray.wines[i].varietal}
+					div
+						span Price: $
+						span #{wineArray.wines[i].price}
+					div
+						span Rank: 
+						span #{wineArray.wines[i].snoothrank} /5
+					div.recipe-link
+						//- span Recipe Pairing ID: 
+						//- span #{wineArray.wines[i].winery_id}
+						a(href="/wine-recipes/"+wineArray.wines[i].winery_id)
+							span Find Recipe Pairs
+		#pageFour.section
+			- for( let i = 12; i < 16; i++)
+				div.wine-results.col-sm-5
+					a(href= wineArray.wines[i].link)
+						img.wine-pic(src= wineArray.wines[i].image)
+					div.wine-name #{wineArray.wines[i].name}
+					div
+						span Vintage: 
+						span #{wineArray.wines[i].vintage}
+					div
+						span Variety: 
+						span #{wineArray.wines[i].varietal}
+					div
+						span Price: $
+						span #{wineArray.wines[i].price}
+					div
+						span Rank: 
+						span #{wineArray.wines[i].snoothrank} /5
+					div.recipe-link
+						//- span Recipe Pairing ID: 
+						//- span #{wineArray.wines[i].winery_id}
+						a(href="/wine-recipes/"+wineArray.wines[i].winery_id)
+							span Find Recipe Pairs
+		#pageFive.section
+			- for( let i = 16; i < 20; i++)
+				div.wine-results.col-sm-5
+					a(href= wineArray.wines[i].link)
+						img.wine-pic(src= wineArray.wines[i].image)
+					div.wine-name #{wineArray.wines[i].name}
+					div
+						span Vintage: 
+						span #{wineArray.wines[i].vintage}
+					div
+						span Variety: 
+						span #{wineArray.wines[i].varietal}
+					div
+						span Price: $
+						span #{wineArray.wines[i].price}
+					div
+						span Rank: 
+						span #{wineArray.wines[i].snoothrank} /5
+					div.recipe-link
+						//- span Recipe Pairing ID: 
+						//- span #{wineArray.wines[i].winery_id}
+						a(href="/wine-recipes/"+wineArray.wines[i].winery_id)
+							span Find Recipe Pairs

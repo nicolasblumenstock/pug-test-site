@@ -20,7 +20,7 @@ connection.connect();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {
-  	title: 'bytesAndBrews',
+  	title: 'wineAndDine',
   	sessionInfo: req.session
   	});
   console.log(req.sessionID)
@@ -281,10 +281,72 @@ router.post('/updateProcess', (req,res)=>{
 })
 ////////restaurants/////////////////
 router.get('/restaurants', (req,res)=>{
-	res.render('restaurants', {})
+	var message = req.query.msg;
+	if (message == 'login'){
+		message = 'Please Log In To Use This Feature'
+	}
+	res.render('restaurants', {
+		message: message,
+		sessionInfo: req.session
+	})
 })
 
-
+router.post('/random-rest', (req,res)=>{
+	if (req.session.email == undefined){
+		res.redirect('/restaurants?msg=login')
+	}else if (req.session !== undefined){
+		var email = req.session.email;
+		var checkQuery = 'SELECT * FROM users WHERE email=?';
+		connection.query(checkQuery, [email], (error,checkResults)=>{
+			// console.log(checkResults)
+			var city = checkResults[0].city;
+			var state = checkResults[0].state;
+			var location = city + ', ' + state;
+			// console.log(city,state,location)
+			var searchUrl = "https://developers.zomato.com/api/v2.1/locations?query=" + city;
+			var creds = {
+				url: searchUrl,
+				headers: {
+					'user-key': 'c3f72d6b6e5474936f491150b9e3c476'
+					}
+				}
+			request.get(creds, (error, response, localeData)=>{
+				var locale = JSON.parse(localeData)
+				console.log(locale)
+				var cityID = locale.location_suggestions[0].entity_id;
+				console.log(cityID)
+				// for(let i = 0; i < locale.location_suggestions.length; i++){
+				// 	if (locale.location_suggestions[i].name == location){
+				// 		cityID = locale.location_suggestions[i].id;
+				// 		break
+				// 	}
+				// }
+				var start = Math.floor(Math.random()*20)
+				var count = 25;
+				// var secUrl = 'https://developers.zomato.com/api/v2.1/search?entity_id=' + cityID + 'entitytype=city&start=' + start + '&count=' + count;
+				// console.log(secUrl)
+				// console.log('https://developers.zomato.com/api/v2.1/search?entity_id=' + cityID + 'entitytype=city&count=25')
+				var credsDos = {
+					url: 'https://developers.zomato.com/api/v2.1/search?entity_id=' + cityID + '&entity_type=city&count=25&start=' + start + '&count=' + count,
+					headers: {
+						'user-key': "c3f72d6b6e5474936f491150b9e3c476"
+					}
+				}
+				request.get(credsDos, (error, response, restData)=>{
+					var restDatas = JSON.parse(restData);
+					// res.json(restDatas)
+					var randomRest = restDatas.restaurants[Math.floor(Math.random()* 15)].restaurant
+					console.log(randomRest)
+					res.render('restaurants', {
+						sessionInfo: req.session,
+						randomRest: randomRest
+					})
+				})
+				}
+			)
+		})
+	}
+})
 	
 
 router.post('/search',(req,res)=>{
@@ -329,7 +391,9 @@ router.post('/search',(req,res)=>{
 					}
 				}
 				var nearbyResArray = [];
-
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////API CALL TO ZOMATO///////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 				request.get(resCred,(error,response,resName2)=>{
 					var resName = JSON.parse(resName2)
 					// var x = encodeURI(resName)
@@ -340,8 +404,12 @@ router.post('/search',(req,res)=>{
 						// res.json(nearbyResArray)
 						res.render('result', {nearbyResArray: nearbyResArray});
 					}
-				//////TEST///////////////////////////
+
 				});
+				// res.render('result',{
+				// 	nearbyResArray: arrays.searchJSON,
+				// 	sessionInfo: req.session
+				// })
 			}
 		});
 	
@@ -358,6 +426,9 @@ router.post('/searchTopRated',(req,res)=>{
 			"user-key": "4dd26c0b6b70bcd2ab9b055e2036ab46"
 		}
 	}
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////API CALL TO ZOMATO///////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////	
 	request.get(creds, (error,response,locationData)=>{
 		var locationData = JSON.parse(locationData);
 		var entType = locationData.location_suggestions[0].entity_type
@@ -372,13 +443,17 @@ router.post('/searchTopRated',(req,res)=>{
 		}
 		request.get(newUrl, (error,repsonse, nextData)=>{
 			var nextData = JSON.parse(nextData)
-			// console.log(nextData.best_rated_restaurant[0].restaurant.name)
+			console.log(nextData.best_rated_restaurant[0].restaurant.name)
 			// res.json(nextData);
 			res.render('top-rated', {nextData: nextData})
 
 		});
 
 	});
+	// res.render('top-rated', { 
+	// 	nextData: arrays.topRated,
+	// 	sessionInfo: req.session
+	// 	})
 
 });
 
@@ -612,12 +687,56 @@ router.post('/color', (req,res)=>{
 	var wine$MaxPrice = (req.body.searchMaxPrice);
 	var wineMinPrice = wine$MinPrice.replace("$","");
 	var wineMaxPrice = wine$MaxPrice.replace("$","");
-	var wineSort = (req.body.searchSort)
+	var wineSort = (req.body.searchSort);
+	var wineNumber = (req.body.searchNumber);
 
-	
+////////// Wine Query
+	var wineTypeQuery = '&t=' + wineType;
+	var wineColorQuery = '&color=' + wineColor;
+	var wineVarietyQuery = '&q=' + wineVariety;
+	var wineMinPriceQuery = '&mp=' + wineMinPrice;
+	var wineMaxPriceQuery = '&xp=' + wineMaxPrice;
+	var wineSortQuery = '&s=' + wineSort;
+	// var wineNumberQuery = '&n=' + wineNumber;
+
+
+	var endQuery = '&mr=4&n=20';
+
+	if(wineType = ''){
+		wineTypeQuery = '';
+	}
+	if(wineColor = ''){
+		wineColorQuery = '';
+	}
+	if(wineKind = ''){
+		wineVariety = '';
+	}
+	if(wineMinPrice = ''){
+		wineMinPriceQuery = '&mp=1';
+	}
+	if(wineMaxPrice = ''){
+		wineMaxPriceQuery = '';
+	}
+	if(wineSort = ''){
+		wineSortQuery = '';
+	}
+	if(wineSort = 'Price &#8679'){
+		wineSortQuery = '&s=price+asc';
+	}
+	if(wineSort = 'Price &#8681'){
+		wineSortQuery = '&s=price+desc';
+	}
+	// if(wineNumber = ''){
+	// 	wineNumberQuery = '&n=20';
+	// }
+
+	var wineCellarUrl = snoothBaseUrl + wineKey + ip + wineTypeQuery + wineColorQuery + wineVarietyQuery + wineMinPrice + wineMaxPriceQuery + wineSortQuery + endQuery;
+
+
+/////////////END
 
 	// console.log(wineColor)
-	var snoothWineSelectUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&mp=1&n=20';
+	var snoothWineSelectUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&mp=1&mr=4&n=20';
 	// var snoothWineSelectUrlTest = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color=' + wineColor + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=' wineSort;
 	var snoothColorUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color='+ wineColor + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&mr=4&n=20'; 
 	var snoothPriceAscUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&color='+ wineColor + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc&mr=4&n=20';
@@ -625,7 +744,7 @@ router.post('/color', (req,res)=>{
 	var snoothNoColorUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&mr=4&n=20'; 
 	
 	var snoothNoColorPriceAscUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc&mr=4&n=20';
-	var snoothNoColorPriceDesUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+asc&mr=4&n=20';
+	var snoothNoColorPriceDesUrl = snoothBaseUrl + wineKey + ip + '&t=' + wineType + '&q=' + wineVariety + '&mp=' + wineMinPrice + '&xp=' + wineMaxPrice + '&s=price+des&mr=4&n=20';
 	// var snoothVarietyUrl = snoothBaseUrl + wineKey + ip + '&q=' + wineVariety + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc'+ '&xp=' + wineMaxPrice;
 	// var snoothVarietyUrl2 = snoothBaseUrl + wineKey + ip + '&q=' + wineVariety + '&mr=4&mp=1&s=price+desc&qpr=vintage+desc'+ '&xp=' + wineMaxPrice;
 	// console.log(snoothColorUrl)
@@ -642,8 +761,7 @@ router.post('/color', (req,res)=>{
 
 	// });
 
-	if(wineSort == 'Price &#8679' && wineColor){
-		request.get(snoothPriceAscUrl,(error, response, colorData)=>{
+	request.get(wineCellarUrl,(error, response, colorData)=>{   				// TEST QUERY
 			var colorFormatted = JSON.parse(colorData);
 			// console.log(colorFormatted);
 			// res.json(colorFormatted);
@@ -651,62 +769,79 @@ router.post('/color', (req,res)=>{
 				wineArray : colorFormatted,
 				sessionInfo: req.session
 			});
-		});
-	
-	}else if(wineSort == 'Price &#8681' && wineColor){
-		request.get(snoothPriceDesUrl,(error, response, colorData)=>{
-			var colorFormatted = JSON.parse(colorData);
-			// console.log(colorFormatted);
-			// res.json(colorFormatted);
-			res.render('color', { 
-				wineArray : colorFormatted,
-				sessionInfo: req.session
-			});
-		});
-	}else if(wineSort == 'Price &#8679' && !wineColor){
-		request.get(snoothNoColorPriceAscUrl,(error, response, colorData)=>{
-			var colorFormatted = JSON.parse(colorData);
-			// console.log(colorFormatted);
-			// res.json(colorFormatted);
-			res.render('color', { 
-				wineArray : colorFormatted,
-				sessionInfo: req.session
-			});
-		});
-	}else if(wineSort == 'Price &#8681' && !wineColor){
-		request.get(snoothNoColorPriceDesUrl,(error, response, colorData)=>{
-			var colorFormatted = JSON.parse(colorData);
-			// console.log(colorFormatted);
-			// res.json(colorFormatted);
-			res.render('color', { 
-				wineArray : colorFormatted,
-				sessionInfo: req.session
-			});
-		});
-
-	}else if(!wineSort && !wineColor){
-		request.get(snoothNoColorUrl,(error,resonse, colorData)=>{
-			var colorFormatted = JSON.parse(colorData);
-			res.render('color',{
-				wineArray : colorFormatted,
-				sessionInfo : req.session
-			});
-		});
-	}else{
-		request.get(snoothWineSelectUrl,(error, response, colorData)=>{      // TEST 1
-			var colorFormatted = JSON.parse(colorData);
-			// console.log(colorFormatted);
-			// res.json(colorFormatted);
-			res.render('color', { 
-				wineArray : colorFormatted,
-				sessionInfo: req.session
-			});
-
-		});
-	}
+	});
 
 });
 
+//========================================================================
+
+	// if(wineSort == 'Price &#8679' && wineColor){
+	// 	request.get(snoothPriceAscUrl,(error, response, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+	// 	});
+	
+	// }else if(wineSort == 'Price &#8681' && wineColor){
+	// 	request.get(snoothPriceDesUrl,(error, response, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+	// 	});
+	// }else if(wineSort == 'Price &#8679' && !wineColor){
+	// 	request.get(snoothNoColorPriceAscUrl,(error, response, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+	// 	});
+	// }else if(wineSort == 'Price &#8681' && !wineColor){
+	// 	request.get(snoothNoColorPriceDesUrl,(error, response, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+	// 	});
+
+	// }else if(!wineSort && !wineColor){
+	// 	request.get(snoothNoColorUrl,(error,resonse, colorData)=>{
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		res.render('color',{
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo : req.session
+	// 		});
+	// 	});
+	// }else{
+	// 	request.get(snoothWineSelectUrl,(error, response, colorData)=>{      // TEST 1
+	// 		var colorFormatted = JSON.parse(colorData);
+	// 		// console.log(colorFormatted);
+	// 		// res.json(colorFormatted);
+	// 		res.render('color', { 
+	// 			wineArray : colorFormatted,
+	// 			sessionInfo: req.session
+	// 		});
+
+	// 	});
+	// }
+
+// });
+
+
+//=============================================================================
 
 // }else if(wineSort == 'Price &#8679' && !wineColor){
 	// 	request.get(snoothNoColorPriceAscUrl,(error, response, colorData)=>{
@@ -796,8 +931,42 @@ router.post('/wine-recipes', (req,res)=>{
 
 });
 
+////////////// Recipe Pairing Link
+
+router.get('/wine-recipes/:id',(req,res)=>{
+	var pairingId = req.params.winery_id
+	var snoothRecipeUrl = snoothBaseUrl2 + wineKey + ip + '&id='+ pairingId + '&food=1';
+	request.get(snoothRecipeUrl,(error, response, recipeData)=>{
+		var recipeFormatted = JSON.parse(recipeData);
+		res.render('wine-recipes', { 
+			wineName :req.params.winery_id,
+
+			recipeName: recipeFormatted.wines[0].recipes[0].name,
+			recipeImage: recipeFormatted.wines[0].recipes[0].image,
+			recipeLink: recipeFormatted.wines[0].recipes[0].link,
+
+			recipeName1: recipeFormatted.wines[0].recipes[1].name,
+			recipeImage1: recipeFormatted.wines[0].recipes[1].image,
+			recipeLink1: recipeFormatted.wines[0].recipes[1].link,
+
+			recipeName2: recipeFormatted.wines[0].recipes[2].name,
+			recipeImage2: recipeFormatted.wines[0].recipes[2].image,
+			recipeLink2: recipeFormatted.wines[0].recipes[2].link,
+
+			sessionInfo: req.session
+
+		});
+	});
+});
+
+
+
+//////////////////////
+
 router.get('/documenttest', (req,res)=>{
-	res.render('documenttest')
+	res.render('documenttest', { 
+		nearbyResArray: arrays.searchJSON
+	})
 })
 
 module.exports = router;

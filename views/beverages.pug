@@ -1,15 +1,15 @@
 extends layout
 
 block styles
-	link(rel='stylesheet' href='stylesheets/bootstrap.min.css')
-	link(rel='stylesheet' href='stylesheets/beverages.css')
+	link(rel='stylesheet' href='/stylesheets/bootstrap.min.css')
+	link(rel='stylesheet' href='/stylesheets/beverages.css')
 
 block scripts
 	script(src='javascripts/scripts.js')
 
 block content
 	include slider
-	-if (sessionInfo.loggedin !== true)
+	-if ((sessionInfo == undefined) || (sessionInfo.loggedin !== true))
 		include logreg
 	.toggle-button
 	#site
@@ -45,7 +45,7 @@ block content
 
 							h5.input-header Search By Varietal Preference: 
 							
-							form(id="search-form" action="/varietal" method="post")
+							form(id="search-form" action="/color" method="post")
 								input.wine-input(type="text" name="searchVariety" placeholder="Type Variety here")
 								br
 								span.example (i.e "Cabernet", "Pinot Noir", "Merlot", "Malbec", "Zinfandel", etc.)
@@ -85,8 +85,19 @@ block content
 								option
 								option Price &#8679       <!-- selected="selected" -->
 								option Price &#8681
+							
+							//- h5.input-header Number of Results:
+							//- select.wine-input(name="searchNumber")
+							//- 	option
+							//- 	option 10
+							//- 	option 20
+							//- 	option 30
+							//- 	option 40
+							//- 	option 50
+							//- 	option 100
+
 							div.form-header
-								button(type="submit") Find Wine Recommendations
+								button(type="submit") FIND WINE RECOMMENDATIONS
 					//- br
 					//- //- div OR
 					//- br	
@@ -104,5 +115,4 @@ block content
 					form.form-header.search-bar(id="search-form" action="/wine-recipes" method="post")
 						input.recipe-input.wine-input(type="text" name="searchString" placeholder="Type Variety or Recipe Pairing ID here")
 						br
-						button(type="submit") Search
-				
+						button(type="submit") SEARCH

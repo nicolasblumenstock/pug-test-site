@@ -5,7 +5,7 @@
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background: #7A918D;
+	background: #444a44;
 	overflow-x: hidden;
 	transition: .5s;
 }
@@ -22,13 +22,13 @@
 }
 
 .sideNav a:hover, .offcanvas a:focus{
-	color: #f1f1f1;
+	color: #CA6D99;
 }
 
 .header-wrapper{
 	min-height: 50px;
 	width: 100%;
-	background-color: #736372;
+	background-color: #444a44;
 	color: white;
 	text-align: center;
 	line-height: 50px;
@@ -60,6 +60,16 @@
 
 #mySideNav {
 	font-family: 'Oswald', sans-serif;
+}
+
+.content{
+	background-image: url('../images/slider-bubbles-green.png');
+	background-repeat: no-repeat;
+	/* background-attachment: fixed; */
+	background-position: left bottom;
+	background-size: 7vw;
+	height: 75%;
+	overflow: visible;
 }
 
 span.icon{
@@ -96,28 +106,40 @@ span.icon{
 	background-image: url('../images/prj-icons/account-icon.png');
 }
 
-.footer-wrapper{
-	min-height: 30%;
+/* .footer-wrapper{
+	height: 25%;
 	width: 100%;
-	background-color: #736372;
-}
+	background-color: #444a44;
+} */
 
 .footer-inner-1{
-	min-height: 25%;
+	height: 25%;
+	width: 100%;
+	background-color: #ad1a60;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	box-shadow: 0 4px 3px 4px #222;
+}
+
+.footer-inner-2{
+	height: 20%;
+	width: 100%;
+	background-color: #7a918d;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	box-shadow: 0 4px 3px 4px #222;
+}
+
+.footer-inner-3{
+	height: 15%;
 	width: 100%;
 	background-color: #aac0aa;
 	position: absolute;
 	bottom: 0;
 	left: 0;
-}
-
-.footer-inner-2{
-	min-height: 20%;
-	width: 100%;
-	background-color: #dceed1;
-	position: absolute;
-	bottom: 0;
-	left: 0;
+	box-shadow: 0 4px 3px 4px #222;
 }
 
 .toggle-button{

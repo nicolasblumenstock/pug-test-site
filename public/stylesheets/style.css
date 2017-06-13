@@ -1,4 +1,6 @@
 
+
+
 .slidertoggle {
 	position: absolute;
 	left: 5vw;
@@ -21,14 +23,17 @@
 }
 
 #title {
-	background-color: rgba(1,4,0,.1);
+	/* background-image: url('../images/vegi-background.jpg'); */
+	/* background-color: #191919; */
+	background-size: cover;
+	background-repeat: no-repeat;
 	color: white;
 	font-size: 75px;
 	text-align: center;
 }
 
 #pageOne {
-	background-color: rgba(1,4,0,.1);
+	background-color: rgba(220, 238, 209,);
 	color:white;
 	font-size:75px;
 	text-align: center;
@@ -56,16 +61,28 @@
 }
 
 .titles {
-	line-height: 100vh;
+	/* line-height: 100vh; */
 }
+
+.titles img{
+	width: 20vw;
+}
+
+/* .bottom-bubbles img{
+	position: ;
+	bottom: 0px;
+	left: 0px;
+	width: 10vw
+} */
 
 body {
 	margin: 0px;
-	background-image: url('../images/vegi-background-1.jpg');
+	background-color: #191919;
+	background-image: url('../images/bottom-left-bubbles.png');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-position: center;
-	background-size: cover;
+	background-position: left bottom;
+	background-size: 10vw;
 }
 
 #site {

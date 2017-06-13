@@ -1,15 +1,15 @@
 extends layout
 block styles
-	link(rel='stylesheet' href='stylesheets/style.css')
+	link(rel='stylesheet' href='/stylesheets/style.css')
 
 block scripts
-	script(src='javascripts/scripts.js')
+	script(src='/javascripts/scripts.js')
 
 block content
 
 	include slider
 
-	-if ((sessionInfo.loggedin !== true))
+	-if ((sessionInfo == undefined) || (sessionInfo.loggedin !== true))
 		include logreg
 
 	.toggle-button
@@ -20,6 +20,10 @@ block content
 
 	
 			.titles
+				img(src="../images/Wine-logo.png")
+
+			//- .bottom-bubbles
+			//- 	img(src="../images/bottom-left-bubbles.png")
 
 	
 		#pageOne.section
