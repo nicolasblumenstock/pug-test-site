@@ -1,15 +1,21 @@
 extends layout
 
 block styles
+	link(rel="stylesheet" href="stylesheets/rest-searchpage.css")
 
 block scripts
 
 block content
+	include slider
+	
+
+	.toggle-button
+	#site
 
 	form(id="search-form" class="form-inline" action="/search" method="post")
-		input(type="text" placeholder="Search Area" name="searchString")
-		button(type="submit" class="btn btn-primary") SEARCH
+		input(class="textBox" type="text" placeholder="Search Area" name="searchString")
+		button(class="nextBox" type="submit" class="btn btn-primary") SEARCH
 
 	form(id="search-form2" class="form-inline" action="/searchTopRated" method="post")
-		input(type="text" placeholder="Top Restaurants" name="searchBest")
-		button(type="submit" class="btn btn-primary") SEARCH
+		input(class="textBox" type="text" placeholder="Top Restaurants" name="searchBest")
+		button(class="nextBox" type="submit" class="btn btn-primary") SEARCH

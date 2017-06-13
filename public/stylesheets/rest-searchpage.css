@@ -1,0 +1,32 @@
+
+html,body {
+	height: 100%;
+	width:100%;
+	text-align: center;
+	margin-top: 10px;
+	
+}
+
+.textBox {
+	margin: 20px;
+	width: 250px;
+	font-size: 18px;
+
+	
+}
+
+.nextBox {
+	font-size: 16px;
+}
+
+body {
+	background-image: url('../images/crowded-rest.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+
+}
+
+form {
+	background-color: #736372;
+}
+
