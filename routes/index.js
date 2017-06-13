@@ -698,40 +698,40 @@ router.post('/color', (req,res)=>{
 	var wineMaxPriceQuery = '&xp=' + wineMaxPrice;
 	var wineSortQuery = '&s=' + wineSort;
 	// var wineNumberQuery = '&n=' + wineNumber;
-
+	console.log(wineKind);
 
 	var endQuery = '&mr=4&n=20';
 
-	if(wineType = ''){
-		wineTypeQuery = '';
-	}
-	if(wineColor = ''){
+	// if(wineType == ''){
+	// 	wineTypeQuery = '';
+	// }
+	if(wineColor == ''){
 		wineColorQuery = '';
 	}
-	if(wineKind = ''){
-		wineVariety = '';
+	if(wineKind == ''){
+		wineVarietyQuery = '';
 	}
-	if(wineMinPrice = ''){
+	if(wineMinPrice == ''){
 		wineMinPriceQuery = '&mp=1';
 	}
-	if(wineMaxPrice = ''){
+	if(wineMaxPrice == ''){
 		wineMaxPriceQuery = '';
 	}
-	if(wineSort = ''){
+	if(wineSort == ''){
 		wineSortQuery = '';
 	}
-	if(wineSort = 'Price &#8679'){
+	if(wineSort == 'Price &#8679'){
 		wineSortQuery = '&s=price+asc';
 	}
-	if(wineSort = 'Price &#8681'){
+	if(wineSort == 'Price &#8681'){
 		wineSortQuery = '&s=price+desc';
 	}
 	// if(wineNumber = ''){
 	// 	wineNumberQuery = '&n=20';
 	// }
 
-	var wineCellarUrl = snoothBaseUrl + wineKey + ip + wineTypeQuery + wineColorQuery + wineVarietyQuery + wineMinPrice + wineMaxPriceQuery + wineSortQuery + endQuery;
-
+	var wineCellarUrl = snoothBaseUrl + wineKey + ip + wineColorQuery + wineVarietyQuery + wineMinPrice + wineMaxPriceQuery + wineSortQuery + endQuery;
+	console.log(wineCellarUrl);
 
 /////////////END
 
@@ -763,7 +763,7 @@ router.post('/color', (req,res)=>{
 
 	request.get(wineCellarUrl,(error, response, colorData)=>{   				// TEST QUERY
 			var colorFormatted = JSON.parse(colorData);
-			// console.log(colorFormatted);
+			console.log(colorFormatted);
 			// res.json(colorFormatted);
 			res.render('color', { 
 				wineArray : colorFormatted,
