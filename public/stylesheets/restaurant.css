@@ -16,6 +16,7 @@ body {
 
 #site p {
 	margin: 15px 0px;
+	font-size: 13px;
 }
 
 #site.container {
@@ -39,11 +40,11 @@ body {
 }
 
 .return1, .return2, .return3, .return4, .return5, .return6, .return7, .return8, .return9, .return10 {
-	height: 32vh;
+	height: 29vh;
 	width: 32vw;
 	background-color: #444A44;
 	box-sizing: border-box;
-	border-radius: 5px;
+	/*border-radius: 5px;*/
 	box-shadow: 2px 2px 5px 1px #d2c2ba;
 	position: absolute;
 	padding: 15px;
@@ -75,8 +76,16 @@ a:hover, a:focus {
 	top: 50vh;
 }
 
-.restTitle {
+.restTitle{
+	/*margin-top: 10px;*/
 	font-size: 2em;
+}
+
+@media screen and (max-height: 700px) {
+	.restTitle {
+		margin-top: 5px;
+		font-size: 1.2em;
+	}
 }
 
 .restSearch, .topRests, .randRests{
@@ -127,13 +136,25 @@ a:hover, a:focus {
 	margin: 5px 5px 15px 7px;
 }
 
-.restSearch button, .topRests button, .randRests button {
+.restSearch button, .topRests button{
 	margin: 5px;
 	margin-left: 7px;
 	width: 95%;
 	padding: 5px;
 	font-size: 15px;
 	background-color: #ad1a60;
+}
+
+.randRests button {
+	margin-left: -18px;
+	width: 95%;
+	padding: 5px;
+	font-size: 15px;
+	background-color: #ad1a60;	
+}
+
+.btn {
+	border-radius: 0;
 }
 
 .restSearch label, .topRests label {
