@@ -5,6 +5,7 @@ var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
 var request = require('request');
 var arrays = require('../arrays/arrays');
+var recipeData = require('../JSON/recipeJSON')
 var connection = mysql.createConnection({
 	host: config.sql.host,
 	user: config.sql.user,
@@ -23,7 +24,7 @@ router.get('/', function(req, res, next) {
   	title: 'wineAndDine',
   	sessionInfo: req.session
   	});
-  console.log(req.sessionID)
+  console.log(req.session.userID)
 });
 
 router.get('/login', (req,res)=>{
@@ -49,6 +50,7 @@ router.post('/loginProcess',(req,res)=>{
 		if(checkResults.length == 1){
 			var match = bcrypt.compareSync(password,checkResults[0].password);
 			if (match == true){
+				console.log(checkResults);
 				req.session.name = checkResults[0].firstName;
 				req.session.email = email;
 				req.session.loggedin = true;
@@ -154,22 +156,91 @@ router.get('/account', (req,res)=>{
 			message = 'Account Updated.'
 		}
 		connection.query(accountQuery,[email],(error,results)=>{
-			res.render('account', {
-				message: message,
-				firstName: results[0].firstName,
-				lastName: results[0].lastName,
-				phoneNumber: results[0].phoneNumber,
-				email: results[0].email,
-				addressLine: results[0].addressLine,
-				city: results[0].city,
-				state: results[0].state,
-				zip: results[0].zip,
-				userId: results[0].id,
-				sessionInfo: req.session
-				})
-			})
-		}
+			var firstName = results[0].firstName
+			var lastName = results[0].lastName
+			var phoneNumber = results[0].phoneNumber
+			var email = results[0].email
+			var addressLine = results[0].addressLine
+			var city = results[0].city
+			var state = results[0].state
+			var zip = results[0].zip
+			var userId = results[0].id
+			var sessionInfo = req.session
+			var savedRecipeQuery = 'SELECT * FROM favorites WHERE userID=?'
+			// console.log(userId)
+
+			connection.query(savedRecipeQuery, [userId], (error,results)=>{
+				console.log(results)
+				var httpDone = 0;
+				var faveArray = [];
+				for(let i = 0; i < results.length; i++){
+					var thisRecipeId = results[i].recipeID;
+					console.log(thisRecipeId)
+					var thisRecipeUrl = 'https://api.yummly.com/v1/api/recipe/' + thisRecipeId + '?' + yummlyCreds;
+					request.get(thisRecipeUrl, (error,response,data)=>{
+						httpDone++;
+						console.log(httpDone)
+						var recipeData = JSON.parse(data);
+						faveArray.push(recipeData)
+						if (httpDone == results.length){
+							res.render('account', {
+								recipes: faveArray,
+								message: message,
+								firstName: firstName,
+								lastName: lastName,
+								phoneNumber: phoneNumber,
+								email: email,
+								addressLine: addressLine,
+								city: city,
+								state: state,
+								zip: zip,
+								userId: userId,
+								sessionInfo: sessionInfo
+							})
+							// res.json(faveArray)
+						}	
+					})
+				}
+
+				// res.render('account', {
+				// 	recipeArray: results,
+				// 	message: message,
+				// 	firstName: firstName,
+				// 	lastName: lastName,
+				// 	phoneNumber: phoneNumber,
+				// 	email: email,
+				// 	addressLine: addressLine,
+				// 	city: city,
+				// 	state: state,
+				// 	zip: zip,
+				// 	userId: userId,
+				// 	sessionInfo: sessionInfo
+				// });
+			});
+		});
+	};
+});
+
+router.post('/faveRecipes/:recID', (req,res)=>{
+	var thisRecipeId = req.params.recID;
+	var thisRecipeUrl = 'https://api.yummly.com/v1/api/recipe/' + thisRecipeId + '?' + yummlyCreds;
+
+	request.get(thisRecipeUrl, (error,response,data)=>{
+		var faveArray = [];
+		var recipeData = JSON.parse(data);
+		faveArray.push(recipeData)
+		res.render('recipes?msg=fave', {
+			recipes: faveArray,
+			cuisines: arrays.cuisines,
+			cuisinesSearch: arrays.cuisinesSearch,
+			diets: arrays.diets,
+			dietsSearch: arrays.dietsSearch,
+			allergies: arrays.allergies,
+			allergiesSearch: arrays.allergiesSearch,
+			sessionInfo: req.session
+		})
 	})
+})
 
 router.post('/updateProcess', (req,res)=>{
 	var firstName = req.body.firstName;
@@ -478,45 +549,67 @@ router.post('/recipeform', (req,res)=>{
 })
 
 router.post('/random-recipe', (req,res)=>{
-	var randomNumForSearch = Math.floor(Math.random() * 2000);
-	var searchResults = `&maxResult=5&start=${randomNumForSearch}`
-	var dinnerParam = '&allowedCourse[]=course^course-Main%20Dishes'
-	var requirePics = '&requirePictures=true'
-	var searchUrl = baseYummlyMultiSearchUrl + searchResults + dinnerParam + requirePics;
-	// console.log(searchUrl);
+	res.render('recipes', {
+		recipes: recipeData,
+		cuisines: arrays.cuisines,
+		cuisinesSearch: arrays.cuisinesSearch,
+		diets: arrays.diets,
+		dietsSearch: arrays.dietsSearch,
+		allergies: arrays.allergies,
+		allergiesSearch: arrays.allergiesSearch,
+		sessionInfo: req.session
+	})
+	// var randomNumForSearch = Math.floor(Math.random() * 2000);
+	// var searchResults = `&maxResult=5&start=${randomNumForSearch}`
+	// var dinnerParam = '&allowedCourse[]=course^course-Main%20Dishes'
+	// var requirePics = '&requirePictures=true'
+	// var searchUrl = baseYummlyMultiSearchUrl + searchResults + dinnerParam + requirePics;
+	// // console.log(searchUrl);
 
-	request.get(searchUrl, (error,response,data)=>{
-		if (error) throw error;
-		var data = JSON.parse(data);
-		var recipeData = [];
-		// var recipeImg = [];
-		var httpDone = 0;
-		for (let i = 0; i < data.matches.length; i++){
-			var recipeUrl = 'https://api.yummly.com/v1/api/recipe/' + data.matches[i].id + '?' + yummlyCreds;
-			request.get(recipeUrl, (error,response, queryData)=>{
-				if (error) throw error;
-				httpDone++;
-				var recData = JSON.parse(queryData);
-				recipeData.push(recData);
-				// recipeImg.push(recData.images[0].imageUrlsBySize.360)
-				if (httpDone == data.matches.length){
-					res.render('recipes', {
-						recipes: recipeData,
-						cuisines: arrays.cuisines,
-						cuisinesSearch: arrays.cuisinesSearch,
-						diets: arrays.diets,
-						dietsSearch: arrays.dietsSearch,
-						allergies: arrays.allergies,
-						allergiesSearch: arrays.allergiesSearch,
-						sessionInfo: req.session
-					});
-					// res.json(recipeData);
-				}
-			});
-		}
-		// console.log(recipeData.matches[0].recipeName)
- 	});
+	// request.get(searchUrl, (error,response,data)=>{
+	// 	if (error) throw error;
+	// 	var data = JSON.parse(data);
+	// 	var recipeData = [];
+	// 	// var recipeImg = [];
+	// 	var httpDone = 0;
+	// 	for (let i = 0; i < data.matches.length; i++){
+	// 		var recipeUrl = 'https://api.yummly.com/v1/api/recipe/' + data.matches[i].id + '?' + yummlyCreds;
+	// 		request.get(recipeUrl, (error,response, queryData)=>{
+	// 			if (error) throw error;
+	// 			httpDone++;
+	// 			var recData = JSON.parse(queryData);
+	// 			recipeData.push(recData);
+	// 			// recipeImg.push(recData.images[0].imageUrlsBySize.360)
+	// 			if (httpDone == data.matches.length){
+	// 				res.render('recipes', {
+	// 					recipes: recipeData,
+	// 					cuisines: arrays.cuisines,
+	// 					cuisinesSearch: arrays.cuisinesSearch,
+	// 					diets: arrays.diets,
+	// 					dietsSearch: arrays.dietsSearch,
+	// 					allergies: arrays.allergies,
+	// 					allergiesSearch: arrays.allergiesSearch,
+	// 					sessionInfo: req.session
+	// 				});
+	// 				// res.json(recipeData);
+	// 			}
+	// 		});
+	// 	}
+	// 	// console.log(recipeData.matches[0].recipeName)
+ // 	});
 });
+
+router.get('/saverecipe/:id/:name', (req,res)=>{
+	var recipeId = req.params.id;
+	var recipeName = req.params.name
+	var userId = req.session.userID;
+	var insertQuery = "INSERT INTO favorites (userID, recipeID, recipeName) VALUES (?,?,?)";
+
+	connection.query(insertQuery, [userId, recipeId, recipeName], (error,result)=>{
+		if (error) throw error;
+		res.redirect('/');
+	})
+})
 
 router.get('/beverages', (req,res)=>{
 	res.render('beverages', {

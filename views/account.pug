@@ -1,9 +1,12 @@
 extends layout
 
 block styles
+	link(rel="stylesheet" href="../stylesheets/bootstrap.min.css")
 	link(rel='stylesheet' href='stylesheets/forms.css')
+	link(rel='stylesheet' href='../stylesheets/account.css')
 
 block scripts
+	script(src='javascripts/scripts.js')
 
 block content
 
@@ -13,27 +16,66 @@ block content
 
 		#slidertoggle.toggle-button
 
-		#registration
-			h3.message= message
-			form(action='/updateProcess' method='post')
-				.names
-					input.half(type='text' name='firstName' value=firstName)
-					input.half(type='text' name='lastName' value=lastName)
-				.email
-					input.full(type='email' name='oldEmail' value=email)
-				.email
-					input.full(type='email' name='newEmail' placeholder='New Email')
-				.addressLine
-					input.full(type='text' name='addressLine' placeholder='Address Line' value=addressLine )
-				.citystate
-					input.half(type='text' name='city' placeholder='City' value=city)
-					input.half(type='text' name='state' placeholder='State' value=state)
-				.zipphone
-					input.half(type='text' name='zip' value=zip)
-					input.half(type='text' name='phoneNumber' value=phoneNumber)
-				.password
-					input.full(type='password' name='oldPassword' placeholder='Current Password *')
-				.password
-					input.full(type='password' name='newPassword' placeholder='New Password')
-				.register
-					button.full(type='submit' class='btn-update') UPDATE
+		.section.active
+			.slide
+				.welcome-wrapper
+					h1 WELCOME #{firstName}
+			.slide
+
+				#registration
+					h3.message= message
+					form(action='/updateProcess' method='post')
+						.names
+							input.half(type='text' name='firstName' value=firstName)
+							input.half(type='text' name='lastName' value=lastName)
+						.email
+							input.full(type='email' name='oldEmail' value=email)
+						.email
+							input.full(type='email' name='newEmail' placeholder='New Email')
+						.addressLine
+							input.full(type='text' name='addressLine' placeholder='Address Line' value=addressLine )
+						.citystate
+							input.half(type='text' name='city' placeholder='City' value=city)
+							input.half(type='text' name='state' placeholder='State' value=state)
+						.zipphone
+							input.half(type='text' name='zip' value=zip)
+							input.half(type='text' name='phoneNumber' value=phoneNumber)
+						.password
+							input.full(type='password' name='oldPassword' placeholder='Current Password *')
+						.password
+							input.full(type='password' name='newPassword' placeholder='New Password')
+						.register
+							button.full(type='submit' class='btn-update') UPDATE	
+		-if (typeof(recipes) != 'undefined')
+			-for (let i = 0; i < recipes.length; i++)
+				.section.results
+
+					.container.results-container.col-sm-12
+
+						.col-sm-12.side-bar-wrapper
+							.col-sm-6
+								.row
+									.col-sm-12.side-bar-header
+										h1 #{recipes[i].name}
+								.row
+									.col-sm-12.recipe-pic
+										-if (typeof(recipes[i].images[0].imageUrlBySize) !== 'undefined')
+											img(src=recipes[i].images[0].imageUrlBySize[360])
+										-else
+											img(src=recipes[i].images[0].hostedLargeUrl)
+								.row
+									.col-sm-10.recipe-button-wrapper
+										a(href=recipes[i].source.sourceRecipeUrl)
+											button.btn.btn-primary Instructions
+								.row
+									.col-sm-12.save-button-wrapper
+										a(href='/saverecipe/' + recipes[i].id + '/' + recipes[i].name)
+											button.btn.btn-success Save Recipe					
+							.col-sm-6.ingredient-wrapper
+								.row
+									.col-sm-12.ingredient-list
+										-for (let j = 0; j < recipes[i].ingredientLines.length; j++)
+											.row(class='row' + j)
+												li #{recipes[i].ingredientLines[j]}				
+			
+			
