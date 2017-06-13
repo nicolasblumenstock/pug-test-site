@@ -9,7 +9,7 @@ block content
 
 	include slider
 
-	-if ((sessionInfo.loggedin !== true))
+	-if ((sessionInfo == undefined) || (sessionInfo.loggedin !== true))
 		include logreg
 
 	.toggle-button
