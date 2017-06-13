@@ -9,7 +9,7 @@ block scripts
 
 block content
 	include slider
-	-if (sessionInfo.loggedin !== true)
+	-if ((sessionInfo == undefined) || (sessionInfo.loggedin !== true))
 		include logreg
 	.toggle-button
 	#site
@@ -105,4 +105,3 @@ block content
 						input.recipe-input.wine-input(type="text" name="searchString" placeholder="Type Variety or Recipe Pairing ID here")
 						br
 						button(type="submit") Search
-				

@@ -20,7 +20,7 @@ connection.connect();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {
-  	title: 'Wine & Dine',
+  	title: 'wineAndDine',
   	sessionInfo: req.session
   	});
   console.log(req.sessionID)
@@ -329,19 +329,25 @@ router.post('/search',(req,res)=>{
 					}
 				}
 				var nearbyResArray = [];
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////API CALL TO ZOMATO///////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+				// request.get(resCred,(error,response,resName2)=>{
+				// 	var resName = JSON.parse(resName2)
+				// 	// var x = encodeURI(resName)
+				// 	nearbyResArray.push(resName)
+				// 	// res.json(resName);
+				// 	// res.render('result', {resName: resName});
+				// 	if(nearbyResArray.length == totalNearRes){
+				// 		// res.json(nearbyResArray)
+				// 		res.render('result', {nearbyResArray: nearbyResArray});
+				// 	}
 
-				request.get(resCred,(error,response,resName2)=>{
-					var resName = JSON.parse(resName2)
-					// var x = encodeURI(resName)
-					nearbyResArray.push(resName)
-					// res.json(resName);
-					// res.render('result', {resName: resName});
-					if(nearbyResArray.length == totalNearRes){
-						// res.json(nearbyResArray)
-						res.render('result', {nearbyResArray: nearbyResArray});
-					}
-				//////TEST///////////////////////////
-				});
+				// });
+				res.render('result',{
+					nearbyResArray: arrays.searchJSON,
+					sessionInfo: req.session
+				})
 			}
 		});
 	
@@ -358,27 +364,34 @@ router.post('/searchTopRated',(req,res)=>{
 			"user-key": "4dd26c0b6b70bcd2ab9b055e2036ab46"
 		}
 	}
-	request.get(creds, (error,response,locationData)=>{
-		var locationData = JSON.parse(locationData);
-		var entType = locationData.location_suggestions[0].entity_type
-		var entID = locationData.location_suggestions[0].entity_id
-		var locDetUrl = "https://developers.zomato.com/api/v2.1/location_details?"
-		var newCreds = `${locDetUrl}entity_id=${entID}&entity_type=${entType}`
-		var newUrl = {
-			url: newCreds,
-			headers:{
-				"user-key": "4dd26c0b6b70bcd2ab9b055e2036ab46"
-			}
-		}
-		request.get(newUrl, (error,repsonse, nextData)=>{
-			var nextData = JSON.parse(nextData)
-			// console.log(nextData.best_rated_restaurant[0].restaurant.name)
-			// res.json(nextData);
-			res.render('top-rated', {nextData: nextData})
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////API CALL TO ZOMATO///////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////	
+	// request.get(creds, (error,response,locationData)=>{
+	// 	var locationData = JSON.parse(locationData);
+	// 	var entType = locationData.location_suggestions[0].entity_type
+	// 	var entID = locationData.location_suggestions[0].entity_id
+	// 	var locDetUrl = "https://developers.zomato.com/api/v2.1/location_details?"
+	// 	var newCreds = `${locDetUrl}entity_id=${entID}&entity_type=${entType}`
+	// 	var newUrl = {
+	// 		url: newCreds,
+	// 		headers:{
+	// 			"user-key": "4dd26c0b6b70bcd2ab9b055e2036ab46"
+	// 		}
+	// 	}
+	// 	request.get(newUrl, (error,repsonse, nextData)=>{
+	// 		var nextData = JSON.parse(nextData)
+	// 		// console.log(nextData.best_rated_restaurant[0].restaurant.name)
+	// 		// res.json(nextData);
+	// 		// res.render('top-rated', {nextData: nextData})
 
-		});
+	// 	});
 
-	});
+	// });
+	res.render('top-rated', { 
+		nextData: arrays.topRated,
+		sessionInfo: req.session
+		})
 
 });
 

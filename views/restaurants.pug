@@ -1,15 +1,27 @@
 extends layout
 
 block styles
+	link(rel='stylesheet' href='stylesheets/restaurant.css')
 
 block scripts
+	script(type='text/javascript' src='javascripts/scripts.js')
 
 block content
+	include slider
 
-	form(id="search-form" class="form-inline" action="/search" method="post")
-		input(type="text" placeholder="Search Area" name="searchString")
-		button(type="submit" class="btn btn-primary") SEARCH
+	-if ((sessionInfo == undefined) || (sessionInfo.loggedin !== true))
+		include logreg
 
-	form(id="search-form2" class="form-inline" action="/searchTopRated" method="post")
-		input(type="text" placeholder="Top Restaurants" name="searchBest")
-		button(type="submit" class="btn btn-primary") SEARCH
+	.toggle-button
+	#site
+		.restForms
+			.restSearch
+				form(id="search-form" class="form-inline" action="/search" method="post")
+					label.restSearchLabel Restaurant Search
+					input(type="text" placeholder="Search Area" name="searchString")
+					button(type="submit" class="btn btn-primary") SEARCH
+			.topRests
+				form(id="search-form2" class="form-inline" action="/searchTopRated" method="post")
+					label.topRestLabel Top Restaurants
+					input(type="text" placeholder="Top Restaurants" name="searchBest")
+					button(type="submit" class="btn btn-primary") SEARCH
