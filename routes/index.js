@@ -154,6 +154,8 @@ router.get('/account', (req,res)=>{
 			message = 'Password Required for Updating.'
 		}else if(message == 'updated'){
 			message = 'Account Updated.'
+		}else if(message == 'saved'){
+			message = 'Recipe Saved.'
 		}
 		connection.query(accountQuery,[email],(error,results)=>{
 			var firstName = results[0].firstName
@@ -669,7 +671,7 @@ router.get('/saverecipe/:id/:name', (req,res)=>{
 
 	connection.query(insertQuery, [userId, recipeId, recipeName], (error,result)=>{
 		if (error) throw error;
-		res.redirect('/');
+		res.redirect('/account?msg=saved');
 	})
 })
 
