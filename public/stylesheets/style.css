@@ -18,6 +18,7 @@
 	height: 100%;
 	width: 100%;
 	font-family: 'Oswald', sans-serif;
+	font-size: 12px;
 	overflow-x: hidden;
 	text-shadow: 0px 0px 5px #333;
 	font-size: 30px;
@@ -34,6 +35,19 @@
 	/*color: white;*/
 /*	font-size: 75px;
 	text-align: center;*/
+}
+
+.desc {
+	font-size: 20px;
+	font-family: 'Oswald', sans-serif;
+	width: 60%;
+	margin-left: 20%;
+}
+
+.desc span.pink{
+	font-size: 30px;
+	font-family: 'Oswald', sans-serif;
+	color: #AD1A60;
 }
 
 #pageOne {
