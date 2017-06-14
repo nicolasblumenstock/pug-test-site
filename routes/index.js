@@ -794,7 +794,7 @@ router.post('/color', (req,res)=>{
 	var wineSortQuery = '&s=' + wineSort;
 	// var wineNumberQuery = '&n=' + wineNumber;
 	console.log(wineKind);
-
+	console.log(req.body.searchSort);
 	var endQuery = '&mr=4&n=20';
 
 	// if(wineType == ''){
@@ -815,17 +815,18 @@ router.post('/color', (req,res)=>{
 	if(wineSort == ''){
 		wineSortQuery = '';
 	}
-	if(wineSort == 'Price &#8679'){
+	if(wineSort == 'asc'){
 		wineSortQuery = '&s=price+asc';
+		// console.log("it worked")
 	}
-	if(wineSort == 'Price &#8681'){
+	if(wineSort == 'desc'){
 		wineSortQuery = '&s=price+desc';
 	}
 	// if(wineNumber = ''){
 	// 	wineNumberQuery = '&n=20';
 	// }
 
-	var wineCellarUrl = snoothBaseUrl + wineKey + ip + wineColorQuery + wineVarietyQuery + wineMinPrice + wineMaxPriceQuery + wineSortQuery + endQuery;
+	var wineCellarUrl = snoothBaseUrl + wineKey + ip + wineColorQuery + wineVarietyQuery + wineMinPriceQuery + wineMaxPriceQuery + wineSortQuery + endQuery;
 	console.log(wineCellarUrl);
 
 /////////////END
@@ -858,7 +859,7 @@ router.post('/color', (req,res)=>{
 
 	request.get(wineCellarUrl,(error, response, colorData)=>{   				// TEST QUERY
 			var colorFormatted = JSON.parse(colorData);
-			console.log(colorFormatted);
+			// console.log(colorFormatted);
 			// res.json(colorFormatted);
 			res.render('color', { 
 				wineArray : colorFormatted,
