@@ -40,7 +40,7 @@ ___
 
 
 ### Landing Page
-<p align='center'><img src='public/images/screenshots/frontpage.png' height='640px' width='360px'/></p>
+<p align='center'><img src='public/images/screenshots/frontpage.png' height='360px' width='640px'/></p>
 
 	The introductory page for the site. Users can view the logo, a brief overview of the site, and access all of the features of the site from User Accounts, Restaurant, Beverage, and Recipe Searches.
 
@@ -50,7 +50,7 @@ ___
 
 	Create an Account and access the Accounts page that displays saved favorite recipes and update your account information.
 
-<p align='center'><img src='public/images/screenshots/accountpage.png' height='640px' width='360px' /></p>
+<p align='center'><img src='public/images/screenshots/accountpage.png' height='360px' width='640px' /></p>
 <p align='center'><img src='public/images/screenshots/accountupdate.png' /></p>
 
 ### Restaurant Search
