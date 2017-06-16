@@ -1,8 +1,8 @@
 body {
 	margin: 0px;
-	background-image: url('../images/vegi-background-1.jpg');
+	background-color: #aac0aa;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
+	/* background-attachment: fixed; */
 	background-position: center;
 	background-size: cover;
 	overflow: hidden;
@@ -10,10 +10,27 @@ body {
 
 #site {
 	transition: all .5s;
-	position: relative;
+	/* position: relative; */
 	background-color: rgba(1,4,0,.1);
 	height: 100vh;
 	width: 100vw;
+}
+
+.welcome-wrapper{
+	font-family: 'Oswald', sans-serif;
+	color: white;
+	position: relative;
+	top: 0vh;
+	left: 80vh;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	width: 265px;
+	text-align: center;
+}
+
+.welcome-wrapper h1{
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 /*#slidertoggle {
@@ -30,7 +47,18 @@ body {
 */
 #registration, #login {
 	position: fixed;
-	top: 30vh;
+	top: 24vh;
+	left: 40vw;
+	background: transparent;
+	display: block;
+	font-family: 'Oswald', sans-serif;
+	height: 300px;
+	width: 300px;
+}
+
+#bite-me {
+	position: relative;
+	top: 0vh;
 	left: 40vw;
 	background: transparent;
 	display: block;

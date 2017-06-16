@@ -22,16 +22,16 @@ block content
 						br
 					form.form(action="/color" method="post")
 						fieldset
-							h5.input-header Select Beverage Type: 
-							select.wine-input(name="searchType")
-								option  
-								option Wine
-								//- option Spirits         <!-- selected="selected" -->
-								//- option Table
-								//- option Dessert
-								//- option Sparkling
-								//- option Fruit
-								//- option Cider	
+							//- h5.input-header Select Beverage Type: 
+							//- select.wine-input(name="searchType")
+							//- 	option  
+							//- 	option Wine
+							//- 	option Spirits         <!-- selected="selected" -->
+							//- 	option Table
+							//- 	option Dessert
+							//- 	option Sparkling
+							//- 	option Fruit
+							//- 	option Cider	
 
 							h5.input-header Select Color Preference: 
 							select.wine-input(name="searchColor")
@@ -80,10 +80,10 @@ block content
 								option $2000	
 
 							h5.input-header Sort Selection By: 
-							select.wine-input(name= "seacrhSort")
+							select.wine-input(name= "searchSort")
 								option
-								option Price &#8679       <!-- selected="selected" -->
-								option Price &#8681
+								option(value='asc') Price &#8679       <!-- selected="selected" -->
+								option(value='desc') Price &#8681
 							
 							//- h5.input-header Number of Results:
 							//- select.wine-input(name="searchNumber")

@@ -90,7 +90,7 @@ a:hover, a:focus {
 
 .restSearch, .topRests, .randRests{
 	background-color: #444a44;
-	border-radius: 5px;
+	/*border-radius: 5px;*/
 	font-family: 'Oswald', sans-serif;
 	color: white;
 	box-shadow: 2px 2px 5px 1px #d2c2ba;

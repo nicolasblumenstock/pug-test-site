@@ -21,6 +21,10 @@ block content
 			.slide
 				.container
 					.row
+						.col-sm-12.random-header
+							h1 Completely Indecisive?
+							span Let us decide for you...
+					.row
 						.col-sm-6.random-wrapper
 							.col-sm-3.col-sm-offset-9.inner
 								form.random-form(action="/random-recipe" method="post")
@@ -72,11 +76,20 @@ block content
 											img(src=recipes[i].images[0].imageUrlBySize[360])
 										-else
 											img(src=recipes[i].images[0].hostedLargeUrl)
+								.row
+									.col-sm-10.recipe-button-wrapper
+										a(href=recipes[i].source.sourceRecipeUrl)
+											button.btn.btn-primary Instructions
+								.row
+									.col-sm-12.save-button-wrapper
+										a(href='/saverecipe/' + recipes[i].id + '/' + recipes[i].name)
+											button.btn.btn-success Save Recipe					
 							.col-sm-6.ingredient-wrapper
-								.col-sm-12.ingredient-list
-									-for (let j = 0; j < recipes[i].ingredientLines.length; j++)
-										.row(class='row' + j)
-											li #{recipes[i].ingredientLines[j]}
+								.row
+									.col-sm-12.ingredient-list
+										-for (let j = 0; j < recipes[i].ingredientLines.length; j++)
+											.row(class='row' + j)
+												li #{recipes[i].ingredientLines[j]}
 
 						// .col-sm-12.picture-wrapper
 						// 	.col-sm-5.col-sm-offset-5.recipe-button-wrapper

@@ -1,4 +1,3 @@
-
 .container{
 	margin-left: 0px;
 	margin-right: 0px;
@@ -19,23 +18,11 @@
 
 body {
 	margin: 0px;
-	background-color: #191919;
+	background-image: url('../images/vegi-background.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
 	background-size: cover;
-}
-
-.random-header{
-	position: relative;
-	top: -83px;
-	left: 288px;
-}
-
-.random-header span{
-	position: relative;
-	top: -6px;
-	left: 53px;
 }
 
 /*#slidertoggle {
@@ -53,14 +40,13 @@ body {
 	font-family: 'Oswald', sans-serif;	
 	font-size: 15px;
 	/* text-align: center; */
-	line-height: 55px;
+	line-height: 10vh;
 	/* margin-left: 10%; */
-	margin-top: 10px;
+	margin-top: 3vh;
 	border: none;
 	color: white;
-	height: 60px;
+	height: 10vh;
 	width: 10vw;
-	box-shadow: 1px 1px 5px 2px #222;
 	/* text-shadow: 0px 0px 1px black; */
 	/* width: 80%; */
 	/* padding-top: 40%; */
@@ -74,15 +60,14 @@ body {
 
 .random-wrapper{
 	text-align: right;
-	line-height: 100px;
+	line-height: 20vh;
 }
 
 .random-wrapper,.search-wrapper{
-	background: #444A44;
+	background: rgba(25, 25, 25,0.8);
 	border-radius: 5px;
 	margin-top: 0%;
-	margin-bottom: 86px;
-	height: 100px;
+	height: 20vh;
 	/* border-radius: 5px; */
 }
 
@@ -94,12 +79,11 @@ body {
 	background-color: #dceed1;
 	line-height: 80%;
 	opacity: .8;
-	height: 80px;
+	height: 16vh;
 	width: 10vw;
-	margin-top: 10px;
+	margin-top: 2vh;
 	border-radius: 5px;
 	text-align: center;
-	box-shadow: 1px 1px 5px 2px #222;
 }
 
 .results{
@@ -128,7 +112,7 @@ body {
 }
 
 .side-bar-header{
-	background-color: #444A44;
+	background-color: #aac0aa;
 	text-align: right;
 	line-height: 100%;
 	font-family: 'Oswald', sans-serif;
@@ -170,15 +154,17 @@ body {
 	padding-left: 15px;
 	height: 20px;
 	line-height: 20px;
+	box-shadow: 0px 2px 2px 1px #222;
 	/* border-radius: 5px; */
 }
 
 .row0,.row2,.row4,.row6,.row8,.row10,.row12,.row14,.row16,.row18,.row20,.row22,.row24,.row26,.row28,.row30,.row32,.row34{
-	background: #444A44;
+	background: #aac0aa;
 	margin-top: 3px;
 	height: 20px;
 	line-height: 20px;
 	padding-left: 15px;
+	box-shadow: 0px 2px 2px 2px #222;
 	/* position: relative; */
 	/* right: 20px; */
 	/* border-radius: 5px; */
@@ -192,26 +178,20 @@ body {
 }
 
 .recipe-pic{
-	background: #444A44;
-	height: 250px;
+	background: #aac0aa;
+	height: 25vw;
 	/* margin-top: 10vh; */
 	/* border-radius: 5px; */
 	text-align: right;
 	/* line-height: 25vw; */
 	padding: 0px;
 	margin-top: 5vh;
-	background-image: url('/images/slider-bubbles-green.png');
-	background-repeat: no-repeat;
-	/* background-attachment: fixed; */
-	background-position: -3px 15px;
-	background-size: 100px;
 }
 
 .recipe-pic img{
-	width: 390px;
-	height: 250px;
-	/* border: 3px solid #444A44; */
-	box-shadow: 1px 1px 5px 2px #222;
+	width: 30vw;
+	height: 25vw;
+	border: 3px solid #aac0aa;
 	/* border-radius: 50%; */
 }
 
@@ -243,18 +223,18 @@ body {
 }
 
 .btn-success:focus,.btn-success:hover{
-	background-color: #444A44;
+	background-color: #aac0aa;
 	box-shadow: none;
 }
 
 .save-button-wrapper{
 	margin-top: 1vh;
 	text-align: right;
-	background-color: #444A44;
+	background-color: #aac0aa;
 }
 
 .btn-success{
-	background-color: #444A44;
+	background-color: #aac0aa;
 	border-radius: 0px;
 }
 
@@ -307,8 +287,7 @@ textarea, select, option {
 	background: rgba(170,192,170,0.8);
 	display: block;
 	font-family: 'Oswald', sans-serif;
-	padding-bottom: 10px;
-	padding-top: 10px;
+	height: 50vh;
 	width: 50vw;
 	text-align: center;
 }
@@ -316,78 +295,3 @@ textarea, select, option {
 .fp-tableCell{
 	padding: 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

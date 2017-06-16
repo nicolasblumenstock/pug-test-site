@@ -174,23 +174,27 @@ block content
 							a(href=nearbyResArray[i].url) #{nearbyResArray[i].name}
 						p= nearbyResArray[i].cuisines
 						p= nearbyResArray[i].location.address
+						p= nearbyResArray[i].location.locality_verbose
 					if(nearbyResArray[i+1] !== undefined)		
 						div(class='return' + (i+2))
 							span.restTitle
 								a(href=nearbyResArray[i+1].url) #{nearbyResArray[i+1].name}
 							p= nearbyResArray[i+1].cuisines
 							p= nearbyResArray[i+1].location.address
+							p= nearbyResArray[i+1].location.locality_verbose							
 					if(nearbyResArray[i+2] !== undefined)					
 						div(class='return' + (i+3))
 							span.restTitle #{nearbyResArray[i+2].name}
 							p= nearbyResArray[i+2].cuisines
 							p= nearbyResArray[i+2].location.address
+							p= nearbyResArray[i+2].location.locality_verbose						
 					if(nearbyResArray[i+3] !== undefined)					
 						div(class='return' + (i+4))
 							span.restTitle
 								a(href=nearbyResArray[i+3].url) #{nearbyResArray[i+3].name}
 							p= nearbyResArray[i+3].cuisines
-							p= nearbyResArray[i+3].location.address															
+							p= nearbyResArray[i+3].location.address
+							p= nearbyResArray[i+3].location.locality_verbose																			
 	 
 	
 
