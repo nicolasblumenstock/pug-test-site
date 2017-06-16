@@ -431,63 +431,66 @@ router.post('/search',(req,res)=>{
 			"user-key": "c3f72d6b6e5474936f491150b9e3c476"
 		}
 	}
-	// request.get(creds, (error,response,locationData)=>{
-	// 	console.log(response);
-	// 	var locationData = JSON.parse(locationData);
-	// 	var entType = locationData.location_suggestions[0].entity_type
-	// 	var entID = locationData.location_suggestions[0].entity_id
-	// 	var locDetUrl = "https://developers.zomato.com/api/v2.1/location_details?"
-	// 	var newCreds = `${locDetUrl}entity_id=${entID}&entity_type=${entType}`
-	// 	var newUrl = {
-	// 		url: newCreds,
-	// 		headers:{
-	// 			"user-key": "c3f72d6b6e5474936f491150b9e3c476"
-	// 		}
-	// 	}
+	request.get(creds, (error,response,locationData)=>{
+		console.log(response);
+		var locationData = JSON.parse(locationData);
+		var entType = locationData.location_suggestions[0].entity_type
+		var entID = locationData.location_suggestions[0].entity_id
+		var locDetUrl = "https://developers.zomato.com/api/v2.1/location_details?"
+		var newCreds = `${locDetUrl}entity_id=${entID}&entity_type=${entType}`
+		var newUrl = {
+			url: newCreds,
+			headers:{
+				"user-key": "c3f72d6b6e5474936f491150b9e3c476"
+			}
+		}
 		// res.json(locationData);
-// 		// res.render('city',{cityData: cityData});
-		// request.get(newUrl, (error,repsonse, nextData)=>{
-		// 	var nextData = JSON.parse(nextData);
-			// console.log(nextData.nearby_res[0]);
-
+		// res.render('city',{cityData: cityData});
+		request.get(newUrl, (error,repsonse, nextData)=>{
+			var nextData = JSON.parse(nextData);
+			console.log(nextData.nearby_res[0]);
 
 			// res.json(nextData);
 			// res.render('res-results', {nextData: nextData});
-			// var nearResIds = nextData.nearby_res;
-			// var totalNearRes = nearResIds.length
-			// for(let i = 0; i<totalNearRes; i++){
-			// 	var nearbyResUrl = "https://developers.zomato.com/api/v2.1/restaurant?res_id=" + nearResIds[i];
-			// 	var resCred = {
-			// 		url: nearbyResUrl,
-			// 		headers: {
-			// 			"user-key": "c3f72d6b6e5474936f491150b9e3c476"
-			// 		}
-			// 	}
-			// 	var nearbyResArray = [];
-/////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////API CALL TO ZOMATO///////////////////////////////////////
+			var nearResIds = nextData.nearby_res;
+			var totalNearRes = nearResIds.length
+			for(let i = 0; i<totalNearRes; i++){
+				var nearbyResUrl = "https://developers.zomato.com/api/v2.1/restaurant?res_id=" + nearResIds[i];
+				var resCred = {
+					url: nearbyResUrl,
+					headers: {
+						"user-key": "c3f72d6b6e5474936f491150b9e3c476"
+					}
+				}
+				var nearbyResArray = [];
+
 ///////////////////////////////////////////////////////////////////////////////////
-				// request.get(resCred,(error,response,resName2)=>{
-					// var resName = JSON.parse(resName2)
-					// var x = encodeURI(resName)
-					// nearbyResArray.push(resName)
+/////////////////////////API CALL TO ZOMATO///////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+				request.get(resCred,(error,response,resName2)=>{
+					var resName = JSON.parse(resName2)
+					var x = encodeURI(resName)
+					nearbyResArray.push(resName)
 					// res.json(resName);
 					// res.render('result', {resName: resName});
-					// if(nearbyResArray.length == totalNearRes){
+					if(nearbyResArray.length == totalNearRes){
 						// res.json(nearbyResArray)
-						// res.render('result', {nearbyResArray: nearbyResArray});
-				// 	}
+						res.render('result', {nearbyResArray: nearbyResArray});
+					}
 
-				// });
+				});
+
+			}
 	
-		res.render('result',{
-			nearbyResArray: arrays.searchJSON,
-			sessionInfo: req.session,
+		// res.render('result',{
+		// 	nearbyResArray: arrays.searchJSON,
+		// 	sessionInfo: req.session,
 
+						// });
 		});
-				// });
-	// 		}
-	// 	});
+
+	});
+		
 	
 	
 	

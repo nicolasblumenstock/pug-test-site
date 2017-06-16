@@ -55,10 +55,10 @@ block content
 						//- console.log(nearbyResArray[i].name)
 						infoWindow.setContent(nearbyResArray[i].name);
 						markers.push(marker);
-						//- console.log(markers[i].position)
-						//- console.log(typeof(Number(nearbyResArray[i].location.latitude)))
-						//- console.log(Number(nearbyResArray[i].location.longitude))
-						//- console.log(markers)
+						console.log(markers[i].position)
+						console.log(typeof(Number(nearbyResArray[i].location.latitude)))
+						console.log(Number(nearbyResArray[i].location.longitude))
+						console.log(markers)
 						var startPoint = $('#demo').html();
 						var latLonArray = startPoint.split(',');
 						var latSplit = latLonArray[0].split(' ');
@@ -115,15 +115,6 @@ block content
 				
 						
 
-						//- console.log(distanceStats);
-						//- console.log(typeof(distanceStats));
-					
-					
-
-						
-
-						
-
 
 						for(let j = 0; j < markers.length; j++){
 							markers[j].addListener('click', function() {
@@ -164,7 +155,7 @@ block content
 
 
 
-			})
+			});
 		
 		-for(let i = 0; i < nearbyResArray.length; i += 4)
 			if(nearbyResArray[i] !== undefined)
