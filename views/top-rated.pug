@@ -50,15 +50,17 @@ block content
 					//- console.log(best_rated_restaurant[i].name)
 					infoWindow.setContent(best_rated_restaurant[i].restaurant.name);
 					markers.push(marker);
+					
 					//- console.log(markers[i].position)
 					//- console.log(typeof(Number(best_rated_restaurant[i].location.latitude)))
 					//- console.log(Number(best_rated_restaurant[i].location.longitude))
 					//- console.log(markers)
+					
 					for(let j = 0; j < markers.length; j++){
 						markers[j].addListener('click', function() {
 							infoWindow.open(map, markers[j]);
 							infoWindow.setContent("<p>" + markers[j].address + "<br />" + 
-							"cuisine: " + markers[j].cuisines + "<br />" + "rating(out of 5): " + markers[j].rating + "<br />" + "price range: " + markers[j].cost + "<br />" + markers[j].url + "</p>");
+							"cuisine: " + markers[j].cuisines + "<br />" + "rating(out of 5): " + markers[j].rating + "<br />" + "price range: " + markers[j].cost + "<br />" + "</p>");
 							});	
 						}	
 					}
