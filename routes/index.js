@@ -117,15 +117,8 @@ router.post('/registerProcess', (req,res)=>{
 						req.session.name = firstName;
 						req.session.email = email;
 						req.session.loggedin = true;
-						// req.session.userId = regResults[0].id;
-						res.redirect('/account?msg=registered', {
-							sessionInfo: {
-								name: firstName,
-								email: email,
-								loggedin: true,
-								// userId: regResults[0].id
-							}
-						});
+						req.session.userId = regResults[0].id;
+						res.redirect('/account?msg=registered');
 					});
 			}else{
 				res.redirect('/register?msg=takenEmail')
