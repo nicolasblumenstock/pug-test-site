@@ -117,13 +117,13 @@ router.post('/registerProcess', (req,res)=>{
 						req.session.name = firstName;
 						req.session.email = email;
 						req.session.loggedin = true;
-						req.session.userId = emailResults[0].id;
+						req.session.userId = regResults[0].id;
 						res.redirect('/account?msg=registered', {
 							sessionInfo: {
 								name: firstName,
 								email: email,
 								loggedin: true,
-								userId: emailResults[0].id
+								userId: regResults[0].id
 							}
 						});
 					});
