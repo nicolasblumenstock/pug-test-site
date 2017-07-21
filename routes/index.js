@@ -76,12 +76,13 @@ router.get('/register', (req,res)=>{
 		message = 'Please fill out all required fields. *'
 	}
 	res.render('register', {
-		message,
+		message: message,
 		sessionInfo: req.session
 		})
 });
 
 router.post('/registerProcess', (req,res)=>{
+	console.log(req.body)
 	var firstName = req.body.firstName;
 	var lastName = req.body.lastName;
 	var phoneNumber = req.body.phoneNumber;	
@@ -95,7 +96,7 @@ router.post('/registerProcess', (req,res)=>{
 	var emailCheck = 'SELECT * FROM users WHERE email=?';
 	var registerQuery = 'INSERT INTO users (firstName,lastName,phoneNumber,email,addressLine,city,state,zip,password) VALUES(?,?,?,?,?,?,?,?,?)';
 
-	if((firstName == '') || (lastName == '') || (email == '') || (zip == '') || (password == '') || (password2 == '')){
+	if((firstName == '') || (lastName == '') || (email == '') || (zip == '') || (password == '') || (password2 == '' || (phoneNumber == ''))){
 		res.redirect('/register?msg=emptyField');
 	}else if (password == password2){
 		connection.query(emailCheck,[email],(error,emailResults)=>{
@@ -113,7 +114,9 @@ router.post('/registerProcess', (req,res)=>{
 					zip,
 					hash
 					],(err,regResults)=>{
+						console.log(regResults)
 						if (err) throw err;
+						console.log(req.session)
 						req.session.name = firstName;
 						req.session.email = email;
 						req.session.loggedin = true;
@@ -130,6 +133,7 @@ router.post('/registerProcess', (req,res)=>{
 });
 
 router.get('/account', (req,res)=>{
+	console.log(req.session)
 	var accountQuery = 'SELECT * FROM users WHERE email=?'
 	if ((req.session.loggedin == false) || (req.session.loggedin == undefined)){
 		res.redirect('/login?msg=notloggedin')
@@ -150,6 +154,7 @@ router.get('/account', (req,res)=>{
 			message = 'Recipe Saved.'
 		}
 		connection.query(accountQuery,[email],(error,results)=>{
+			console.log(results)
 			var firstName = results[0].firstName
 			var lastName = results[0].lastName
 			var phoneNumber = results[0].phoneNumber
@@ -161,22 +166,42 @@ router.get('/account', (req,res)=>{
 			var userId = results[0].id
 			var sessionInfo = req.session
 			var savedRecipeQuery = 'SELECT * FROM favorites WHERE userID=?'
-			// console.log(userId)
+			console.log(userId)
 
-			connection.query(savedRecipeQuery, [userId], (error,results)=>{
-				console.log(results)
+			connection.query(savedRecipeQuery, [userId], (err,recRes)=>{
+				console.log('======')
+				console.log(recRes)
+				console.log('======')
 				var httpDone = 0;
 				var faveArray = [];
-				for(let i = 0; i < results.length; i++){
-					var thisRecipeId = results[i].recipeID;
+				if(recRes.length === 0){
+					console.log('ok')
+					res.render('account', {
+						recipeArray: [],
+						message: message,
+						firstName: firstName,
+						lastName: lastName,
+						phoneNumber: phoneNumber,
+						email: email,
+						addressLine: addressLine,
+						city: city,
+						state: state,
+						zip: zip,
+						userId: userId,
+						sessionInfo: sessionInfo
+					});
+				}else{
+
+				for(let i = 0; i < recRes.length; i++){
+					var thisRecipeId = recRes[i].recipeID;
 					console.log(thisRecipeId)
 					var thisRecipeUrl = 'https://api.yummly.com/v1/api/recipe/' + thisRecipeId + '?' + yummlyCreds;
-					request.get(thisRecipeUrl, (error,response,data)=>{
+					request.get(thisRecipeUrl, (e,response,data)=>{
 						httpDone++;
 						console.log(httpDone)
 						var recipeData = JSON.parse(data);
 						faveArray.push(recipeData)
-						if (httpDone == results.length){
+						if (httpDone == recRes.length){
 							res.render('account', {
 								recipes: faveArray,
 								message: message,
@@ -192,24 +217,11 @@ router.get('/account', (req,res)=>{
 								sessionInfo: sessionInfo
 							})
 							// res.json(faveArray)
-						}	
+						}
 					})
 				}
 
-				// res.render('account', {
-				// 	recipeArray: results,
-				// 	message: message,
-				// 	firstName: firstName,
-				// 	lastName: lastName,
-				// 	phoneNumber: phoneNumber,
-				// 	email: email,
-				// 	addressLine: addressLine,
-				// 	city: city,
-				// 	state: state,
-				// 	zip: zip,
-				// 	userId: userId,
-				// 	sessionInfo: sessionInfo
-				// });
+				}
 			});
 		});
 	};
